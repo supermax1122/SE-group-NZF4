@@ -7,6 +7,7 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
 
 /*
  * User interface form for Kiwi Island.
@@ -166,6 +167,8 @@ public class KiwiCountUI
         listObjects = new javax.swing.JList();
         btnCollect = new javax.swing.JButton();
         btnCount = new javax.swing.JButton();
+        pnlVolume = new javax.swing.JPanel();
+        sldVolume = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
@@ -177,7 +180,7 @@ public class KiwiCountUI
         pnlIsland.setLayout(pnlIslandLayout);
         pnlIslandLayout.setHorizontalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
         );
         pnlIslandLayout.setVerticalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,6 +523,28 @@ public class KiwiCountUI
         gridBagConstraints.weighty = 1.0;
         pnlControls.add(pnlObjects, gridBagConstraints);
 
+        pnlVolume.setBorder(javax.swing.BorderFactory.createTitledBorder("Volume"));
+        pnlVolume.setMinimumSize(new java.awt.Dimension(175, 24));
+        pnlVolume.setPreferredSize(new java.awt.Dimension(288, 70));
+        pnlVolume.setLayout(new java.awt.GridBagLayout());
+
+        sldVolume.setMinorTickSpacing(10);
+        sldVolume.setPaintLabels(true);
+        sldVolume.setPaintTicks(true);
+        sldVolume.setSnapToTicks(true);
+        sldVolume.setToolTipText("");
+        sldVolume.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldVolumeStateChanged(evt);
+            }
+        });
+        pnlVolume.add(sldVolume, new java.awt.GridBagConstraints());
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        pnlControls.add(pnlVolume, gridBagConstraints);
+
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
 
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
@@ -579,6 +604,13 @@ public class KiwiCountUI
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
         game.countKiwi();
     }//GEN-LAST:event_btnCountActionPerformed
+
+    private void sldVolumeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldVolumeStateChanged
+        // TODO add your handling code here:
+        if (evt.getSource() == sldVolume) {
+			setOutputVolume(sldVolume.getValue() / 10);
+		}
+    }//GEN-LAST:event_sldVolumeStateChanged
     
     /**
      * Creates and initialises the island grid.
@@ -616,9 +648,11 @@ public class KiwiCountUI
     private javax.swing.JList listInventory;
     private javax.swing.JList listObjects;
     private javax.swing.JPanel pnlIsland;
+    private javax.swing.JPanel pnlVolume;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerStamina;
+    private javax.swing.JSlider sldVolume;
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
