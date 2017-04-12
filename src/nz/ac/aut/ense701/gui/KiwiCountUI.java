@@ -169,6 +169,7 @@ public class KiwiCountUI
         btnCount = new javax.swing.JButton();
         pnlVolume = new javax.swing.JPanel();
         sldVolume = new javax.swing.JSlider();
+        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
@@ -184,7 +185,7 @@ public class KiwiCountUI
         );
         pnlIslandLayout.setVerticalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGap(0, 642, Short.MAX_VALUE)
         );
 
         pnlContent.add(pnlIsland, java.awt.BorderLayout.CENTER);
@@ -382,6 +383,7 @@ public class KiwiCountUI
         pnlControls.add(pnlMovement, gridBagConstraints);
 
         pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder("Inventory"));
+        pnlInventory.setMinimumSize(new java.awt.Dimension(182, 130));
         pnlInventory.setLayout(new java.awt.GridBagLayout());
 
         listInventory.setModel(new javax.swing.AbstractListModel() {
@@ -449,6 +451,7 @@ public class KiwiCountUI
         pnlControls.add(pnlInventory, gridBagConstraints);
 
         pnlObjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Objects"));
+        pnlObjects.setMinimumSize(new java.awt.Dimension(175, 130));
         java.awt.GridBagLayout pnlObjectsLayout = new java.awt.GridBagLayout();
         pnlObjectsLayout.columnWidths = new int[] {0, 5, 0};
         pnlObjectsLayout.rowHeights = new int[] {0, 5, 0};
@@ -524,8 +527,8 @@ public class KiwiCountUI
         pnlControls.add(pnlObjects, gridBagConstraints);
 
         pnlVolume.setBorder(javax.swing.BorderFactory.createTitledBorder("Volume"));
-        pnlVolume.setMinimumSize(new java.awt.Dimension(175, 24));
-        pnlVolume.setPreferredSize(new java.awt.Dimension(288, 70));
+        pnlVolume.setMinimumSize(new java.awt.Dimension(288, 70));
+        pnlVolume.setPreferredSize(new java.awt.Dimension(288, 100));
         pnlVolume.setLayout(new java.awt.GridBagLayout());
 
         sldVolume.setMinorTickSpacing(10);
@@ -544,6 +547,17 @@ public class KiwiCountUI
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         pnlControls.add(pnlVolume, gridBagConstraints);
+
+        btnHelp.setText("jButton1");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        pnlControls.add(btnHelp, gridBagConstraints);
 
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
 
@@ -611,6 +625,10 @@ public class KiwiCountUI
 			setOutputVolume(sldVolume.getValue() / 10);
 		}
     }//GEN-LAST:event_sldVolumeStateChanged
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHelpActionPerformed
     
     /**
      * Creates and initialises the island grid.
@@ -638,6 +656,7 @@ public class KiwiCountUI
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnMoveEast;
     private javax.swing.JButton btnMoveNorth;
     private javax.swing.JButton btnMoveSouth;
