@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nz.ac.aut.ense701.gameModel;
+package JTest;
 
+import nz.ac.aut.ense701.gameModel.MusicPlayer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
