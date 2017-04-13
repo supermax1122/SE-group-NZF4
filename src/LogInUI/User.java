@@ -11,7 +11,7 @@ package LogInUI;
  */
 public class User {
       private String UserName;
-      private int sex;
+
       //there should have user score, it s should be add later when we finished the game program.
       private int score;
       public int getScore(){
@@ -23,10 +23,10 @@ public class User {
      
      	public User() {}
 		
-	public User(String name, int sex) {
+	public User(String name) {
 	
 		this.UserName = name;
-		this.sex = sex;
+	
 	}
 
 	public String getUserName() {
@@ -37,14 +37,9 @@ public class User {
 		this.UserName = name;
 	}
 
-	public int getSex() {
-		return sex;
-	}
 
-	public void setSex(int sex) {
-		this.sex = sex;
-	}
 
-      
+
+     
     
 }
