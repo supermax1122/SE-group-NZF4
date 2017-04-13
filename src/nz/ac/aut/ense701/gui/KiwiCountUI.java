@@ -52,6 +52,7 @@ public class KiwiCountUI
                     this, 
                     game.getLoseMessage(), "Game over!",
                     JOptionPane.INFORMATION_MESSAGE);
+            game.stopMusic();
             game.createNewGame();
         }
         else if ( game.getState() == GameState.WON )
@@ -60,6 +61,7 @@ public class KiwiCountUI
                     this, 
                     game.getWinMessage(), "Well Done!",
                     JOptionPane.INFORMATION_MESSAGE);
+            game.stopMusic();
             game.createNewGame();
         }
         else if (game.messageForPlayer())

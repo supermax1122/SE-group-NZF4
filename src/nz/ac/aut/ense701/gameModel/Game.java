@@ -34,7 +34,7 @@ public class Game
     public Game() 
     {   
         eventListeners = new HashSet<GameEventListener>();
-
+        
         createNewGame();
     }
     
@@ -56,6 +56,9 @@ public class Game
         loseMessage = "";
         playerMessage = "";
         notifyGameEventListeners();
+        
+        mplayer = new MusicPlayer ("res/music/Scenery_of_the_Town_Morning.wav");
+        mplayer.Start_Loop();
     }
 
     /***********************************************************************************************************************
@@ -69,6 +72,13 @@ public class Game
     public int getNumRows()
     {
         return island.getNumRows();
+    }
+    
+    /**
+     * Stop background music
+     */
+    public void stopMusic (){
+        mplayer.stop();
     }
     
     /**
@@ -848,14 +858,13 @@ public class Game
     private int totalKiwis;
     private int predatorsTrapped;
     private Set<GameEventListener> eventListeners;
+    private MusicPlayer mplayer;
     
     private final double MIN_REQUIRED_CATCH = 0.8;
         
     private String winMessage = "";
     private String loseMessage  = "";
     private String playerMessage  = "";   
-
-    
 
 
 
