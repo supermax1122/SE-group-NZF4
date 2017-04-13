@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
+import nz.ac.aut.ense701.gameModel.Help;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
 import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
 
@@ -548,7 +549,7 @@ public class KiwiCountUI
         gridBagConstraints.gridy = 4;
         pnlControls.add(pnlVolume, gridBagConstraints);
 
-        btnHelp.setText("jButton1");
+        btnHelp.setText("Help");
         btnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHelpActionPerformed(evt);
@@ -628,6 +629,7 @@ public class KiwiCountUI
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         // TODO add your handling code here:
+        Help help = new Help();
     }//GEN-LAST:event_btnHelpActionPerformed
     
     /**
