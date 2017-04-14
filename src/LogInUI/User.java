@@ -7,7 +7,7 @@ package LogInUI;
 
 /**
  *
- * @author MengMeng
+ * @author Hongzhou Sha
  */
 public class User {
       private String UserName;
