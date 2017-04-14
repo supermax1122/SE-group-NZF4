@@ -12,7 +12,6 @@ import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.Help;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
 import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
-import static nz.ac.aut.ense701.gui.TimePanel.userTimeAction;
 
 /*
  * User interface form for Kiwi Island.
@@ -20,16 +19,18 @@ import static nz.ac.aut.ense701.gui.TimePanel.userTimeAction;
  * @author AS
  * @version July 2011
  */
-public class KiwiCountUI
-        extends javax.swing.JFrame
-        implements GameEventListener {
+
+public class KiwiCountUI 
+    extends javax.swing.JFrame 
+    implements GameEventListener
+{
 
     /**
      * Creates a GUI for the KiwiIsland game.
-     *
      * @param game the game object to represent with this GUI.
      */
-    public KiwiCountUI(Game game) {
+    public KiwiCountUI(Game game) 
+    {
         assert game != null : "Make sure game object is created before UI";
         this.game = game;
         setAsGameListener();
@@ -38,66 +39,71 @@ public class KiwiCountUI
         initTimer();
         this.addKeyListener(new KeybordListener(game, this));
         update();
- 
     }
-
+    
     /**
      * This method is called by the game model every time something changes.
      * Trigger an update.
      */
     @Override
-    public void gameStateChanged() {
+    public void gameStateChanged()
+    {
         update();
-
+        
         // check for "game over" or "game won"
-        if (game.getState() == GameState.LOST) {
+        if ( game.getState() == GameState.LOST )
+        {
             JOptionPane.showMessageDialog(
-                    this,
+                    this, 
                     game.getLoseMessage(), "Game over!",
                     JOptionPane.INFORMATION_MESSAGE);
-            
-            TimePanel.userTimeAction.stop();
             game.stopMusic();
-            time.userTimeAction.stop();
+            timer.stop();
+            timer.setZero();
             game.createNewGame();
-            time.usedTime=0;
-            time.userTimeAction.start();
-            
-        } else if (game.getState() == GameState.WON) {
+            timer.start();
+        }
+        else if ( game.getState() == GameState.WON )
+        {
             JOptionPane.showMessageDialog(
-                    this,
+                    this, 
                     game.getWinMessage(), "Well Done!",
                     JOptionPane.INFORMATION_MESSAGE);
+                        timer.stop();
+            timer.setZero();
             game.stopMusic();
-            
             game.createNewGame();
-            time.usedTime=0;
-            time.userTimeAction.start();
-        } else if (game.messageForPlayer()) {
+            timer.start();
+        }
+        else if (game.messageForPlayer())
+        {
             JOptionPane.showMessageDialog(
-                    this,
+                    this, 
                     game.getPlayerMessage(), "Important Information",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.INFORMATION_MESSAGE);   
         }
     }
-
-    private void setAsGameListener() {
-        game.addGameEventListener(this);
+    
+     private void setAsGameListener()
+    {
+       game.addGameEventListener(this); 
     }
-
+     
     /**
      * Updates the state of the UI based on the state of the game.
      */
-    private void update() {
+    private void update()
+    {
         // update the grid square panels
         Component[] components = pnlIsland.getComponents();
-        for (Component c : components) {
+        for ( Component c : components )
+        {
             // all components in the panel are GridSquarePanels,
             // so we can safely cast
             GridSquarePanel gsp = (GridSquarePanel) c;
             gsp.update();
         }
-
+        
         // update player information
         int[] playerValues = game.getPlayerValues();
         txtPlayerName.setText(game.getPlayerName());
@@ -107,40 +113,40 @@ public class KiwiCountUI
         progBackpackWeight.setValue(playerValues[Game.WEIGHT_INDEX]);
         progBackpackSize.setMaximum(playerValues[Game.MAXSIZE_INDEX]);
         progBackpackSize.setValue(playerValues[Game.SIZE_INDEX]);
-
+        
         //Update Kiwi and Predator information
-        txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()));
+        txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()) );
         txtPredatorsLeft.setText(Integer.toString(game.getPredatorsRemaining()));
-
+        
         // update inventory list
         listInventory.setListData(game.getPlayerInventory());
         listInventory.clearSelection();
         listInventory.setToolTipText(null);
         btnUse.setEnabled(false);
         btnDrop.setEnabled(false);
-
+        
         // update list of visible objects
         listObjects.setListData(game.getOccupantsPlayerPosition());
         listObjects.clearSelection();
         listObjects.setToolTipText(null);
         btnCollect.setEnabled(false);
         btnCount.setEnabled(false);
-
+        
         // update movement buttons
         btnMoveNorth.setEnabled(game.isPlayerMovePossible(MoveDirection.NORTH));
-        btnMoveEast.setEnabled(game.isPlayerMovePossible(MoveDirection.EAST));
+        btnMoveEast.setEnabled( game.isPlayerMovePossible(MoveDirection.EAST));
         btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
-        btnMoveWest.setEnabled(game.isPlayerMovePossible(MoveDirection.WEST));
+        btnMoveWest.setEnabled( game.isPlayerMovePossible(MoveDirection.WEST));
 
         //Enable keybord input
         this.setFocusable(true);
         this.requestFocusInWindow();
     }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+    
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -619,7 +625,8 @@ public class KiwiCountUI
         Object occ = listObjects.getSelectedValue();
         this.setFocusable(true);
         this.requestFocusInWindow();
-        if (occ != null) {
+        if ( occ != null )
+        {
             btnCollect.setEnabled(game.canCollect(occ));
             btnCount.setEnabled(game.canCount(occ));
             listObjects.setToolTipText(game.getOccupantDescription(occ));
@@ -627,17 +634,18 @@ public class KiwiCountUI
     }//GEN-LAST:event_listObjectsValueChanged
 
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUseActionPerformed
-        game.useItem(listInventory.getSelectedValue());
+        game.useItem( listInventory.getSelectedValue());
         this.setFocusable(true);
         this.requestFocusInWindow();
     }//GEN-LAST:event_btnUseActionPerformed
 
     private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listInventoryValueChanged
-        Object item = listInventory.getSelectedValue();
+        Object item =  listInventory.getSelectedValue();
         this.setFocusable(true);
         this.requestFocusInWindow();
         btnDrop.setEnabled(true);
-        if (item != null) {
+        if ( item != null )
+        {
             btnUse.setEnabled(game.canUse(item));
             listInventory.setToolTipText(game.getOccupantDescription(item));
         }
@@ -652,7 +660,7 @@ public class KiwiCountUI
     private void sldVolumeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldVolumeStateChanged
         // TODO add your handling code here:
         if (evt.getSource() == sldVolume) {
-            setOutputVolume(sldVolume.getValue() / 10);
+			setOutputVolume(sldVolume.getValue() / 10);
         }
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -664,40 +672,43 @@ public class KiwiCountUI
         this.setFocusable(true);
         this.requestFocusInWindow();
     }//GEN-LAST:event_btnHelpActionPerformed
-
+    
     /**
      * Creates and initialises the island grid.
      */
-    private void initIslandGrid() {
+    private void initIslandGrid()
+    {
         // Add the grid
-        int rows = game.getNumRows();
+        int rows    = game.getNumRows();
         int columns = game.getNumColumns();
         // set up the layout manager for the island grid panel
         pnlIsland.setLayout(new GridLayout(rows, columns));
         // create all the grid square panels and add them to the panel
         // the layout manager of the panel takes care of assigning them to the
         // the right position
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
+        for ( int row = 0 ; row < rows ; row++ )
+        {
+            for ( int col = 0 ; col < columns ; col++ )
+            {
                 pnlIsland.add(new GridSquarePanel(game, row, col));
             }
         }
     }
-
-    private void initTimer() {
+    
+    private void initTimer(){
            JFrame jf=new JFrame();
            JPanel jp=new JPanel();
-           TimePanel time= new TimePanel();
-           jp.add(time, BorderLayout.EAST);
+           timer= new TimePanel();
             //jf.set
            jf.add(jp);
+           jp.add(timer, BorderLayout.EAST);
            jf.setVisible(true);
            jf.setSize(515, 600);
            jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           time.start();
-
+           timer.start();
+    
     }
-     private TimePanel time;
+    private TimePanel timer;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
