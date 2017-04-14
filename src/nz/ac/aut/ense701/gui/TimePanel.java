@@ -31,7 +31,7 @@ public class TimePanel extends JPanel{
         this.setBorder(new TitledBorder("Time"));
         this.setLayout(new GridLayout(2, 1));
         setTimer();
-        
+       
 
         
     }
@@ -72,19 +72,29 @@ public class TimePanel extends JPanel{
         userTimeAction.stop();
     }
     
+    public void setZero(){
+        usedTime=0;
+    
+    }
+    
+    public long getUserTime(){
+    
+        return usedTime;
+    }
+    
 
        public static void main(String[] args){
        
            JFrame jf=new JFrame();
            JPanel jp=new JPanel();
-           TimePanel time= new TimePanel();
-           jp.add(time, BorderLayout.EAST);
+           TimePanel timer= new TimePanel();
             //jf.set
            jf.add(jp);
+           jp.add(timer, BorderLayout.EAST);
            jf.setVisible(true);
            jf.setSize(515, 600);
            jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           time.start();
+           timer.start();
            
        }
     
