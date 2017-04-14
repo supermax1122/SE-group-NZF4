@@ -708,7 +708,7 @@ public class KiwiCountUI
            timer.start();
     
     }
-    private TimePanel timer;
+    public static TimePanel timer;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
