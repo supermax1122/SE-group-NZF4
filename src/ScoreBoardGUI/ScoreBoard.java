@@ -29,7 +29,7 @@ public class ScoreBoard {
 	public ScoreBoard(){
 	     JFrame f=new JFrame();
 	 
-	    String[] Names={"Player Name","Score"};
+	    String[] Names={"Player Name","Score","Game Level"};
 	    DefaultTableModel de = new DefaultTableModel(createArray("A:/errlog.txt"),Names);
 	    
 	    JTable table=new JTable(de);
@@ -46,7 +46,7 @@ public class ScoreBoard {
 	                        }
 	                      });
 	   }
-	 /**
+     /**
      * read the TXT file.
      * @param filePath
      * @return
