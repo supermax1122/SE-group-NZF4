@@ -452,6 +452,7 @@ public class GameTest extends junit.framework.TestCase
         if(moveOK){
             moveOK = playerMoveWest(2);
         }
+        
         if(moveOK){
             moveOK = playerMoveSouth(1);
             game.useItem(trap);
@@ -464,6 +465,7 @@ public class GameTest extends junit.framework.TestCase
             moveOK = playerMoveSouth(1);
             game.useItem(trap);
         }
+        
         //Predator 5
         if(moveOK){
             moveOK = playerMoveEast(1);
@@ -472,6 +474,7 @@ public class GameTest extends junit.framework.TestCase
             moveOK = playerMoveSouth(1);
             game.useItem(trap);
         }
+        
          //Predator 6
         if(moveOK){
             moveOK = playerMoveEast(2);
