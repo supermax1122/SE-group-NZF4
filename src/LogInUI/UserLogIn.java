@@ -31,9 +31,7 @@ public class UserLogIn extends JFrame{
        //Create the User Name.
 	private JLabel nameTextLabel = new JLabel("User Name：");
 	private JTextField nameField = new JTextField(20);
-	//Select the sex.
-	private JLabel sexTextLabel = new JLabel("Gender：");
-	private JComboBox sexSelect = new JComboBox();
+
 	//Create buttons.
 	private JButton YesButton = new JButton("Yes");
 	private JButton NoButton = new JButton("No");
@@ -42,9 +40,7 @@ public class UserLogIn extends JFrame{
         
         @SuppressWarnings("unchecked")
 	public UserLogIn(){
-		this.sexSelect.addItem("Male");
-		this.sexSelect.addItem("Female");
-		
+	
 		Box nameBox = Box.createHorizontalBox();
 		nameBox.add(Box.createHorizontalStrut(30));
 		nameBox.add(this.nameTextLabel);
@@ -52,12 +48,7 @@ public class UserLogIn extends JFrame{
 		nameBox.add(this.nameField);
 		nameBox.add(Box.createHorizontalStrut(30));
 		
-		Box sexBox = Box.createHorizontalBox();
-		sexBox.add(Box.createHorizontalStrut(30));
-		sexBox.add(this.sexTextLabel);
-		sexBox.add(Box.createHorizontalStrut(43));
-		sexBox.add(this.sexSelect);
-		sexBox.add(Box.createHorizontalStrut(170));
+
 		
 
 		Box buttonBox = Box.createHorizontalBox();
@@ -68,8 +59,6 @@ public class UserLogIn extends JFrame{
 		Box mainBox = Box.createVerticalBox();
 		mainBox.add(Box.createVerticalStrut(20));
 		mainBox.add(nameBox);
-		mainBox.add(Box.createVerticalStrut(10));
-		mainBox.add(sexBox);
 		mainBox.add(Box.createVerticalStrut(20));
 		mainBox.add(buttonBox);
 		mainBox.add(Box.createVerticalStrut(20));
@@ -116,17 +105,11 @@ public class UserLogIn extends JFrame{
         
         private void setUser() {
 		//Create User
-		int sex = getSex();
 		String name = this.nameField.getText();
 		this.user.setUserName(name);
-		this.user.setSex(sex);
 	}
 	
-	private int getSex() {
-		String sex = (String)this.sexSelect.getSelectedItem();
-		if (sex.equals("Male")) return 0;
-		else return 1;
-	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new     UserLogIn();
