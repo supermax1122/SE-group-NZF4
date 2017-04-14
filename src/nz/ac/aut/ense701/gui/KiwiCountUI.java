@@ -33,6 +33,7 @@ public class KiwiCountUI
         setAsGameListener();
         initComponents();
         initIslandGrid();
+        this.addKeyListener(new KeybordListener(game, this));
         update();
     }
     
@@ -126,6 +127,10 @@ public class KiwiCountUI
         btnMoveEast.setEnabled( game.isPlayerMovePossible(MoveDirection.EAST));
         btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
         btnMoveWest.setEnabled( game.isPlayerMovePossible(MoveDirection.WEST));
+
+        //Enable keybord input
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
     
     /** This method is called from within the constructor to
@@ -571,31 +576,45 @@ public class KiwiCountUI
 
     private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveEastActionPerformed
         game.playerMove(MoveDirection.EAST);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveEastActionPerformed
 
     private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNorthActionPerformed
         game.playerMove(MoveDirection.NORTH);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveNorthActionPerformed
 
     private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveSouthActionPerformed
         game.playerMove(MoveDirection.SOUTH);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveSouthActionPerformed
 
     private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveWestActionPerformed
         game.playerMove(MoveDirection.WEST);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveWestActionPerformed
 
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectActionPerformed
         Object obj = listObjects.getSelectedValue();
         game.collectItem(obj);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnCollectActionPerformed
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         game.dropItem(listInventory.getSelectedValue());
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnDropActionPerformed
 
     private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listObjectsValueChanged
         Object occ = listObjects.getSelectedValue();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
         if ( occ != null )
         {
             btnCollect.setEnabled(game.canCollect(occ));
@@ -606,10 +625,14 @@ public class KiwiCountUI
 
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUseActionPerformed
         game.useItem( listInventory.getSelectedValue());
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnUseActionPerformed
 
     private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listInventoryValueChanged
         Object item =  listInventory.getSelectedValue();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
         btnDrop.setEnabled(true);
         if ( item != null )
         {
@@ -620,18 +643,24 @@ public class KiwiCountUI
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
         game.countKiwi();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnCountActionPerformed
 
     private void sldVolumeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldVolumeStateChanged
         // TODO add your handling code here:
         if (evt.getSource() == sldVolume) {
 			setOutputVolume(sldVolume.getValue() / 10);
-		}
+        }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_sldVolumeStateChanged
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         // TODO add your handling code here:
         Help help = new Help();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnHelpActionPerformed
     
     /**
