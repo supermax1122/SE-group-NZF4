@@ -6,7 +6,9 @@ import javax.swing.JOptionPane;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
+import nz.ac.aut.ense701.gameModel.Help;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
 
 /*
  * User interface form for Kiwi Island.
@@ -31,6 +33,7 @@ public class KiwiCountUI
         setAsGameListener();
         initComponents();
         initIslandGrid();
+        this.addKeyListener(new KeybordListener(game, this));
         update();
     }
     
@@ -50,6 +53,7 @@ public class KiwiCountUI
                     this, 
                     game.getLoseMessage(), "Game over!",
                     JOptionPane.INFORMATION_MESSAGE);
+            game.stopMusic();
             game.createNewGame();
         }
         else if ( game.getState() == GameState.WON )
@@ -58,6 +62,7 @@ public class KiwiCountUI
                     this, 
                     game.getWinMessage(), "Well Done!",
                     JOptionPane.INFORMATION_MESSAGE);
+            game.stopMusic();
             game.createNewGame();
         }
         else if (game.messageForPlayer())
@@ -122,6 +127,10 @@ public class KiwiCountUI
         btnMoveEast.setEnabled( game.isPlayerMovePossible(MoveDirection.EAST));
         btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
         btnMoveWest.setEnabled( game.isPlayerMovePossible(MoveDirection.WEST));
+
+        //Enable keybord input
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
     
     /** This method is called from within the constructor to
@@ -166,6 +175,9 @@ public class KiwiCountUI
         listObjects = new javax.swing.JList();
         btnCollect = new javax.swing.JButton();
         btnCount = new javax.swing.JButton();
+        pnlVolume = new javax.swing.JPanel();
+        sldVolume = new javax.swing.JSlider();
+        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
@@ -177,11 +189,11 @@ public class KiwiCountUI
         pnlIsland.setLayout(pnlIslandLayout);
         pnlIslandLayout.setHorizontalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
         );
         pnlIslandLayout.setVerticalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGap(0, 642, Short.MAX_VALUE)
         );
 
         pnlContent.add(pnlIsland, java.awt.BorderLayout.CENTER);
@@ -379,6 +391,7 @@ public class KiwiCountUI
         pnlControls.add(pnlMovement, gridBagConstraints);
 
         pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder("Inventory"));
+        pnlInventory.setMinimumSize(new java.awt.Dimension(182, 130));
         pnlInventory.setLayout(new java.awt.GridBagLayout());
 
         listInventory.setModel(new javax.swing.AbstractListModel() {
@@ -446,6 +459,7 @@ public class KiwiCountUI
         pnlControls.add(pnlInventory, gridBagConstraints);
 
         pnlObjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Objects"));
+        pnlObjects.setMinimumSize(new java.awt.Dimension(175, 130));
         java.awt.GridBagLayout pnlObjectsLayout = new java.awt.GridBagLayout();
         pnlObjectsLayout.columnWidths = new int[] {0, 5, 0};
         pnlObjectsLayout.rowHeights = new int[] {0, 5, 0};
@@ -520,6 +534,39 @@ public class KiwiCountUI
         gridBagConstraints.weighty = 1.0;
         pnlControls.add(pnlObjects, gridBagConstraints);
 
+        pnlVolume.setBorder(javax.swing.BorderFactory.createTitledBorder("Volume"));
+        pnlVolume.setMinimumSize(new java.awt.Dimension(288, 70));
+        pnlVolume.setPreferredSize(new java.awt.Dimension(288, 100));
+        pnlVolume.setLayout(new java.awt.GridBagLayout());
+
+        sldVolume.setMinorTickSpacing(10);
+        sldVolume.setPaintLabels(true);
+        sldVolume.setPaintTicks(true);
+        sldVolume.setSnapToTicks(true);
+        sldVolume.setToolTipText("");
+        sldVolume.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldVolumeStateChanged(evt);
+            }
+        });
+        pnlVolume.add(sldVolume, new java.awt.GridBagConstraints());
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        pnlControls.add(pnlVolume, gridBagConstraints);
+
+        btnHelp.setText("Help");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        pnlControls.add(btnHelp, gridBagConstraints);
+
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
 
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
@@ -529,31 +576,45 @@ public class KiwiCountUI
 
     private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveEastActionPerformed
         game.playerMove(MoveDirection.EAST);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveEastActionPerformed
 
     private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNorthActionPerformed
         game.playerMove(MoveDirection.NORTH);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveNorthActionPerformed
 
     private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveSouthActionPerformed
         game.playerMove(MoveDirection.SOUTH);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveSouthActionPerformed
 
     private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveWestActionPerformed
         game.playerMove(MoveDirection.WEST);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnMoveWestActionPerformed
 
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectActionPerformed
         Object obj = listObjects.getSelectedValue();
         game.collectItem(obj);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnCollectActionPerformed
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         game.dropItem(listInventory.getSelectedValue());
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnDropActionPerformed
 
     private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listObjectsValueChanged
         Object occ = listObjects.getSelectedValue();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
         if ( occ != null )
         {
             btnCollect.setEnabled(game.canCollect(occ));
@@ -564,10 +625,14 @@ public class KiwiCountUI
 
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUseActionPerformed
         game.useItem( listInventory.getSelectedValue());
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnUseActionPerformed
 
     private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listInventoryValueChanged
         Object item =  listInventory.getSelectedValue();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
         btnDrop.setEnabled(true);
         if ( item != null )
         {
@@ -578,7 +643,25 @@ public class KiwiCountUI
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
         game.countKiwi();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }//GEN-LAST:event_btnCountActionPerformed
+
+    private void sldVolumeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldVolumeStateChanged
+        // TODO add your handling code here:
+        if (evt.getSource() == sldVolume) {
+			setOutputVolume(sldVolume.getValue() / 10);
+        }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_sldVolumeStateChanged
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        // TODO add your handling code here:
+        Help help = new Help();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_btnHelpActionPerformed
     
     /**
      * Creates and initialises the island grid.
@@ -606,6 +689,7 @@ public class KiwiCountUI
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnMoveEast;
     private javax.swing.JButton btnMoveNorth;
     private javax.swing.JButton btnMoveSouth;
@@ -616,9 +700,11 @@ public class KiwiCountUI
     private javax.swing.JList listInventory;
     private javax.swing.JList listObjects;
     private javax.swing.JPanel pnlIsland;
+    private javax.swing.JPanel pnlVolume;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerStamina;
+    private javax.swing.JSlider sldVolume;
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
