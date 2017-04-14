@@ -49,7 +49,17 @@ public class MusicPlayerTest extends junit.framework.TestCase{
     // @Test
     // public void hello() {}
 
-
+    @Test
+    public void testGetPath (){
+        assertEquals(null, mplayer.getPath());        
+    }
+    
+    @Test
+    public void testSetPath (){
+        mplayer.setPath("res/music/Scenery_of_the_Town_Morning.wav");        
+        assertEquals("Chekc path", "res/music/Scenery_of_the_Town_Morning.wav", mplayer.getPath());                
+    }
+    
     /**
      * Test if the class can open audio file with correctly;
      */
@@ -62,12 +72,31 @@ public class MusicPlayerTest extends junit.framework.TestCase{
     }
     
     /**
-     * Test if the class can start the music correctly, and than stop it correctly
+     * Test if the class can start the music correctly
      */
     @Test
-    public void testStartandStop (){
+    public void testStart (){
         mplayer.setPath("res/music/Scenery_of_the_Town_Morning.wav");
         assertTrue("should start the music and return true.", mplayer.Start());        
+    }
+    
+    /**
+     * Test if the class can stop the music correctly
+     */
+    @Test
+    public void testStop (){
+        mplayer.setPath("res/music/Scenery_of_the_Town_Morning.wav");
+        mplayer.Start();
         assertTrue("should stop the music and return true.", mplayer.stop());
+    }
+    /**
+     *Check if the class set to stop when music stop
+     */
+    @Test
+    public void testIsStop (){
+        mplayer.setPath("res/music/Scenery_of_the_Town_Morning.wav");
+        mplayer.Start();
+        mplayer.stop();
+        assertTrue ("Should show stop", mplayer.isStop());
     }
 }

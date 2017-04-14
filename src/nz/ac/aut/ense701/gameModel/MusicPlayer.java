@@ -8,8 +8,6 @@ import javax.swing.*;
 public class MusicPlayer {
 
     private boolean isStop = true;
-    private double startPosition;
-    private double currentPosiition;
     private String songPath;
     AudioInputStream audioIn;
     Clip clip;
@@ -29,6 +27,10 @@ public class MusicPlayer {
         this.songPath = songPath;
     }
 
+    public String getPath (){
+        return this.songPath;
+    }    
+    
     public boolean openFile() {
         try {
             File file = new File(songPath);
@@ -52,7 +54,6 @@ public class MusicPlayer {
                 clip.open(audioIn);
                 clip.start();
                 this.isStop = false;
-                startPosition = (double) (System.currentTimeMillis() * 1.00 / 1000.f);
                 return true;
             } catch (LineUnavailableException e) {
                 // TODO Auto-generated catch block
@@ -74,7 +75,6 @@ public class MusicPlayer {
                 clip.open(audioIn);
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
                 this.isStop = false;
-                startPosition = (double) (System.currentTimeMillis() * 1.00 / 1000.f);
                 return true;
             } catch (LineUnavailableException e) {
                 // TODO Auto-generated catch block
@@ -91,22 +91,11 @@ public class MusicPlayer {
 
     public boolean stop() {
         clip.stop();
-        currentPosiition = currentPosition();
         isStop = true;
         return true;
     }
 
     public boolean isEnd() {
         return !clip.isRunning();
-    }
-
-    public double currentPosition() {
-        return (double) (System.currentTimeMillis() * 1.00 / 1000.f) - startPosition;
-    }
-
-    public void resume() {
-        clip.start();
-        startPosition = (double) (System.currentTimeMillis() * 1.00 / 1000.f) - currentPosiition;
-        isStop = false;
     }
 }
