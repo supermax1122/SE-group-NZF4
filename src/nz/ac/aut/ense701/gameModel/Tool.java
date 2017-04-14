@@ -11,6 +11,7 @@ package nz.ac.aut.ense701.gameModel;
 public class Tool extends Item 
 {
     private boolean broken;
+    private Durability durability;
     
     /**
      * Construct a tool with known attributes.
@@ -24,6 +25,22 @@ public class Tool extends Item
     {
         super(pos, name, description, weight, size);
         this.broken = false;
+        if (this.getName().equalsIgnoreCase("Trap")){
+            durability = new Durability (3, 1);
+        }else{
+            durability = new Durability (4, 0);            
+        }
+    }
+    
+    /**
+     * Durability drop
+     */
+    public void dropDurability (){
+        durability.use();
+    }
+    
+    public Durability getDurability () {
+        return durability;
     }
     
     /**
@@ -39,6 +56,7 @@ public class Tool extends Item
      */
     public void fix()
     {
+        durability.durabilityReastore();
         broken = false;
     }
     
@@ -76,5 +94,17 @@ public class Tool extends Item
     {
         return "T";
     }
-
+    
+    @Override
+    public String toString (){
+        if (this.getName().equalsIgnoreCase("Trap")) {
+            if (isBroken()){
+                return this.getName() + "- Broken";
+            }else{
+                return this.getName() + "- Durability(" + durability.getDurability() + ")";
+            }
+        }else{
+            return this.getName();
+        }
+    }
 }
