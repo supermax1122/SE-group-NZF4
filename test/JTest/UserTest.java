@@ -19,7 +19,7 @@ public class UserTest  {
     @Test
     public void testName(){      
          String name = "name";
-         String name1 = user.getName();
+         String name1 = user.getUserName();
          assertEquals(name, name1);
      }
     
