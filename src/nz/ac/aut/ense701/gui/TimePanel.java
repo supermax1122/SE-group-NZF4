@@ -26,12 +26,12 @@ public class TimePanel extends JPanel{
         public static Timer userTimeAction;
         public static long usedTime = 0;
         
-    public TimePanel(JPanel addedPanel){
+    public TimePanel(){
         
         this.setBorder(new TitledBorder("Time"));
         this.setLayout(new GridLayout(2, 1));
         setTimer();
-        addedPanel.add(this, BorderLayout.EAST);
+        
 
         
     }
@@ -50,7 +50,7 @@ public class TimePanel extends JPanel{
                 long timeMillis = System.currentTimeMillis();
                 SimpleDateFormat df = new SimpleDateFormat(
                         "yyyy-MM-dd HH:mm:ss");
-                lbSysTime.setText("System Time: ?  " + df.format(timeMillis));
+                lbSysTime.setText("System Time:   " + df.format(timeMillis));
             }
         });
          sysTimeAction.start();
@@ -58,7 +58,7 @@ public class TimePanel extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                lbUserTime.setText("Play       Time: ?  " + (++usedTime)+ " sec.");
+                lbUserTime.setText("Play       Time:   " + (++usedTime)+ " sec.");
             }
         });
         
@@ -77,7 +77,8 @@ public class TimePanel extends JPanel{
        
            JFrame jf=new JFrame();
            JPanel jp=new JPanel();
-           TimePanel time= new TimePanel(jp);
+           TimePanel time= new TimePanel();
+           jp.add(time, BorderLayout.EAST);
             //jf.set
            jf.add(jp);
            jf.setVisible(true);
