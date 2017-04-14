@@ -453,7 +453,6 @@ public class GameTest extends junit.framework.TestCase
             moveOK = playerMoveWest(2);
         }
         
-        trap.fix();
         if(moveOK){
             moveOK = playerMoveSouth(1);
             game.useItem(trap);
@@ -476,7 +475,6 @@ public class GameTest extends junit.framework.TestCase
             game.useItem(trap);
         }
         
-        trap.fix();
          //Predator 6
         if(moveOK){
             moveOK = playerMoveEast(2);
