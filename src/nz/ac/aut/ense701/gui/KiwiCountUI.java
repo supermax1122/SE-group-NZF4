@@ -1,8 +1,11 @@
 package nz.ac.aut.ense701.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
@@ -33,6 +36,7 @@ public class KiwiCountUI
         setAsGameListener();
         initComponents();
         initIslandGrid();
+        initTimer();
         this.addKeyListener(new KeybordListener(game, this));
         update();
     }
@@ -54,7 +58,10 @@ public class KiwiCountUI
                     game.getLoseMessage(), "Game over!",
                     JOptionPane.INFORMATION_MESSAGE);
             game.stopMusic();
+            timer.stop();
+            timer.setZero();
             game.createNewGame();
+            timer.start();
         }
         else if ( game.getState() == GameState.WON )
         {
@@ -62,8 +69,11 @@ public class KiwiCountUI
                     this, 
                     game.getWinMessage(), "Well Done!",
                     JOptionPane.INFORMATION_MESSAGE);
+                        timer.stop();
+            timer.setZero();
             game.stopMusic();
             game.createNewGame();
+            timer.start();
         }
         else if (game.messageForPlayer())
         {
@@ -685,6 +695,20 @@ public class KiwiCountUI
         }
     }
     
+    private void initTimer(){
+           JFrame jf=new JFrame();
+           JPanel jp=new JPanel();
+           timer= new TimePanel();
+            //jf.set
+           jf.add(jp);
+           jp.add(timer, BorderLayout.EAST);
+           jf.setVisible(true);
+           jf.setSize(515, 600);
+           jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           timer.start();
+    
+    }
+    public static TimePanel timer;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;

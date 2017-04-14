@@ -26,12 +26,12 @@ public class TimePanel extends JPanel{
         public static Timer userTimeAction;
         public static long usedTime = 0;
         
-    public TimePanel(JPanel addedPanel){
+    public TimePanel(){
         
         this.setBorder(new TitledBorder("Time"));
         this.setLayout(new GridLayout(2, 1));
         setTimer();
-        addedPanel.add(this, BorderLayout.EAST);
+       
 
         
     }
@@ -50,7 +50,7 @@ public class TimePanel extends JPanel{
                 long timeMillis = System.currentTimeMillis();
                 SimpleDateFormat df = new SimpleDateFormat(
                         "yyyy-MM-dd HH:mm:ss");
-                lbSysTime.setText("System Time: ?  " + df.format(timeMillis));
+                lbSysTime.setText("System Time:   " + df.format(timeMillis));
             }
         });
          sysTimeAction.start();
@@ -58,7 +58,7 @@ public class TimePanel extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                lbUserTime.setText("Play       Time: ?  " + (++usedTime)+ " sec.");
+                lbUserTime.setText("Play       Time:   " + (++usedTime)+ " sec.");
             }
         });
         
@@ -72,18 +72,29 @@ public class TimePanel extends JPanel{
         userTimeAction.stop();
     }
     
+    public void setZero(){
+        usedTime=0;
+    
+    }
+    
+    public long getUserTime(){
+    
+        return usedTime;
+    }
+    
 
        public static void main(String[] args){
        
            JFrame jf=new JFrame();
            JPanel jp=new JPanel();
-           TimePanel time= new TimePanel(jp);
+           TimePanel timer= new TimePanel();
             //jf.set
            jf.add(jp);
+           jp.add(timer, BorderLayout.EAST);
            jf.setVisible(true);
            jf.setSize(515, 600);
            jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           time.start();
+           timer.start();
            
        }
     
