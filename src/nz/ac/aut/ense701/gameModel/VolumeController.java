@@ -17,22 +17,19 @@ import javax.sound.sampled.Mixer;
  * @author Near
  */
 public class VolumeController {
-    
+    /*
+        This method is used to set the system volume by using the value from GUI's slider
+    */
     public static void setOutputVolume(float value) {
-		String command = "set volume " + value;
 		try {
-			// For windows OS
 			Mixer.Info[] mixers = AudioSystem.getMixerInfo();
 			for (Mixer.Info mixerInfo : mixers) {
-				// System.out.println("mixer name: " + mixerInfo.getName());
 				Mixer mixer = AudioSystem.getMixer(mixerInfo);
-				Line.Info[] lineInfos = mixer.getTargetLineInfo(); // target,
+				Line.Info[] lineInfos = mixer.getTargetLineInfo();
 																	// not
 																	// source
 				// changes all the volumes
-
 				for (Line.Info lineInfo : lineInfos) {
-					// System.out.println(" Line.Info: " + lineInfo);
 					Line line = null;
 					boolean opened = true;
 					try {
