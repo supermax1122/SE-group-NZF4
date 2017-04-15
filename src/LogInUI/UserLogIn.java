@@ -22,10 +22,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import nz.ac.aut.ense701.gameModel.Game;
+import nz.ac.aut.ense701.gui.KiwiCountUI;
 
 /**
  *
- * @author MengMeng
+ * @author Hongzhou Sha
  */
 public class UserLogIn extends JFrame{
        //Create the User Name.
@@ -101,6 +103,21 @@ public class UserLogIn extends JFrame{
 			//Set User's detail
 			setUser();
 			this.setVisible(false);
+                        
+                         // create the game object
+                        final Game game = new Game();
+                        // create the GUI for the game
+                        final KiwiCountUI  gui  = new KiwiCountUI(game);
+                        // make the GUI visible
+                        java.awt.EventQueue.invokeLater(new Runnable() 
+                        {
+                            @Override
+                            public void run() 
+                            {
+                                gui.setVisible(true);
+                            }
+                        });
+                        
 	   }
         
         private void setUser() {

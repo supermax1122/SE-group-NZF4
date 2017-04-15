@@ -41,7 +41,7 @@ public class Help {
         JEditorPane editorPane = new JEditorPane("text/html", "");
         editorPane.setText("<b>Victory Conditions</b><br>"
                 + "Before your stamina is exhausted or you are dead:<br>"
-                + "<ul><li>Find all Kiwis on this island</li>or<br><li>Catch all Predators on this island by using Trap</li></ul>"
+                + "<ul><li>Find all Kiwis on this island</li>or<br><li>Catch 80% Predators on this island by using Trap</li></ul>"
                 + "<b>Operating Instructions</b><br>"
                 + "Moving Direction:<br>"
                 + "Move up: W<br>"
