@@ -77,7 +77,7 @@ public class MusicPlayerTest extends junit.framework.TestCase{
     @Test
     public void testStart (){
         mplayer.setPath("res/music/Scenery_of_the_Town_Morning.wav");
-        assertTrue("should start the music and return true.", mplayer.Start());        
+        assertTrue("should start the music and return true.", mplayer.Start_Loop());        
     }
     
     /**
@@ -86,7 +86,7 @@ public class MusicPlayerTest extends junit.framework.TestCase{
     @Test
     public void testStop (){
         mplayer.setPath("res/music/Scenery_of_the_Town_Morning.wav");
-        mplayer.Start();
+        mplayer.Start_Loop();
         assertTrue("should stop the music and return true.", mplayer.stop());
     }
     /**
@@ -95,7 +95,7 @@ public class MusicPlayerTest extends junit.framework.TestCase{
     @Test
     public void testIsStop (){
         mplayer.setPath("res/music/Scenery_of_the_Town_Morning.wav");
-        mplayer.Start();
+        mplayer.Start_Loop();
         mplayer.stop();
         assertTrue ("Should show stop", mplayer.isStop());
     }
