@@ -697,7 +697,6 @@ public class KiwiCountUI
     private void initTimer(){
            JFrame jf=new JFrame();
            JPanel jp=new JPanel();
-           timer= new TimePanel();
             //jf.set
            jf.add(jp);
            jp.add(timer, BorderLayout.EAST);
@@ -707,7 +706,8 @@ public class KiwiCountUI
            timer.start();
     
     }
-    public static TimePanel timer;
+    
+    public static TimePanel timer = new TimePanel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
