@@ -74,8 +74,8 @@ public class Game {
     /**
      * Stop background music
      */
-    public void stopMusic() {
-        mplayer.stop();
+    public boolean stopMusic() {
+        return mplayer.stop();
     }
 
     /**

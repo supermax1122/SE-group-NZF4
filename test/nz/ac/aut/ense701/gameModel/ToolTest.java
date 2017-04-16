@@ -67,6 +67,21 @@ public class ToolTest extends junit.framework.TestCase
     }
     
     @Test
+    public void testGetDurability (){
+        boolean result = false;
+        if (trap.getDurability() != null){
+            result = true;
+        }
+        assertTrue (result);
+    }
+    
+    @Test
+    public void testDropDurability (){
+        trap.dropDurability();
+        assertEquals (2, trap.getDurability().getDurability());
+    }
+    
+    @Test
     public void testFix(){
         trap.setBroken();
         assertTrue("Should  be broken", trap.isBroken());
