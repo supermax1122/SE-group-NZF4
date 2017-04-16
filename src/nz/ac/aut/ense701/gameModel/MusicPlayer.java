@@ -46,6 +46,26 @@ public class MusicPlayer {
             return false;
         }
     }
+public boolean Start() {		
+        if (isStop() && openFile()) {		
+           try {		
+                clip = AudioSystem.getClip();		
+                clip.open(audioIn);		
+                clip.start();		
+                this.isStop = false;		
+                return true;		
+            } catch (LineUnavailableException e) {		
+                // TODO Auto-generated catch block		
+                e.printStackTrace();		
+                return false;		
+            } catch (IOException e) {		
+                // TODO Auto-generated catch block		
+                e.printStackTrace();		
+                return false;		
+            }		
+        }		
+        return false;		
+   }		
 
     public boolean Start_Loop() {
         if (isStop() && openFile()) {
