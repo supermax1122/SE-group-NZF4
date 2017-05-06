@@ -10,6 +10,7 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import nz.ac.aut.ense701.gameModel.SoundEffect;
 import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
 
 /*
@@ -23,7 +24,7 @@ public class KiwiCountUI
     extends javax.swing.JFrame 
     implements GameEventListener
 {
-
+    private SoundEffect soundEffect;
     /**
      * Creates a GUI for the KiwiIsland game.
      * @param game the game object to represent with this GUI.
@@ -38,6 +39,7 @@ public class KiwiCountUI
         initTimer();
         this.addKeyListener(new KeybordListener(game, this));
         update();
+        soundEffect = new SoundEffect();
     }
     
     /**
@@ -587,27 +589,32 @@ public class KiwiCountUI
         game.playerMove(MoveDirection.EAST);
         this.setFocusable(true);
         this.requestFocusInWindow();
+        soundEffect.playStepSound();
     }//GEN-LAST:event_btnMoveEastActionPerformed
 
     private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNorthActionPerformed
         game.playerMove(MoveDirection.NORTH);
         this.setFocusable(true);
         this.requestFocusInWindow();
+        soundEffect.playStepSound();
     }//GEN-LAST:event_btnMoveNorthActionPerformed
 
     private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveSouthActionPerformed
         game.playerMove(MoveDirection.SOUTH);
         this.setFocusable(true);
         this.requestFocusInWindow();
+        soundEffect.playStepSound();
     }//GEN-LAST:event_btnMoveSouthActionPerformed
 
     private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveWestActionPerformed
         game.playerMove(MoveDirection.WEST);
         this.setFocusable(true);
         this.requestFocusInWindow();
+        soundEffect.playStepSound();
     }//GEN-LAST:event_btnMoveWestActionPerformed
 
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectActionPerformed
+        soundEffect.playClickSound();
         Object obj = listObjects.getSelectedValue();
         game.collectItem(obj);
         this.setFocusable(true);
@@ -615,6 +622,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnCollectActionPerformed
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
+        soundEffect.playClickSound();
         game.dropItem(listInventory.getSelectedValue());
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -633,6 +641,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_listObjectsValueChanged
 
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUseActionPerformed
+        soundEffect.playClickSound();
         game.useItem( listInventory.getSelectedValue());
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -651,6 +660,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_listInventoryValueChanged
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
+        soundEffect.playClickSound();
         game.countKiwi();
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -667,6 +677,7 @@ public class KiwiCountUI
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         // TODO add your handling code here:
+        soundEffect.playClickSound();
         Help help = new Help();
         this.setFocusable(true);
         this.requestFocusInWindow();
