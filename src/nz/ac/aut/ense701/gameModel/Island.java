@@ -225,7 +225,6 @@ public class Island
         }
         return success;
     }    
-
     
     /**
      * Attempts to remove an occupant from a specified position on the island.
