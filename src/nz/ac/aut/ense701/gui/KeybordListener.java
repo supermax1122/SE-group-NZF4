@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javax.swing.JFrame;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import nz.ac.aut.ense701.gameModel.SoundEffect;
 
 /**
  *
@@ -21,9 +22,11 @@ import nz.ac.aut.ense701.gameModel.MoveDirection;
 public class KeybordListener implements KeyListener, MouseListener{
     private Game game;
     private JFrame frame;
+    private SoundEffect soundEffect;
     
     public KeybordListener (Game game, JFrame frame){
         this.game = game;
+        soundEffect = new SoundEffect();
     }
 
     KeybordListener(Game game) {
@@ -40,21 +43,41 @@ public class KeybordListener implements KeyListener, MouseListener{
         if (e.getKeyCode() == KeyEvent.VK_W){
             if(game.isPlayerMovePossible(MoveDirection.NORTH)){
                 game.playerMove(MoveDirection.NORTH);
+                soundEffect.playStepSound();
+            }
+            else
+            {
+                soundEffect.playWarningSound();
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_S){
             if(game.isPlayerMovePossible(MoveDirection.SOUTH)){
                 game.playerMove(MoveDirection.SOUTH);
+                soundEffect.playStepSound();
+            }
+            else
+            {
+                soundEffect.playWarningSound();
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_A){
             if (game.isPlayerMovePossible(MoveDirection.WEST)){
                 game.playerMove(MoveDirection.WEST);
+                soundEffect.playStepSound();
+            }
+            else
+            {
+                soundEffect.playWarningSound();
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_D){
             if(game.isPlayerMovePossible(MoveDirection.EAST)){
                 game.playerMove(MoveDirection.EAST);
+                soundEffect.playStepSound();
+            }
+            else
+            {
+                soundEffect.playWarningSound();
             }
         }
     }
