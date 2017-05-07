@@ -36,7 +36,6 @@ public class KiwiCountUI
         setAsGameListener();
         initComponents();
         initIslandGrid();
-        initTimer();
         this.addKeyListener(new KeybordListener(game, this));
         update();
         soundEffect = new SoundEffect();
@@ -189,6 +188,8 @@ public class KiwiCountUI
         pnlVolume = new javax.swing.JPanel();
         sldVolume = new javax.swing.JSlider();
         btnHelp = new javax.swing.JButton();
+        pnlCountdown = new CountdownPanel();
+        pnlTimer = new TimePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
@@ -577,7 +578,25 @@ public class KiwiCountUI
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         pnlControls.add(btnHelp, gridBagConstraints);
-
+        
+        pnlCountdown.setBorder(javax.swing.BorderFactory.createTitledBorder("Count Down"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        pnlControls.add(pnlCountdown, gridBagConstraints);
+        
+        pnlTimer.setBorder(javax.swing.BorderFactory.createTitledBorder("Timer"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        pnlControls.add(pnlTimer, gridBagConstraints);
+        
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
 
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
@@ -705,19 +724,6 @@ public class KiwiCountUI
         }
     }
     
-    private void initTimer(){
-           JFrame jf=new JFrame();
-           JPanel jp=new JPanel();
-            //jf.set
-           jf.add(jp);
-           jp.add(timer, BorderLayout.EAST);
-           jf.setVisible(true);
-           jf.setSize(515, 600);
-           jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           timer.start();
-    
-    }
-    
     public static TimePanel timer = new TimePanel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
@@ -735,6 +741,8 @@ public class KiwiCountUI
     private javax.swing.JList listObjects;
     private javax.swing.JPanel pnlIsland;
     private javax.swing.JPanel pnlVolume;
+    private javax.swing.JPanel pnlCountdown;
+    private javax.swing.JPanel pnlTimer;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerStamina;
