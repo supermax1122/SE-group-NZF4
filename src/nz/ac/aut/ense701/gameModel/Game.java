@@ -51,7 +51,11 @@ public class Game {
         loseMessage = "";
         playerMessage = "";
         notifyGameEventListeners();
-
+    
+        if (enemy != null)
+            enemy.EnemyRetreat();
+        enemy = null;
+        
         score = new Score ();
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
@@ -530,6 +534,15 @@ public class Game {
      */
     private void updateGameState() {
         String message = "";
+
+        if (KiwiCountUI.timer.getUserTime() > 5 && enemy == null){
+            Position position = new Position (island, 0, 0);
+            enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, 1000, this);
+            enemyThread = new Thread (enemy);
+            enemyThread.start();
+            island.addOccupant(position, enemy);
+        }
+
         if (!player.isAlive()) {
             state = GameState.LOST;
             message = "Sorry, you have lost the game. " + this.getLoseMessage();
@@ -596,6 +609,10 @@ public class Game {
         return (isPlayerMovePossible(MoveDirection.NORTH) || isPlayerMovePossible(MoveDirection.SOUTH)
                 || isPlayerMovePossible(MoveDirection.EAST) || isPlayerMovePossible(MoveDirection.WEST));
 
+    }
+    
+    public void EnemyMove (){
+        this.updateGameState();
     }
 
     /**
@@ -798,7 +815,9 @@ public class Game {
     private MusicPlayer mplayer;
     private Score score;
     private final double MIN_REQUIRED_CATCH = 0.8;
-
+    private Thread enemyThread;
+    private Enemy enemy;
+    
     private String winMessage = "";
     private String loseMessage = "";
     private String playerMessage = "";
