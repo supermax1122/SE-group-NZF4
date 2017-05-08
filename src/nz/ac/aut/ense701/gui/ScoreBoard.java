@@ -34,9 +34,8 @@ public class ScoreBoard extends JPanel {
         String[] columnNames = {"Name", "MapNo","Diffculty","Score"};
         this.table = new JTable();
         fillTable();
-            JScrollPane scrollPane=new JScrollPane(table);
-	    this.add(scrollPane,BorderLayout.CENTER);
-        
+        JScrollPane scrollPane=new JScrollPane(table);
+	this.add(scrollPane,BorderLayout.CENTER);
     }
 
     public void fillTable() {
