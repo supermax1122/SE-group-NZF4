@@ -6,6 +6,8 @@
  */
 package LogInUI;
 
+import FileIO.FileIn;
+import FileIO.ScoreRecord;
 import GUITools.MyBackGround;
 import GUITools.MyButton;
 import java.awt.BorderLayout;
@@ -108,6 +110,7 @@ public class StartMenuGUI extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
+                  
     		
     		}
     	});
