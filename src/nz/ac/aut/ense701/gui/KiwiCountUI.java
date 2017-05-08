@@ -1,8 +1,14 @@
 package nz.ac.aut.ense701.gui;
 
+import GUITools.MyBackGround;
+import GUITools.MyButton;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,6 +45,7 @@ public class KiwiCountUI
         this.addKeyListener(new KeybordListener(game, this));
         update();
         soundEffect = new SoundEffect();
+        
     }
     
     /**
@@ -152,12 +159,32 @@ public class KiwiCountUI
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
-
         javax.swing.JPanel pnlContent = new javax.swing.JPanel();
-        pnlIsland = new javax.swing.JPanel();
-        javax.swing.JPanel pnlControls = new javax.swing.JPanel();
-        javax.swing.JPanel pnlPlayer = new javax.swing.JPanel();
-        javax.swing.JPanel pnlPlayerData = new javax.swing.JPanel();
+        pnlIsland = new javax.swing.JPanel();   
+        javax.swing.JPanel pnlControls = new javax.swing.JPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
+        javax.swing.JPanel pnlPlayer = new javax.swing.JPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
+        javax.swing.JPanel pnlPlayerData = new javax.swing.JPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
         javax.swing.JLabel lblPlayerName = new javax.swing.JLabel();
         txtPlayerName = new javax.swing.JLabel();
         javax.swing.JLabel lblPlayerStamina = new javax.swing.JLabel();
@@ -170,26 +197,74 @@ public class KiwiCountUI
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
-        javax.swing.JPanel pnlMovement = new javax.swing.JPanel();
-        btnMoveNorth = new javax.swing.JButton();
-        btnMoveSouth = new javax.swing.JButton();
-        btnMoveEast = new javax.swing.JButton();
-        btnMoveWest = new javax.swing.JButton();
-        javax.swing.JPanel pnlInventory = new javax.swing.JPanel();
+        javax.swing.JPanel pnlMovement = new javax.swing.JPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
+//        btnMoveNorth = new javax.swing.JButton();
+//        btnMoveSouth = new javax.swing.JButton();
+//        btnMoveEast = new javax.swing.JButton();
+//        btnMoveWest = new javax.swing.JButton();
+        javax.swing.JPanel pnlInventory = new javax.swing.JPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
         listInventory = new javax.swing.JList();
         btnDrop = new javax.swing.JButton();
+        btnDrop.setBackground(Color.pink);
         btnUse = new javax.swing.JButton();
-        javax.swing.JPanel pnlObjects = new javax.swing.JPanel();
+        btnUse.setBackground(Color.pink);
+        javax.swing.JPanel pnlObjects = new javax.swing.JPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
         javax.swing.JScrollPane scrlObjects = new javax.swing.JScrollPane();
         listObjects = new javax.swing.JList();
         btnCollect = new javax.swing.JButton();
+        btnCollect.setBackground(Color.pink);
         btnCount = new javax.swing.JButton();
-        pnlVolume = new javax.swing.JPanel();
+        btnCount.setBackground(Color.pink);
+        pnlVolume = new javax.swing.JPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
+        
         sldVolume = new javax.swing.JSlider();
-        btnHelp = new javax.swing.JButton();
-        pnlCountdown = new CountdownPanel();
-        pnlTimer = new TimePanel();
+        sldVolume.setBackground(Color.pink);
+      //  btnHelp = new javax.swing.JButton();
+        pnlCountdown = new CountdownPanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
+        pnlTimer = new TimePanel(){
+                protected void paintComponent(Graphics g) {    
+                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    Image img = icon.getImage();    
+                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
+                    
+                }    
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
@@ -207,7 +282,7 @@ public class KiwiCountUI
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 642, Short.MAX_VALUE)
         );
-
+       
         pnlContent.add(pnlIsland, java.awt.BorderLayout.CENTER);
 
         pnlControls.setLayout(new java.awt.GridBagLayout());
@@ -340,10 +415,10 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+//        gridBagConstraints.weightx = 1.0;
+//        gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveNorth, gridBagConstraints);
 
         btnMoveSouth.setText("S");
@@ -356,10 +431,10 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+//        gridBagConstraints.weightx = 1.0;
+//        gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveSouth, gridBagConstraints);
 
         btnMoveEast.setText("E");
@@ -372,10 +447,10 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+//        gridBagConstraints.weightx = 1.0;
+//        gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveEast, gridBagConstraints);
 
         btnMoveWest.setText("W");
@@ -388,10 +463,10 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+//        gridBagConstraints.weightx = 1.0;
+//        gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveWest, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -568,7 +643,7 @@ public class KiwiCountUI
         gridBagConstraints.gridy = 4;
         pnlControls.add(pnlVolume, gridBagConstraints);
 
-        btnHelp.setText("Help");
+       // btnHelp.setText("Help");
         btnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHelpActionPerformed(evt);
@@ -596,11 +671,12 @@ public class KiwiCountUI
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlTimer, gridBagConstraints);
-        
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
-
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
-
+        
+        pnlContent.setBackground(Color.pink);
+        
+  
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -711,7 +787,9 @@ public class KiwiCountUI
         int rows    = game.getNumRows();
         int columns = game.getNumColumns();
         // set up the layout manager for the island grid panel
+        
         pnlIsland.setLayout(new GridLayout(rows, columns));
+        
         // create all the grid square panels and add them to the panel
         // the layout manager of the panel takes care of assigning them to the
         // the right position
@@ -719,21 +797,30 @@ public class KiwiCountUI
         {
             for ( int col = 0 ; col < columns ; col++ )
             {
-                pnlIsland.add(new GridSquarePanel(game, row, col));
+                pnlIsland.add(new GridSquarePanel(game, row, col)); 
             }
         }
+        
     }
     
     public static TimePanel timer = new TimePanel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private MyButton btnHelp =new MyButton ("image/help1.jpg", "image/help2.jpg", "image/help3.jpg");
+    private MyButton btnMoveEast =new MyButton ("image/E1.jpg", "image/E2.jpg", "image/E3.jpg");
+    private MyButton btnMoveNorth =new MyButton ("image/N1.jpg", "image/N2.jpg", "image/N3.jpg");
+    private MyButton  btnMoveSouth =new MyButton ("image/S1.jpg", "image/S2.jpg", "image/S3.jpg");
+    private MyButton btnMoveWest =new MyButton ("image/W1.jpg", "image/W2.jpg", "image/W3.jpg");
+    
+
+    
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
-    private javax.swing.JButton btnHelp;
-    private javax.swing.JButton btnMoveEast;
-    private javax.swing.JButton btnMoveNorth;
-    private javax.swing.JButton btnMoveSouth;
-    private javax.swing.JButton btnMoveWest;
+ //   private javax.swing.JButton btnHelp;
+//    private javax.swing.JButton btnMoveEast;
+//    private javax.swing.JButton btnMoveNorth;
+//    private javax.swing.JButton btnMoveSouth;
+//    private javax.swing.JButton btnMoveWest;
     private javax.swing.JButton btnUse;
     private javax.swing.JLabel lblKiwisCounted;
     private javax.swing.JLabel lblPredators;
