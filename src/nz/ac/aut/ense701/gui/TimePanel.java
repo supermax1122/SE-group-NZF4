@@ -74,7 +74,6 @@ public class TimePanel extends JPanel{
     
     public void setZero(){
         usedTime=0;
-    
     }
     
     public long getUserTime(){
