@@ -61,7 +61,7 @@ public class TimePanel extends JPanel{
                 lbUserTime.setText("Play       Time:   " + (++usedTime)+ " sec.");
             }
         });
-        
+        start ();
     }
     
     public void start(){

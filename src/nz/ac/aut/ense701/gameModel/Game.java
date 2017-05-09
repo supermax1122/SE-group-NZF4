@@ -514,6 +514,12 @@ public class Game {
         eventListeners.add(listener);
     }
 
+    public void updateMap (){
+        for (GameEventListener listener : eventListeners) {
+            listener.updateIslandMap();
+        }
+    }
+    
     /**
      * Removes a game event listener.
      *
@@ -535,7 +541,8 @@ public class Game {
     private void updateGameState() {
         String message = "";
 
-        if (KiwiCountUI.timer.getUserTime() > 5 && enemy == null){
+        System.out.println ("used time: " + KiwiCountUI.timer.getUserTime());
+        if (KiwiCountUI.timer.getUserTime() > randomtime.getRandonTime() && enemy == null){
             Position position = new Position (island, 0, 0);
             enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, 1000, this);
             enemyThread = new Thread (enemy);
@@ -612,7 +619,10 @@ public class Game {
     }
     
     public void EnemyMove (){
-        this.updateGameState();
+        if (!player.isAlive())
+            updateGameState();
+        else
+            updateMap();
     }
 
     /**
@@ -817,6 +827,8 @@ public class Game {
     private final double MIN_REQUIRED_CATCH = 0.8;
     private Thread enemyThread;
     private Enemy enemy;
+    
+    private static RandomEnemyTime randomtime = new RandomEnemyTime();
     
     private String winMessage = "";
     private String loseMessage = "";
