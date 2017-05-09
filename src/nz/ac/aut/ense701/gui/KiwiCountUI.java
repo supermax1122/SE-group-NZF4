@@ -70,6 +70,7 @@ public class KiwiCountUI
             timer.stop();
             timer.setZero();
             game.createNewGame();
+            ((CountdownPanel)pnlCountdown).getStart();
             timer.start();
         }
         else if ( game.getState() == GameState.WON )
@@ -82,6 +83,7 @@ public class KiwiCountUI
             timer.setZero();
             game.stopMusic();
             game.createNewGame();
+            ((CountdownPanel)pnlCountdown).getStart();
             timer.start();
         }
         else if (game.messageForPlayer())
@@ -777,6 +779,7 @@ public class KiwiCountUI
     
     
     public static TimePanel timer = new TimePanel();
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MyButton btnHelp =new MyButton ("image/help1.jpg", "image/help2.jpg", "image/help3.jpg");
     private MyButton btnMoveEast =new MyButton ("image/E1.jpg", "image/E2.jpg", "image/E3.jpg");

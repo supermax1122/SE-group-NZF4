@@ -24,10 +24,13 @@ public class CountdownPanel extends JPanel {
 
     private JLabel label;
     private boolean finished;
+    private long end;
     public final static int GAME_TIME=60;
+    
 
     public CountdownPanel() {
         finished = false;
+        getStart();
         countDown();
     }
 
@@ -46,8 +49,7 @@ public class CountdownPanel extends JPanel {
        // System.out.println("How long：");
        // Scanner input = new Scanner(System.in);
        // int i = input.nextInt();
-        int i =GAME_TIME;
-        final long end = System.currentTimeMillis() + i * 1000 * 60;
+   //     final long end = System.currentTimeMillis() + GAME_TIME * 1000 * 60;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 
@@ -60,6 +62,9 @@ public class CountdownPanel extends JPanel {
             }
 
         }, 0, 1000);
+    }
+    public void getStart(){
+        end = System.currentTimeMillis() + GAME_TIME * 1000 * 60;
     }
 
     public void updateTimer(long sub) {
