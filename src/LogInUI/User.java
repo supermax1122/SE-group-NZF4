@@ -10,7 +10,7 @@ package LogInUI;
  * @author Hongzhou Sha
  */
 public class User {
-      private String UserName;
+      private static String UserName;
 
       //there should have user score, it s should be add later when we finished the game program.
       private int score;
