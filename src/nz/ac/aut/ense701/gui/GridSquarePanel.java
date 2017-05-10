@@ -2,6 +2,9 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import nz.ac.aut.ense701.gameModel.Game;
@@ -28,8 +31,31 @@ public class GridSquarePanel extends javax.swing.JPanel
         this.row    = row;
         this.column = column;
         initComponents();
+        lblText.setOpaque(false);
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        boolean squareVisible = game.isVisible(row, column);
+        boolean squareExplored = game.isExplored(row, column);
+        boolean iscurrentrow = (game.getPlayer().getPosition().getRow() == row);
+        boolean iscurrentcol = (game.getPlayer().getPosition().getColumn() == column);
+
+        if ((squareVisible && !squareExplored)||this.Isvisible||(iscurrentrow&&iscurrentcol)) {
+            String imagePath = "image/"+imageName;
+            ImageIcon icon = new ImageIcon(imagePath);
+            Image img = icon.getImage();
+            Dimension size = this.getParent().getSize();
+            g.drawImage(img, 0, 0, size.width, size.height, null);
+            this.Isvisible = true;
+        }
+    }
+
+    public void setImagename (String imageName){
+        this.imageName = imageName;
+    }
+    
     /**
      * Updates the representation of the grid square panel.
      */
@@ -40,31 +66,32 @@ public class GridSquarePanel extends javax.swing.JPanel
         boolean squareVisible = game.isVisible(row, column);
         boolean squareExplored = game.isExplored(row, column);
         
-        Color      color;
+        Color  color;
         
         switch ( terrain )
         {
-            case SAND     : color = Color.YELLOW; break;
-            case FOREST   : color = Color.GREEN;  break;
-            case WETLAND : color = Color.BLUE; break;
-            case SCRUB : color = Color.DARK_GRAY;   break;
-            case WATER    : color = Color.CYAN;   break;
+            case SAND     : setImagename("sand.jpg");/*color = Color.YELLOW*/; break;
+            case FOREST   : setImagename("forest.jpg")/*color = Color.GREEN*/;  break;
+            case WETLAND : setImagename("wetland.jpg")/*color = Color.BLUE*/; break;
+            case SCRUB : setImagename("scrub.jpg")/*color = Color.DARK_GRAY*/;   break;
+            case WATER    : setImagename("water.jpg")/*color = Color.CYAN*/;   break;
             default  : color = Color.LIGHT_GRAY; break;
         }
         
-        if ( squareExplored || squareVisible )
+       if ( squareExplored || squareVisible )
         {
             // Set the text of the JLabel according to the occupant
             lblText.setText(game.getOccupantStringRepresentation(row,column));
+            this.repaint();
             // Set the colour. 
-            if ( squareVisible && !squareExplored ) 
+/*            if ( squareVisible && !squareExplored ) 
             {
                 // When explored the colour is brighter
                 color = new Color(Math.min(255, color.getRed()   + 128), 
                                   Math.min(255, color.getGreen() + 128), 
                                   Math.min(255, color.getBlue()  + 128));
             }
-            lblText.setBackground(color);
+            lblText.setBackground(color);*/
             // set border colour according to 
             // whether the player is in the grid square or not
             setBorder(game.hasPlayer(row,column) ? activeBorder : normalBorder);
@@ -73,6 +100,7 @@ public class GridSquarePanel extends javax.swing.JPanel
         {
             lblText.setText("");
             lblText.setBackground(null);
+            this.Isvisible = false;
             setBorder(normalBorder);
         }
     }
@@ -103,7 +131,9 @@ public class GridSquarePanel extends javax.swing.JPanel
     
     private Game game;
     private int row, column;
-    
+    private String imageName;
+    boolean Isvisible = false;
+            
     private static final Border normalBorder = new LineBorder(Color.BLACK, 1);
     private static final Border activeBorder = new LineBorder(Color.RED, 3);
 }
