@@ -2,6 +2,7 @@ package nz.ac.aut.ense701.gui;
 
 import GUITools.MyBackGround;
 import GUITools.MyButton;
+import LogInUI.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -114,7 +115,7 @@ public class KiwiCountUI
             GridSquarePanel gsp = (GridSquarePanel) c;
             gsp.update();
         }
-        
+     
         // update player information
         int[] playerValues = game.getPlayerValues();
         txtPlayerName.setText(game.getPlayerName());
@@ -814,6 +815,6 @@ public class KiwiCountUI
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
     // End of variables declaration//GEN-END:variables
-
+   private User user;
     private Game game;
 }

@@ -1,5 +1,6 @@
 package nz.ac.aut.ense701.gameModel;
 
+import LogInUI.User;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -121,6 +122,7 @@ public class Game {
      *
      * @return the player object
      */
+ 
     public Player getPlayer() {
         return player;
     }
