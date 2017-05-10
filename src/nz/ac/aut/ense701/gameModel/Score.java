@@ -5,7 +5,7 @@
  */
 package nz.ac.aut.ense701.gameModel;
 
-import nz.ac.aut.ense701.gui.TimePanel;
+
 
 /**
  *
@@ -24,9 +24,9 @@ public class Score {
         curTime = 0;
     }
 
-    public void plusScore(TimePanel timer) {
+    public void plusScore(TimeData timeData) {
 
-        curTime = (int) timer.getUserTime();
+        curTime = (int) timeData.getUserTime();
         int periodTime = curTime - preTime;
 
         if(periodTime==0){
@@ -46,9 +46,9 @@ public class Score {
 
     }
 
-    public void endCount(TimePanel timer) {
+    public void endCount(TimeData timeData) {
 
-        int playTime = (int) timer.getUserTime();
+        int playTime = (int) timeData.getUserTime();
         
         if (playTime < 100) {
             score = score + 50;
