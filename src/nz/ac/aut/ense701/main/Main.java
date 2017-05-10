@@ -21,6 +21,7 @@ public class Main
     {
       StartMenuGUI sGUI =new StartMenuGUI();
       sGUI.ShowMoon();
+  
     }
 
 }

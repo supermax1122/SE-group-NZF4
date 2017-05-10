@@ -1,5 +1,6 @@
 package nz.ac.aut.ense701.gameModel;
 
+import LogInUI.User;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -762,7 +763,9 @@ public class Game {
      *
      * @param input data from the level file
      */
+    
     private void setUpPlayer(Scanner input) {
+        
         String playerName = input.next();
         int playerPosRow = input.nextInt();
         int playerPosCol = input.nextInt();
@@ -833,7 +836,7 @@ public class Game {
     private final double MIN_REQUIRED_CATCH = 0.8;
     private Thread enemyThread;
     private Enemy enemy;
-    
+
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     
     private String winMessage = "";
