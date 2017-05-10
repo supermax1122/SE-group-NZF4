@@ -541,9 +541,11 @@ public class Game {
     private void updateGameState() {
         String message = "";
 
-        System.out.println ("used time: " + KiwiCountUI.timer.getUserTime());
-        if (KiwiCountUI.timer.getUserTime() > randomtime.getRandonTime() && enemy == null){
-            Position position = new Position (island, 0, 0);
+        if (KiwiCountUI.timer.getUserTime() > enemyRandomize.getRandonTime() && enemy == null){
+            setPlayerMessage("Enemy has appeared somewhere in the map! Be Careful, the enemy will kill you once his reach you.");
+            int row = enemyRandomize.randomRow(player.getPosition().getRow());
+            int col = enemyRandomize.randomCol(player.getPosition().getColumn());
+            Position position = new Position (island, row, col);
             enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, 1000, this);
             enemyThread = new Thread (enemy);
             enemyThread.start();
@@ -579,6 +581,10 @@ public class Game {
         notifyGameEventListeners();
     }
 
+    public void enemyKilled (String message){
+        setLoseMessage(message);
+    }
+    
     /**
      * Sets details about players win
      *
@@ -828,7 +834,7 @@ public class Game {
     private Thread enemyThread;
     private Enemy enemy;
     
-    private static RandomEnemyTime randomtime = new RandomEnemyTime();
+    private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     
     private String winMessage = "";
     private String loseMessage = "";
