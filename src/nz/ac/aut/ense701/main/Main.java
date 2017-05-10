@@ -1,7 +1,6 @@
 package nz.ac.aut.ense701.main;
 
 import LogInUI.StartMenuGUI;
-import LogInUI.UserLogIn;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
 
@@ -20,7 +19,8 @@ public class Main
      */
     public static void main(String[] args) 
     {
-      new StartMenuGUI();
+      StartMenuGUI sGUI =new StartMenuGUI();
+      sGUI.ShowMoon();
     }
 
 }
