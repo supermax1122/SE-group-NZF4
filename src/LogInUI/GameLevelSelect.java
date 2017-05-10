@@ -78,6 +78,7 @@ public class GameLevelSelect extends JFrame{
                          final Game game = new Game();
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
+                         Dispose();
     		}
     	});
 		
