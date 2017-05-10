@@ -47,13 +47,38 @@ public class GridSquarePanel extends javax.swing.JPanel
             ImageIcon icon = new ImageIcon(imagePath);
             Image img = icon.getImage();
             Dimension size = this.getParent().getSize();
-            g.drawImage(img, 0, 0, size.width, size.height, null);
+            g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
+            if (iscurrentrow&&iscurrentcol){
+                ImageIcon ico = new ImageIcon("image/maincharacter.png");
+                Image imge = ico.getImage();
+                g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
+            }
             this.Isvisible = true;
         }
+        if (this.showOccupant){
+            char []arrays = this.lblText.getText().toCharArray();
+            for (int i = 0; i < arrays.length; i++){
+                if (arrays[i] == 'H'){
+                    ImageIcon ico = new ImageIcon("image/hazard.png");
+                    Image imge = ico.getImage();
+                    g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
+                    System.out.println(arrays[i]);            
+                }
+                if (arrays[i] == 'T'){
+                    ImageIcon ico = new ImageIcon("image/toolbox.png");
+                    Image imge = ico.getImage();
+                    g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
+                    System.out.println(arrays[i]);            
+                }
+            }
+        }
     }
-
+    
     public void setImagename (String imageName){
         this.imageName = imageName;
+    }
+    
+    public void setOccupantRepresentation (String OccupantRepresentation){
     }
     
     /**
@@ -82,6 +107,7 @@ public class GridSquarePanel extends javax.swing.JPanel
         {
             // Set the text of the JLabel according to the occupant
             lblText.setText(game.getOccupantStringRepresentation(row,column));
+            this.showOccupant = true;
             this.repaint();
             // Set the colour. 
 /*            if ( squareVisible && !squareExplored ) 
@@ -101,6 +127,7 @@ public class GridSquarePanel extends javax.swing.JPanel
             lblText.setText("");
             lblText.setBackground(null);
             this.Isvisible = false;
+            this.showOccupant = false;
             setBorder(normalBorder);
         }
     }
@@ -133,6 +160,7 @@ public class GridSquarePanel extends javax.swing.JPanel
     private int row, column;
     private String imageName;
     boolean Isvisible = false;
+    boolean showOccupant = false;
             
     private static final Border normalBorder = new LineBorder(Color.BLACK, 1);
     private static final Border activeBorder = new LineBorder(Color.RED, 3);
