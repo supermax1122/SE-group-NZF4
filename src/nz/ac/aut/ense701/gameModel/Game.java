@@ -514,6 +514,12 @@ public class Game {
         eventListeners.add(listener);
     }
 
+    public void updateMap (){
+        for (GameEventListener listener : eventListeners) {
+            listener.updateIslandMap();
+        }
+    }
+    
     /**
      * Removes a game event listener.
      *
@@ -535,8 +541,11 @@ public class Game {
     private void updateGameState() {
         String message = "";
 
-        if (KiwiCountUI.timer.getUserTime() > 5 && enemy == null){
-            Position position = new Position (island, 0, 0);
+        if (KiwiCountUI.timer.getUserTime() > enemyRandomize.getRandonTime() && enemy == null){
+            setPlayerMessage("Enemy has appeared somewhere in the map! Be Careful, the enemy will kill you once his reach you.");
+            int row = enemyRandomize.randomRow(player.getPosition().getRow());
+            int col = enemyRandomize.randomCol(player.getPosition().getColumn());
+            Position position = new Position (island, row, col);
             enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, 1000, this);
             enemyThread = new Thread (enemy);
             enemyThread.start();
@@ -572,6 +581,10 @@ public class Game {
         notifyGameEventListeners();
     }
 
+    public void enemyKilled (String message){
+        setLoseMessage(message);
+    }
+    
     /**
      * Sets details about players win
      *
@@ -612,7 +625,10 @@ public class Game {
     }
     
     public void EnemyMove (){
-        this.updateGameState();
+        if (!player.isAlive())
+            updateGameState();
+        else
+            updateMap();
     }
 
     /**
@@ -817,6 +833,8 @@ public class Game {
     private final double MIN_REQUIRED_CATCH = 0.8;
     private Thread enemyThread;
     private Enemy enemy;
+    
+    private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     
     private String winMessage = "";
     private String loseMessage = "";

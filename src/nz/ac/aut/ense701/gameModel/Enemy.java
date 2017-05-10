@@ -63,9 +63,10 @@ public class Enemy extends Occupant implements Runnable{
             game.getIsland().addOccupant(position, this);
         }else{
             game.getPlayer().kill();
+            game.enemyKilled("The enemy has find you!");
         }
     }
-    
+        
     public boolean isAlive (){
         return run;
     }

@@ -5,9 +5,12 @@ import GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -45,7 +48,6 @@ public class KiwiCountUI
         this.addKeyListener(new KeybordListener(game, this));
         update();
         soundEffect = new SoundEffect();
-        
     }
     
     /**
@@ -68,6 +70,7 @@ public class KiwiCountUI
             timer.stop();
             timer.setZero();
             game.createNewGame();
+            ((CountdownPanel)pnlCountdown).getStart();
             timer.start();
         }
         else if ( game.getState() == GameState.WON )
@@ -80,6 +83,7 @@ public class KiwiCountUI
             timer.setZero();
             game.stopMusic();
             game.createNewGame();
+            ((CountdownPanel)pnlCountdown).getStart();
             timer.start();
         }
         else if (game.messageForPlayer())
@@ -150,6 +154,19 @@ public class KiwiCountUI
         this.requestFocusInWindow();
     }
     
+    @Override
+    public void updateIslandMap (){
+        Component[] components = pnlIsland.getComponents();
+        for ( Component c : components )
+        {
+            // all components in the panel are GridSquarePanels,
+            // so we can safely cast
+            GridSquarePanel gsp = (GridSquarePanel) c;
+            gsp.update();
+        }
+
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -163,28 +180,19 @@ public class KiwiCountUI
         pnlIsland = new javax.swing.JPanel();   
         javax.swing.JPanel pnlControls = new javax.swing.JPanel(){
                 protected void paintComponent(Graphics g) {    
+                    super.paintComponent(g);
                     ImageIcon icon = new ImageIcon("image/sakura.jpg");    
                     Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
+                    Dimension size = this.getParent().getSize();
+                    g.drawImage(img, 0, 0,size.width, size.height, null);
                 }    
         };
-        javax.swing.JPanel pnlPlayer = new javax.swing.JPanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
-        javax.swing.JPanel pnlPlayerData = new javax.swing.JPanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
+        
+        
+        javax.swing.JPanel pnlPlayer = new javax.swing.JPanel(){};
+        pnlPlayer.setOpaque(false);
+        javax.swing.JPanel pnlPlayerData = new javax.swing.JPanel(){};
+        pnlPlayerData.setOpaque(false);
         javax.swing.JLabel lblPlayerName = new javax.swing.JLabel();
         txtPlayerName = new javax.swing.JLabel();
         javax.swing.JLabel lblPlayerStamina = new javax.swing.JLabel();
@@ -197,74 +205,39 @@ public class KiwiCountUI
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
-        javax.swing.JPanel pnlMovement = new javax.swing.JPanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
+        javax.swing.JPanel pnlMovement = new javax.swing.JPanel(){};
+        pnlMovement.setOpaque(false);
 //        btnMoveNorth = new javax.swing.JButton();
 //        btnMoveSouth = new javax.swing.JButton();
 //        btnMoveEast = new javax.swing.JButton();
 //        btnMoveWest = new javax.swing.JButton();
-        javax.swing.JPanel pnlInventory = new javax.swing.JPanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
+        javax.swing.JPanel pnlInventory = new javax.swing.JPanel(){};
+        pnlInventory.setOpaque(false);
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
         listInventory = new javax.swing.JList();
         btnDrop = new javax.swing.JButton();
         btnDrop.setBackground(Color.pink);
         btnUse = new javax.swing.JButton();
         btnUse.setBackground(Color.pink);
-        javax.swing.JPanel pnlObjects = new javax.swing.JPanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
+        javax.swing.JPanel pnlObjects = new javax.swing.JPanel(){};
+        pnlObjects.setOpaque(false);
         javax.swing.JScrollPane scrlObjects = new javax.swing.JScrollPane();
         listObjects = new javax.swing.JList();
         btnCollect = new javax.swing.JButton();
         btnCollect.setBackground(Color.pink);
         btnCount = new javax.swing.JButton();
         btnCount.setBackground(Color.pink);
-        pnlVolume = new javax.swing.JPanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
+        pnlVolume = new javax.swing.JPanel(){};
+        pnlVolume.setOpaque(false);
         
         sldVolume = new javax.swing.JSlider();
         sldVolume.setBackground(Color.pink);
       //  btnHelp = new javax.swing.JButton();
-        pnlCountdown = new CountdownPanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
-        pnlTimer = new TimePanel(){
-                protected void paintComponent(Graphics g) {    
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
-                    Image img = icon.getImage();    
-                    g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-                    
-                }    
-        };
+        pnlCountdown = new CountdownPanel(){};
+        pnlCountdown.setOpaque(false);
+
+        pnlTimer = new TimePanel(){};
+        pnlTimer.setOpaque(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
@@ -622,9 +595,7 @@ public class KiwiCountUI
         pnlControls.add(pnlObjects, gridBagConstraints);
 
         pnlVolume.setBorder(javax.swing.BorderFactory.createTitledBorder("Volume"));
-        pnlVolume.setMinimumSize(new java.awt.Dimension(288, 70));
-        pnlVolume.setPreferredSize(new java.awt.Dimension(288, 100));
-        pnlVolume.setLayout(new java.awt.GridBagLayout());
+        pnlVolume.setOpaque(false);
 
         sldVolume.setMinorTickSpacing(10);
         sldVolume.setPaintLabels(true);
@@ -641,6 +612,9 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         pnlControls.add(pnlVolume, gridBagConstraints);
 
        // btnHelp.setText("Help");
@@ -672,12 +646,12 @@ public class KiwiCountUI
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlTimer, gridBagConstraints);
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
+        
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
         
         pnlContent.setBackground(Color.pink);
-        
   
-        pack();
+        this.setSize(1200, 750);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveEastActionPerformed
@@ -803,7 +777,9 @@ public class KiwiCountUI
         
     }
     
+    
     public static TimePanel timer = new TimePanel();
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MyButton btnHelp =new MyButton ("image/help1.jpg", "image/help2.jpg", "image/help3.jpg");
     private MyButton btnMoveEast =new MyButton ("image/E1.jpg", "image/E2.jpg", "image/E3.jpg");
