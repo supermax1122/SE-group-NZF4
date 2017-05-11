@@ -51,7 +51,7 @@ public class GameSelectGUI extends JFrame{
 	
 	
     
-        NormalMode = new MyButton("image/na1.jpg", "image/na2.jpg", "image/na3.jpg");
+                NormalMode = new MyButton("image/na1.jpg", "image/na2.jpg", "image/na3.jpg");
 		NormalMode.setBounds(20, 100, NormalMode.getButtonWidth(), NormalMode.getButtonHeight());
 		
 		ScoreBoard = new MyButton("image/sa1.jpg", "image/sa2.jpg", "image/sa3.jpg");
@@ -77,7 +77,7 @@ public class GameSelectGUI extends JFrame{
 		this.add(ground);
 		this.setSize(700, 600);
 		this.setLocation(400, 300);
-		
+		 this.setResizable(false);//size of window cannot be change 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
