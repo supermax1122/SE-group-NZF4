@@ -80,6 +80,7 @@ public class GameLevelSelect extends JFrame{
                          game.setDiffiucly(Difficulty.ESAY);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
+                         Dispose();
     		}
     	});
 		
