@@ -58,7 +58,7 @@ public class StartMenuGUI extends JFrame {
     public StartMenuGUI(){  
         this.setSize(WIDTH, HEIGHT);//set width and height
         this.setTitle("KiwiIsland");//tile
-     //  this.setResizable(false);//size of window cannot be change  
+        this.setResizable(false);//size of window cannot be change  
         this.setLocationRelativeTo(null);//set indow in the middle
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//when colse the window 
         login = new UserLogIn(){
