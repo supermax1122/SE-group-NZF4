@@ -57,7 +57,7 @@ public class GameLevelSelect extends JFrame{
 		this.add(hard);
 		this.add(back);
 		this.add(text);
-		this.setSize(100, 300);
+		this.setSize(200, 300);
 		this.setLocation(400, 200);
 		
 		this.setVisible(true);

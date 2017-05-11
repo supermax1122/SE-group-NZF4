@@ -2,6 +2,7 @@ package nz.ac.aut.ense701.gui;
 
 import GUITools.MyBackGround;
 import GUITools.MyButton;
+import LogInUI.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -114,7 +115,7 @@ public class KiwiCountUI
         
         // update player information
         int[] playerValues = game.getPlayerValues();
-        txtPlayerName.setText(game.getPlayerName());
+        txtPlayerName.setText(user.getUserName());
         progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
         progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
         progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
@@ -814,6 +815,6 @@ public class KiwiCountUI
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
     // End of variables declaration//GEN-END:variables
-
+    private User user = new User();
     private Game game;
 }
