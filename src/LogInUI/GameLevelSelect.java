@@ -59,7 +59,7 @@ public class GameLevelSelect extends JFrame{
 		this.add(text);
 		this.setSize(200, 300);
 		this.setLocation(400, 200);
-		
+		 this.setResizable(false);//size of window cannot be change 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
