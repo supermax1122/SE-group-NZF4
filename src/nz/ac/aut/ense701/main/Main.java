@@ -15,12 +15,13 @@ public class Main
     /**
      * Main method of Kiwi Count.
      * 
-     * @param args the command line arguments
+     * @param args the command line argument
      */
     public static void main(String[] args) 
     {
       StartMenuGUI sGUI =new StartMenuGUI();
       sGUI.ShowMoon();
+  
     }
 
 }

@@ -67,11 +67,10 @@ public class KiwiCountUI
                     game.getLoseMessage(), "Game over!",
                     JOptionPane.INFORMATION_MESSAGE);
             game.stopMusic();
-            timer.stop();
-            timer.setZero();
+            game.stopTime();
             game.createNewGame();
-            ((CountdownPanel)pnlCountdown).getStart();
-            timer.start();
+            
+           
         }
         else if ( game.getState() == GameState.WON )
         {
@@ -79,12 +78,10 @@ public class KiwiCountUI
                     this, 
                     game.getWinMessage(), "Well Done!",
                     JOptionPane.INFORMATION_MESSAGE);
-                        timer.stop();
-            timer.setZero();
+
             game.stopMusic();
             game.createNewGame();
-            ((CountdownPanel)pnlCountdown).getStart();
-            timer.start();
+
         }
         else if (game.messageForPlayer())
         {
@@ -233,10 +230,11 @@ public class KiwiCountUI
         sldVolume = new javax.swing.JSlider();
         sldVolume.setBackground(Color.pink);
       //  btnHelp = new javax.swing.JButton();
-        pnlCountdown = new CountdownPanel(){};
-        pnlCountdown.setOpaque(false);
+       
+    //    pnlCountdown.setOpaque(false);
 
-        pnlTimer = new TimePanel(){};
+        pnlTimer = new TimePanel(0,game.getTimeData());
+        
         pnlTimer.setOpaque(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -628,6 +626,7 @@ public class KiwiCountUI
         gridBagConstraints.gridy = 5;
         pnlControls.add(btnHelp, gridBagConstraints);
         
+        /*
         pnlCountdown.setBorder(javax.swing.BorderFactory.createTitledBorder("Count Down"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -636,8 +635,10 @@ public class KiwiCountUI
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlCountdown, gridBagConstraints);
+        */
         
-        pnlTimer.setBorder(javax.swing.BorderFactory.createTitledBorder("Timer"));
+        
+        pnlTimer.setBorder(javax.swing.BorderFactory.createTitledBorder("Time"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -645,10 +646,9 @@ public class KiwiCountUI
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlTimer, gridBagConstraints);
+        
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
-        
-        getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
-        
+        getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);        
         pnlContent.setBackground(Color.pink);
   
         this.setSize(1200, 750);
@@ -778,7 +778,7 @@ public class KiwiCountUI
     }
     
     
-    public static TimePanel timer = new TimePanel();
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MyButton btnHelp =new MyButton ("image/help1.jpg", "image/help2.jpg", "image/help3.jpg");
@@ -804,7 +804,7 @@ public class KiwiCountUI
     private javax.swing.JList listObjects;
     private javax.swing.JPanel pnlIsland;
     private javax.swing.JPanel pnlVolume;
-    private javax.swing.JPanel pnlCountdown;
+  //  private javax.swing.JPanel pnlCountdown;
     private javax.swing.JPanel pnlTimer;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;

@@ -32,7 +32,7 @@ public class Game {
      */
     public Game() {
         eventListeners = new HashSet<GameEventListener>();
-
+        timeData=new TimeData();
         createNewGame();
     }
 
@@ -59,8 +59,17 @@ public class Game {
         score = new Score ();
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
+        
+        timeData.reCountDown();
+        timeData.reCountUp();
+        timeData.startCount();
+        
     }
 
+    public void setDiffiucly (Difficulty difficulty){
+        this.dufficulty = difficulty;
+    }
+    
     /**
      * *********************************************************************************************************************
      * Accessor methods for game data
@@ -73,6 +82,11 @@ public class Game {
      */
     public int getNumRows() {
         return island.getNumRows();
+    }
+    
+    public void stopTime(){
+        timeData.stopCount();
+    
     }
 
     /**
@@ -125,6 +139,10 @@ public class Game {
         return player;
     }
 
+    public TimeData getTimeData(){
+        return timeData;
+    }
+    
     /**
      * Checks if possible to move the player in the specified direction.
      *
@@ -446,7 +464,7 @@ public class Game {
             if (tool.isTrap() && !tool.isBroken()) {
                 success = trapPredator();
                 tool.dropDurability();
-                score.plusScore(KiwiCountUI.timer);
+                score.plusScore(timeData);
                 if (tool.getDurability().getDurability() <= 0) {
                     tool.setBroken();
                 }
@@ -541,12 +559,15 @@ public class Game {
     private void updateGameState() {
         String message = "";
 
-        if (KiwiCountUI.timer.getUserTime() > enemyRandomize.getRandonTime() && enemy == null){
+        if (timeData.getUserTime() > enemyRandomize.getRandonTime() && enemy == null){
             setPlayerMessage("Enemy has appeared somewhere in the map! Be Careful, the enemy will kill you once his reach you.");
+            timeData.stopCount();
+            notifyGameEventListeners();
+            timeData.startCount();
             int row = enemyRandomize.randomRow(player.getPosition().getRow());
             int col = enemyRandomize.randomCol(player.getPosition().getColumn());
             Position position = new Position (island, row, col);
-            enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, 1000, this);
+            enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, dufficulty.getValue(), this);
             enemyThread = new Thread (enemy);
             enemyThread.start();
             island.addOccupant(position, enemy);
@@ -555,24 +576,24 @@ public class Game {
         if (!player.isAlive()) {
             state = GameState.LOST;
             message = "Sorry, you have lost the game. " + this.getLoseMessage();
-            score.endCount(KiwiCountUI.timer);
+            score.endCount(timeData);
             this.setLoseMessage(message);
         } else if (!playerCanMove()) {
             state = GameState.LOST;
             message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";
-            score.endCount(KiwiCountUI.timer);
+            score.endCount(timeData);
             this.setLoseMessage(message);
         } else if (predatorsTrapped == totalPredators) {
             state = GameState.WON;
             message = "You win! You have done an excellent job and trapped all the predators.";
-            score.endCount(KiwiCountUI.timer);
+            score.endCount(timeData);
             score.addExtra(1000);
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
             if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {
                 state = GameState.WON;
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
-                score.endCount(KiwiCountUI.timer);
+                score.endCount(timeData);
                 score.addExtra(1500);
                 this.setWinMessage(message);
             }
@@ -820,6 +841,7 @@ public class Game {
         }
     }
 
+    
     private Island island;
     private Player player;
     private GameState state;
@@ -829,13 +851,14 @@ public class Game {
     private int predatorsTrapped;
     private Set<GameEventListener> eventListeners;
     private MusicPlayer mplayer;
+    private TimeData timeData;
     private Score score;
     private final double MIN_REQUIRED_CATCH = 0.8;
     private Thread enemyThread;
     private Enemy enemy;
+    private Difficulty dufficulty;
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
-    
     private String winMessage = "";
     private String loseMessage = "";
     private String playerMessage = "";

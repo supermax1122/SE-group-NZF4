@@ -191,6 +191,7 @@ public class StartMenuGUI extends JFrame {
  		//Create User
  		String name = this.nameField.getText();     
  		this.user.setUserName(name);
+                System.out.println("User Name is :"+this.user.getUserName());
  	}
  	
 
