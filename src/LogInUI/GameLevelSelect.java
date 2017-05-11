@@ -91,7 +91,8 @@ public class GameLevelSelect extends JFrame{
                          final Game game = new Game();
                          game.setDiffiucly(Difficulty.NORMAL);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
-                         gui.setVisible(true);    			
+                         gui.setVisible(true);
+                          Dispose();
     		}
     	});
 		hard.addActionListener(new ActionListener() {     		
@@ -101,7 +102,8 @@ public class GameLevelSelect extends JFrame{
                          final Game game = new Game();
                          game.setDiffiucly(Difficulty.HARD);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
-                         gui.setVisible(true);    	
+                         gui.setVisible(true); 
+                          Dispose();
                          
     		}	
     	});
