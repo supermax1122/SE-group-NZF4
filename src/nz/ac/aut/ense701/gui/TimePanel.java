@@ -40,7 +40,7 @@ public class TimePanel extends JPanel {
     private void initializLable() {
         sysTimeLable = new JLabel("", JLabel.LEFT);
         countTimeLable = new JLabel("", JLabel.LEFT);
-        Font font = new Font("Default", Font.PLAIN, 40);
+        Font font = new Font("Default", Font.PLAIN, 10);
         sysTimeLable.setFont(font);
         countTimeLable.setFont(font);
    //     sysTimeLable.setSize(100,100);

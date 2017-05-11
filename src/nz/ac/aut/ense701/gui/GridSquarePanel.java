@@ -48,13 +48,9 @@ public class GridSquarePanel extends javax.swing.JPanel
             Image img = icon.getImage();
             Dimension size = this.getParent().getSize();
             g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
-            if (iscurrentrow&&iscurrentcol){
-                ImageIcon ico = new ImageIcon("image/maincharacter.png");
-                Image imge = ico.getImage();
-                g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
-            }
             this.Isvisible = true;
         }
+        
         if (this.showOccupant){
             char []arrays = this.lblText.getText().toCharArray();
             for (int i = 0; i < arrays.length; i++){
@@ -70,7 +66,18 @@ public class GridSquarePanel extends javax.swing.JPanel
                     g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
                     System.out.println(arrays[i]);            
                 }
+                if (arrays[i] == 'X'){
+                    ImageIcon ico = new ImageIcon("image/Dragon.png");
+                    Image imge = ico.getImage();
+                    g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
+                }
             }
+        }
+        
+        if (iscurrentrow&&iscurrentcol){
+            ImageIcon ico = new ImageIcon("image/maincharacter.png");
+            Image imge = ico.getImage();
+            g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
         }
     }
     
