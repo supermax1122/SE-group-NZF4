@@ -6,100 +6,103 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
+import java.awt.Font;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 import javax.swing.Timer;
-
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import nz.ac.aut.ense701.gameModel.TimeData;
 
 /**
  *
  * @author Marvin'PC
  */
-public class TimePanel extends JPanel{
-        public static Timer userTimeAction;
-        public static long usedTime = 0;
-        
-    public TimePanel(){
-        
-        this.setBorder(new TitledBorder("Time"));
-        this.setLayout(new GridLayout(2, 1));
-        setTimer();
-       
+public class TimePanel extends JPanel {
+
+    private JLabel sysTimeLable;
+    private JLabel countTimeLable;
+    private TimeData timeData;
+    private final int status;
+    private Timer timeAction;
+
+    public TimePanel(int status,TimeData timeData) {
+        this.status = status;
+        this.timeData = timeData;
+        this.setLayout(new BorderLayout());
+        this.setVisible(true);
+        initializLable();
+      //  this.setOpaque(false);
+    }
+
+    private void initializLable() {
+        sysTimeLable = new JLabel("", JLabel.LEFT);
+        countTimeLable = new JLabel("", JLabel.LEFT);
+        Font font = new Font("Default", Font.PLAIN, 10);
+        sysTimeLable.setFont(font);
+        countTimeLable.setFont(font);
+   //     sysTimeLable.setSize(100,100);
 
         
-    }
-    
-   private void setTimer(){
-        final JLabel lbSysTime = new JLabel();
-        final JLabel lbUserTime = new JLabel();
-        this.add(lbSysTime, BorderLayout.NORTH);
-        this.add(lbUserTime, BorderLayout.SOUTH);
-        
-        
-        
-        Timer sysTimeAction = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                long timeMillis = System.currentTimeMillis();
-                SimpleDateFormat df = new SimpleDateFormat(
-                        "yyyy-MM-dd HH:mm:ss");
-                lbSysTime.setText("System Time:   " + df.format(timeMillis));
-            }
-        });
-         sysTimeAction.start();
-        userTimeAction = new Timer(1000, new ActionListener() {
+        JPanel timePanel = new JPanel();
+        timePanel.setOpaque(false);
+        //timePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Time"));
+        timePanel.setLayout(new BoxLayout(timePanel, BoxLayout.Y_AXIS));
+  
+        timePanel.add(sysTimeLable);
+        timePanel.add(countTimeLable);
+        this.add(timePanel, BorderLayout.CENTER);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lbUserTime.setText("Play       Time:   " + (++usedTime)+ " sec.");
-            }
-        });
-        start ();
-    }
-    
-    public void start(){
-        userTimeAction.start();
-    
-    }   
-    public void stop(){
-        userTimeAction.stop();
-    }
-    
-    public void setZero(){
-        usedTime=0;
-    }
-    
-    public long getUserTime(){
-    
-        return usedTime;
-    }
-    
+        sysTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("System Time"));
+        countTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("Count    Time"));
+        if (status == 1) {
+           // timeData.SysTime();
+          //  timeData.countDown();
+            timeData.reCountDown();
+            new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    sysTimeLable.setText("System Time: " + timeData.getSystemTime());
+                    countTimeLable.setText("Count  Time: " + timeData.getCountDownTime());
+                }
+            }).start();
 
-       public static void main(String[] args){
-       
-           JFrame jf=new JFrame();
-           JPanel jp=new JPanel();
-           TimePanel timer= new TimePanel();
-            //jf.set
-           jf.add(jp);
-           jp.add(timer, BorderLayout.EAST);
-           jf.setVisible(true);
-           jf.setSize(515, 600);
-           jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           timer.start();
-           
-       }
-    
+        } else if (status == 0) {
+           // timeData.SysTime();
+          //  timeData.countUp();
+            timeData.reCountUp();
+           timeAction= new Timer(500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    sysTimeLable.setText("System Time:" + timeData.getSystemTime());
+                    countTimeLable.setText("Play      Time:" + timeData.getCountUpTime());
+                }
+            });
+           timeAction.start();
+        }
+
+    }
+
+    public TimeData getTimeData() {
+        return timeData;
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        TimeData timeData=new TimeData();
+        JPanel countDownPanel = new TimePanel(0,timeData);
+        JFrame frame = new JFrame();
+        frame.setSize(600, 600);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        frame.add(countDownPanel, BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
+
 }
-    
-    
-
-    
-
