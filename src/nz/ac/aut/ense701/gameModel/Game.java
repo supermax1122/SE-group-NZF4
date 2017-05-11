@@ -66,6 +66,10 @@ public class Game {
         
     }
 
+    public void setDiffiucly (Difficulty difficulty){
+        this.dufficulty = difficulty;
+    }
+    
     /**
      * *********************************************************************************************************************
      * Accessor methods for game data
@@ -557,10 +561,13 @@ public class Game {
 
         if (timeData.getUserTime() > enemyRandomize.getRandonTime() && enemy == null){
             setPlayerMessage("Enemy has appeared somewhere in the map! Be Careful, the enemy will kill you once his reach you.");
+            timeData.stopCount();
+            notifyGameEventListeners();
+            timeData.startCount();
             int row = enemyRandomize.randomRow(player.getPosition().getRow());
             int col = enemyRandomize.randomCol(player.getPosition().getColumn());
             Position position = new Position (island, row, col);
-            enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, 1000, this);
+            enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, dufficulty.getValue(), this);
             enemyThread = new Thread (enemy);
             enemyThread.start();
             island.addOccupant(position, enemy);
@@ -849,6 +856,7 @@ public class Game {
     private final double MIN_REQUIRED_CATCH = 0.8;
     private Thread enemyThread;
     private Enemy enemy;
+    private Difficulty dufficulty;
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     private String winMessage = "";
