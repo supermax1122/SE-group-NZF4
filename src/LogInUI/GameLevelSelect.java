@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
 
@@ -76,8 +77,10 @@ public class GameLevelSelect extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
                          final Game game = new Game();
+                         game.setDiffiucly(Difficulty.ESAY);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
+                         Dispose();
     		}
     	});
 		
@@ -85,14 +88,23 @@ public class GameLevelSelect extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-    			
+                         final Game game = new Game();
+                         game.setDiffiucly(Difficulty.NORMAL);
+                         final KiwiCountUI  gui  = new KiwiCountUI(game);
+                         gui.setVisible(true);
+                          Dispose();
     		}
     	});
 		hard.addActionListener(new ActionListener() {     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-    		
+                         final Game game = new Game();
+                         game.setDiffiucly(Difficulty.HARD);
+                         final KiwiCountUI  gui  = new KiwiCountUI(game);
+                         gui.setVisible(true); 
+                          Dispose();
+                         
     		}	
     	});
 		

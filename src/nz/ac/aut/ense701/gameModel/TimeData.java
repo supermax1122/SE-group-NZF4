@@ -21,12 +21,13 @@ public class TimeData {
 
     private boolean countFinished;
     private long end;
-    public final static int GAME_TIME = 60;
+    public final static int GAME_TIME = 120;
     private String systemTime;
     private String countDownTime;
     private String countUpTime;
     private long usedTime;
     private boolean stop;
+    private long passTime;
 
     public TimeData() {
         countFinished = false;
@@ -35,6 +36,7 @@ public class TimeData {
         countDown();
         SysTime();
         countUp();
+        passTime=0;
                 
     }
 
@@ -46,7 +48,7 @@ public class TimeData {
             public void run() {
                 long sub = end - System.currentTimeMillis();
                 countDownTime = updateTimer(sub);
-                System.out.println("Count Down : " + countDownTime);
+              //  System.out.println("Count Down : " + countDownTime);
                 if (sub < 0) {
                     countFinished = true;
 
@@ -59,29 +61,33 @@ public class TimeData {
 
     public void countUp() {
         end = System.currentTimeMillis();
+        usedTime = 0;   
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
-
+         long sub;   
             public void run() {
                 if(!stop){
-                long sub = System.currentTimeMillis() - end;
-                usedTime=sub;
+                sub = System.currentTimeMillis() - end+passTime;
+                
+                usedTime=sub/1000;
                 countUpTime = updateTimer(sub);
-                System.out.println("Count Up : " + countUpTime);
+                }
+                else{
+                passTime=sub;
                 }
             }
-
         }, 0, 1000);
     }
 
     public void stopCount(){
-        this.stop=true;
-    
+        
+        this.stop=true;    
     }
     
     public void startCount(){
         this.stop=false;
-    
+        reCountUp();
+  
     }
     
     public void SysTime() {
@@ -92,7 +98,7 @@ public class TimeData {
             public void run() {
                 long sub = System.currentTimeMillis();
                 systemTime = updateTimer(sub);
-                System.out.println("System Time : " + systemTime);
+          //      System.out.println("System Time : " + systemTime);
 
             }
 
@@ -147,8 +153,7 @@ public class TimeData {
     }
 
     
-    public long getUserTime(){
-    
+    public long getUserTime(){    
         return usedTime;
     }
     public static void main(String args[]) {
