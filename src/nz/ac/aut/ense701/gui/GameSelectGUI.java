@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogInUI;
+package nz.ac.aut.ense701.gui;
 
 
-import FileIO.FileIn;
-import FileIO.ScoreRecord;
-import GUITools.MyBackGround;
-import GUITools.MyButton;
+import nz.ac.aut.ense701.gameModel.FileIn;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
+import nz.ac.aut.ense701.GUITools.MyBackGround;
+import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -31,6 +31,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import nz.ac.aut.ense701.gameModel.Difficulty;
+import nz.ac.aut.ense701.gameModel.Game;
+import nz.ac.aut.ense701.gameModel.GameModel;
 import nz.ac.aut.ense701.gui.ScoreBoard;
 
 
@@ -51,7 +54,7 @@ public class GameSelectGUI extends JFrame{
 	
 	
     
-        NormalMode = new MyButton("image/na1.jpg", "image/na2.jpg", "image/na3.jpg");
+                NormalMode = new MyButton("image/na1.jpg", "image/na2.jpg", "image/na3.jpg");
 		NormalMode.setBounds(20, 100, NormalMode.getButtonWidth(), NormalMode.getButtonHeight());
 		
 		ScoreBoard = new MyButton("image/sa1.jpg", "image/sa2.jpg", "image/sa3.jpg");
@@ -77,7 +80,7 @@ public class GameSelectGUI extends JFrame{
 		this.add(ground);
 		this.setSize(700, 600);
 		this.setLocation(400, 300);
-		
+		 this.setResizable(false);//size of window cannot be change 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -123,6 +126,12 @@ public class GameSelectGUI extends JFrame{
 		ChallengeMode.addActionListener(new ActionListener() {     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
+                    final Game game = new Game();
+                    game.setModel(GameModel.Challenge);
+                    game.setDiffiucly(Difficulty.ESAY);
+                     final KiwiCountUI  gui  = new KiwiCountUI(game);
+                         gui.setVisible(true);
+                          Dispose();
     			// TODO Auto-generated method stub
     		
     		}	

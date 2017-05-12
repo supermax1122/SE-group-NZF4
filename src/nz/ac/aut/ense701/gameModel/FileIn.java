@@ -1,6 +1,6 @@
-package FileIO;
+package nz.ac.aut.ense701.gameModel;
 
-import FileIO.ScoreRecord;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;

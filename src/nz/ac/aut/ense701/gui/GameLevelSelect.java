@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogInUI;
+package nz.ac.aut.ense701.gui;
+import nz.ac.aut.ense701.gui.GameSelectGUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
+import nz.ac.aut.ense701.gameModel.GameModel;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
 
 
@@ -57,9 +59,9 @@ public class GameLevelSelect extends JFrame{
 		this.add(hard);
 		this.add(back);
 		this.add(text);
-		this.setSize(100, 300);
+		this.setSize(200, 300);
 		this.setLocation(400, 200);
-		
+		 this.setResizable(false);//size of window cannot be change 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -77,9 +79,11 @@ public class GameLevelSelect extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
                          final Game game = new Game();
+                         game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.ESAY);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
+                         Dispose();
     		}
     	});
 		
@@ -89,8 +93,10 @@ public class GameLevelSelect extends JFrame{
     			// TODO Auto-generated method stub
                          final Game game = new Game();
                          game.setDiffiucly(Difficulty.NORMAL);
+                         game.setModel(GameModel.Normal);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
-                         gui.setVisible(true);    			
+                         gui.setVisible(true);
+                          Dispose();
     		}
     	});
 		hard.addActionListener(new ActionListener() {     		
@@ -98,9 +104,11 @@ public class GameLevelSelect extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
                          final Game game = new Game();
+                         game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.HARD);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
-                         gui.setVisible(true);    	
+                         gui.setVisible(true); 
+                          Dispose();
                          
     		}	
     	});

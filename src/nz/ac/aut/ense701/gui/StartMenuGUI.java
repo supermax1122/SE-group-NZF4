@@ -1,8 +1,9 @@
-package LogInUI;
+package nz.ac.aut.ense701.gui;
 
 
-import GUITools.MyBackGround;
-import GUITools.MyButton;
+import nz.ac.aut.ense701.gameModel.User;
+import nz.ac.aut.ense701.GUITools.MyBackGround;
+import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -58,7 +59,7 @@ public class StartMenuGUI extends JFrame {
     public StartMenuGUI(){  
         this.setSize(WIDTH, HEIGHT);//set width and height
         this.setTitle("KiwiIsland");//tile
-     //  this.setResizable(false);//size of window cannot be change  
+        this.setResizable(false);//size of window cannot be change  
         this.setLocationRelativeTo(null);//set indow in the middle
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//when colse the window 
         login = new UserLogIn(){
@@ -238,34 +239,34 @@ class MyPanel extends JPanel implements Runnable{
             e.printStackTrace();  
         }   
  
-        icon = new ImageIcon("image/k.jpg");  
+        icon = new ImageIcon("image/k.png");  
         k = icon.getImage();               
         g.drawImage(k, x, y, null); 
-        icon = new ImageIcon("image/i.jpg");  
+        icon = new ImageIcon("image/i.png");  
         k = icon.getImage();               
         g.drawImage(k, 80, y, null); 
-        icon = new ImageIcon("image/w.jpg");  
+        icon = new ImageIcon("image/w.png");  
         k = icon.getImage();               
         g.drawImage(k, 120, y, null); 
-        icon = new ImageIcon("image/i.jpg");  
+        icon = new ImageIcon("image/i.png");  
         k = icon.getImage();               
         g.drawImage(k, 235, y, null); 
-        icon = new ImageIcon("image/i.jpg");  
+        icon = new ImageIcon("image/i.png");  
         k = icon.getImage();               
         g.drawImage(k, 345, y, null); 
-        icon = new ImageIcon("image/s.jpg");  
+        icon = new ImageIcon("image/s.png");  
         k = icon.getImage();               
         g.drawImage(k, 390, y, null); 
-        icon = new ImageIcon("image/l.jpg");  
+        icon = new ImageIcon("image/l.png");  
         k = icon.getImage();               
         g.drawImage(k, 460, y, null); 
-        icon = new ImageIcon("image/a.jpg");  
+        icon = new ImageIcon("image/a.png");  
         k = icon.getImage();               
         g.drawImage(k, 540, y, null); 
-        icon = new ImageIcon("image/n.jpg");  
+        icon = new ImageIcon("image/n.png");  
         k = icon.getImage();               
         g.drawImage(k, 630, y, null); 
-        icon = new ImageIcon("image/d.jpg");  
+        icon = new ImageIcon("image/d.png");  
         k = icon.getImage();               
         g.drawImage(k, 720, y, null); 
           
