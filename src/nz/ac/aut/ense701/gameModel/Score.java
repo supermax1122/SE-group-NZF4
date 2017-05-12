@@ -69,4 +69,6 @@ public class Score {
     public int getscore() {
         return score;
     }
+    
+
 }

@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
+import nz.ac.aut.ense701.gameModel.GameModel;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
 
 
@@ -78,6 +79,7 @@ public class GameLevelSelect extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
                          final Game game = new Game();
+                         game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.ESAY);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
@@ -91,6 +93,7 @@ public class GameLevelSelect extends JFrame{
     			// TODO Auto-generated method stub
                          final Game game = new Game();
                          game.setDiffiucly(Difficulty.NORMAL);
+                         game.setModel(GameModel.Normal);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                           Dispose();
@@ -101,6 +104,7 @@ public class GameLevelSelect extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
                          final Game game = new Game();
+                         game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.HARD);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true); 

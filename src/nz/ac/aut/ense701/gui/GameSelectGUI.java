@@ -31,6 +31,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import nz.ac.aut.ense701.gameModel.Difficulty;
+import nz.ac.aut.ense701.gameModel.Game;
+import nz.ac.aut.ense701.gameModel.GameModel;
 import nz.ac.aut.ense701.gui.ScoreBoard;
 
 
@@ -123,6 +126,12 @@ public class GameSelectGUI extends JFrame{
 		ChallengeMode.addActionListener(new ActionListener() {     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
+                    final Game game = new Game();
+                    game.setModel(GameModel.Challenge);
+                    game.setDiffiucly(Difficulty.ESAY);
+                     final KiwiCountUI  gui  = new KiwiCountUI(game);
+                         gui.setVisible(true);
+                          Dispose();
     			// TODO Auto-generated method stub
     		
     		}	
