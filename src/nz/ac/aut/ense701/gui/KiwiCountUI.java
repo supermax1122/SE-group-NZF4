@@ -70,7 +70,7 @@ public class KiwiCountUI
             game.stopMusic();
             game.stopTime();
             game.createNewGame();
-            
+            game.restartTime();
            
         }
         else if ( game.getState() == GameState.WON )
@@ -81,7 +81,9 @@ public class KiwiCountUI
                     JOptionPane.INFORMATION_MESSAGE);
 
             game.stopMusic();
+            game.stopTime();
             game.createNewGame();
+            game.restartTime();
 
         }
         else if (game.messageForPlayer())
@@ -234,7 +236,7 @@ public class KiwiCountUI
        
     //    pnlCountdown.setOpaque(false);
 
-        pnlTimer = new TimePanel(game.getModel(),game.getTimeData());
+        pnlTimer = new TimePanel(game.getTimeData());
         
         pnlTimer.setOpaque(false);
 
