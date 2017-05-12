@@ -1,8 +1,8 @@
 package nz.ac.aut.ense701.gui;
 
-import GUITools.MyBackGround;
-import GUITools.MyButton;
-import LogInUI.User;
+import nz.ac.aut.ense701.GUITools.MyBackGround;
+import nz.ac.aut.ense701.GUITools.MyButton;
+import nz.ac.aut.ense701.gameModel.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
