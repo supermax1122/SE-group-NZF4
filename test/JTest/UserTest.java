@@ -3,7 +3,7 @@ package JTest;
 
 
 
-import LogInUI.User;
+import nz.ac.aut.ense701.gameModel.User;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;

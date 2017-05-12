@@ -5,8 +5,8 @@
  */
 package JTest;
 
-import FileIO.FileIn;
-import FileIO.ScoreRecord;
+import nz.ac.aut.ense701.gameModel.FileIn;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;

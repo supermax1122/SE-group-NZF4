@@ -5,8 +5,8 @@
  */
 package nz.ac.aut.ense701.gui;
 
-import FileIO.FileIn;
-import FileIO.ScoreRecord;
+import nz.ac.aut.ense701.gameModel.FileIn;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogInUI;
+package nz.ac.aut.ense701.gui;
 
 
-import FileIO.FileIn;
-import FileIO.ScoreRecord;
-import GUITools.MyBackGround;
-import GUITools.MyButton;
+import nz.ac.aut.ense701.gameModel.FileIn;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
+import nz.ac.aut.ense701.GUITools.MyBackGround;
+import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
