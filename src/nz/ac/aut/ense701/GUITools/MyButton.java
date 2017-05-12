@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUITools;
+package nz.ac.aut.ense701.GUITools;
 
 import java.awt.Dimension;  
 import java.awt.Graphics;  

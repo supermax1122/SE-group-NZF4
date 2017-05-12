@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogInUI;
+package nz.ac.aut.ense701.gui;
+import nz.ac.aut.ense701.gui.GameSelectGUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
