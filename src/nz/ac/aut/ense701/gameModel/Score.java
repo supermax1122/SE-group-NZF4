@@ -70,8 +70,5 @@ public class Score {
         return score;
     }
     
-    public void save(){
-    
-    
-    }
+
 }

@@ -592,7 +592,6 @@ public class Game {
             score.endCount(timeData);
             this.setLoseMessage(message);
          }
-        
         else if (predatorsTrapped == totalPredators) {
             state = GameState.WON;
             timeData.stopCount();
