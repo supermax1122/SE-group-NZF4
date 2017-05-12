@@ -26,11 +26,11 @@ public class TimePanel extends JPanel {
     private JLabel sysTimeLable;
     private JLabel countTimeLable;
     private TimeData timeData;
-    private final GameModel model;
+  //  private final GameModel model;
     private Timer timeAction;
 
-    public TimePanel(GameModel model,TimeData timeData) {
-        this.model = model;
+    public TimePanel(TimeData timeData) {
+       // this.model = model;
         this.timeData = timeData;
         this.setLayout(new BorderLayout());
         this.setVisible(true);
@@ -58,10 +58,12 @@ public class TimePanel extends JPanel {
 
         sysTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("System Time"));
         countTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("Count    Time"));
-        if (model == GameModel.Challenge) {
+     //   System.out.println("111111:"+timeData.getModel());
+        if (timeData.getModel() == GameModel.Challenge) {
            // timeData.SysTime();
           //  timeData.countDown();
-            timeData.reCountDown();
+     //     System.out.println("2");
+           // timeData.reCountDown();
             new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -70,7 +72,7 @@ public class TimePanel extends JPanel {
                 }
             }).start();
 
-        } else if (model ==GameModel.Normal) {
+        } else if (timeData.getModel() ==GameModel.Normal) {
            // timeData.SysTime();
           //  timeData.countUp();
             timeData.reCountUp();
@@ -94,8 +96,10 @@ public class TimePanel extends JPanel {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TimeData timeData=new TimeData();
-        JPanel countDownPanel = new TimePanel(GameModel.Normal,timeData);
+      //  TimeData timeData=new TimeData(GameModel.Challenge);
+        TimeData timeData=new TimeData(GameModel.Normal);
+        JPanel countDownPanel = new TimePanel(timeData);
+        timeData.startCount();
         JFrame frame = new JFrame();
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
@@ -104,6 +108,7 @@ public class TimePanel extends JPanel {
         frame.setLayout(new BorderLayout());
         frame.add(countDownPanel, BorderLayout.CENTER);
         frame.setVisible(true);
+    //    System.out.println("213123:"+GameModel.Challenge);
     }
 
 }
