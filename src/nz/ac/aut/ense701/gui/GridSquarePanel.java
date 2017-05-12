@@ -118,7 +118,8 @@ public class GridSquarePanel extends javax.swing.JPanel
        if ( squareExplored || squareVisible )
         {
             // Set the text of the JLabel according to the occupant
-//            lblText.setText(game.getOccupantStringRepresentation(row,column));
+            lblText.setText(game.getOccupantStringRepresentation(row,column));
+            lblText.setVisible(false);
             this.showOccupant = true;
             this.repaint();
             // Set the colour. 
@@ -136,6 +137,7 @@ public class GridSquarePanel extends javax.swing.JPanel
         }
         else
         {
+            lblText.setVisible(true);
             lblText.setText("");
             lblText.setBackground(null);
             this.Isvisible = false;
