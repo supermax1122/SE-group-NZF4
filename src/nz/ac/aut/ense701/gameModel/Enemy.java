@@ -31,6 +31,7 @@ public class Enemy extends Occupant implements Runnable{
     public void run (){
         run = true;
         while (run){
+            killPlayer();
             try {
                 Thread.sleep(moveFrequency);
             } catch (InterruptedException ex) {
@@ -41,6 +42,7 @@ public class Enemy extends Occupant implements Runnable{
         }
     }
     
+    //try to catch player
     public void tracePlayer (){
         int vertical = position.getRow() - player.getPosition().getRow();
         int horizontal = position.getColumn() - player.getPosition().getColumn();
@@ -61,7 +63,14 @@ public class Enemy extends Occupant implements Runnable{
             game.getIsland().removeOccupant(position, this);
             position = position.getNewPosition(MoveDirection.NORTH);
             game.getIsland().addOccupant(position, this);
-        }else{
+        }
+    }
+    
+    //kill player when in sam position
+    public void killPlayer (){
+        int vertical = position.getRow() - player.getPosition().getRow();
+        int horizontal = position.getColumn() - player.getPosition().getColumn();
+        if (vertical == 0 && horizontal ==0){
             game.getPlayer().kill();
             game.enemyKilled("The enemy has find you!");
         }
