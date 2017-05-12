@@ -32,7 +32,7 @@ public class Game {
      */
     public Game() {
         eventListeners = new HashSet<GameEventListener>();
-        timeData=new TimeData();
+   //     timeData=new TimeData();
         createNewGame();
     }
 
@@ -60,9 +60,9 @@ public class Game {
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
         
-        timeData.reCountDown();
-        timeData.reCountUp();
-        timeData.startCount();        
+        
+        
+        
     }
 
     public void setDiffiucly (Difficulty difficulty){
@@ -88,6 +88,12 @@ public class Game {
     
     }
 
+    public void restartTime(){
+        timeData.reCount();
+        timeData.startCount();
+    
+    }
+    
     /**
      * Stop background music
      */
@@ -216,7 +222,6 @@ public class Game {
     public String getOccupantStringRepresentation(int row, int column) {
         return island.getOccupantStringRepresentation(new Position(island, row, column));
     }
-    
 
     /**
      * Get values from player for GUI display
@@ -574,8 +579,9 @@ public class Game {
         }
 
         if (!player.isAlive()) {
-            timeData.stopCount();
+            
             state = GameState.LOST;
+            timeData.stopCount();
             message = "Sorry, you have lost the game. " + this.getLoseMessage();           
             score.endCount(timeData);
             this.setLoseMessage(message);
@@ -859,6 +865,9 @@ public class Game {
 
     public void setModel(GameModel model) {
         this.model = model;
+        timeData=new TimeData(model);     
+        timeData.startCount();
+        timeData.reCount();
     }
 
     

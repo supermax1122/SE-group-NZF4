@@ -21,39 +21,45 @@ public class TimeData {
 
     private boolean countFinished;
     private long end;
-    public final static int GAME_TIME = 120;
+    public final static int GAME_TIME = 121;
     private String systemTime;
     private String countDownTime;
     private String countUpTime;
     private long usedTime;
     private boolean stop;
     private long passTime;
+    private GameModel model;
 
-    public TimeData() {
+    public TimeData(GameModel model) {
+        this.model = model;
         countFinished = false;
-        usedTime=0;
-        stop=false;
-        countDown();
+        usedTime = 0;
+        stop = true;
         SysTime();
-        countUp();
-        passTime=0;
-                
+        if (model == GameModel.Challenge) {
+            countDown();
+        } else if (model == GameModel.Normal) {
+            countUp();
+        }
+        passTime = 0;
+
     }
 
     public void countDown() {
-        end = System.currentTimeMillis() + GAME_TIME * 1000;
+        end = System.currentTimeMillis() + (GAME_TIME)* 1000;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 
             public void run() {
-                long sub = end - System.currentTimeMillis();
-                countDownTime = updateTimer(sub);
-              //  System.out.println("Count Down : " + countDownTime);
-                if (sub < 0) {
-                    countFinished = true;
 
+                if (!stop) {
+                    long sub = end - System.currentTimeMillis();
+                    countDownTime = updateTimer(sub);
+                    System.out.println("Count Down : " + countDownTime);
+                    if (sub < 0) {
+                        countFinished = true;
+                    }
                 }
-
             }
 
         }, 0, 1000);
@@ -61,34 +67,24 @@ public class TimeData {
 
     public void countUp() {
         end = System.currentTimeMillis();
-        usedTime = 0;   
+        usedTime = 0;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
-         long sub;   
+            long sub;
+
             public void run() {
-                if(!stop){
-                sub = System.currentTimeMillis() - end+passTime;
-                
-                usedTime=sub/1000;
-                countUpTime = updateTimer(sub);
-                }
-                else{
-                passTime=sub;
+                if (!stop) {
+                    sub = System.currentTimeMillis() - end + passTime;
+
+                    usedTime = sub / 1000;
+                    countUpTime = updateTimer(sub);
+                } else {
+                    passTime = sub;
                 }
             }
         }, 0, 1000);
     }
 
-    public void stopCount(){        
-        this.stop=true;    
-    }
-    
-    public void startCount(){
-        this.stop=false;
-        reCountUp();
-  
-    }
-    
     public void SysTime() {
 
         Timer timer = new Timer();
@@ -97,21 +93,46 @@ public class TimeData {
             public void run() {
                 long sub = System.currentTimeMillis();
                 systemTime = updateTimer(sub);
-          //      System.out.println("System Time : " + systemTime);
+                //      System.out.println("System Time : " + systemTime);
 
             }
 
         }, 0, 1000);
 
     }
-    
-    public void reCountDown(){
+
+    public void reCountDown() {
+        countFinished = false;
         end = System.currentTimeMillis() + GAME_TIME * 1000;
+
     }
-    
-    public void reCountUp(){
+
+    public void reCountUp() {
         end = System.currentTimeMillis();
-        passTime = 0;
+        passTime=0;
+    }
+
+    public void reCount() {
+        if (model == GameModel.Challenge) {
+             reCountDown();
+        } else if (model == GameModel.Normal) {
+           reCountUp();
+        }
+    }
+
+    public void stopCount() {
+
+        this.stop = true;
+    }
+
+    public void startCount() {
+        this.stop = false;
+        if (model == GameModel.Challenge) {
+            reCountDown();
+        } else if (model == GameModel.Normal) {
+            reCountUp();
+        }
+
     }
 
     public String updateTimer(long sub) {
@@ -151,16 +172,23 @@ public class TimeData {
         return countUpTime;
     }
 
-    
-    public long getUserTime(){    
+    public long getUserTime() {
         return usedTime;
     }
-    public static void main(String args[]) {
-        TimeData time = new TimeData();
-        time.countDown();
-        time.SysTime();
-        time.countUp();
 
+    public GameModel getModel() {
+        return model;
+    }
+
+    public void setModel(GameModel model) {
+        this.model = model;
+    }
+
+    public static void main(String args[]) {
+        TimeData time = new TimeData(GameModel.Challenge);
+
+        //      time.SysTime();
+        //       time.countUp();
     }
 
 }
