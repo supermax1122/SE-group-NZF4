@@ -574,24 +574,36 @@ public class Game {
         }
 
         if (!player.isAlive()) {
+            timeData.stopCount();
             state = GameState.LOST;
-            message = "Sorry, you have lost the game. " + this.getLoseMessage();
+            message = "Sorry, you have lost the game. " + this.getLoseMessage();           
             score.endCount(timeData);
             this.setLoseMessage(message);
         } else if (!playerCanMove()) {
             state = GameState.LOST;
-            message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";
+            timeData.stopCount();
+            message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";            
             score.endCount(timeData);
             this.setLoseMessage(message);
-        } else if (predatorsTrapped == totalPredators) {
+        }else if(model==GameModel.Challenge&&timeData.isCountFinished()){
+             state = GameState.LOST;
+            timeData.stopCount();
+            message = "Sorry, game is over.Time is up.";            
+            score.endCount(timeData);
+            this.setLoseMessage(message);
+         }
+        
+        else if (predatorsTrapped == totalPredators) {
             state = GameState.WON;
+            timeData.stopCount();
             message = "You win! You have done an excellent job and trapped all the predators.";
             score.endCount(timeData);
             score.addExtra(1000);
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
-            if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {
+            if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
                 state = GameState.WON;
+                 timeData.stopCount();
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
                 score.endCount(timeData);
                 score.addExtra(1500);
@@ -841,6 +853,15 @@ public class Game {
         }
     }
 
+    public GameModel getModel() {
+        return model;
+    }
+
+    public void setModel(GameModel model) {
+        this.model = model;
+    }
+
+    
     
     private Island island;
     private Player player;
@@ -857,6 +878,7 @@ public class Game {
     private Thread enemyThread;
     private Enemy enemy;
     private Difficulty dufficulty;
+    private GameModel model;
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     private String winMessage = "";

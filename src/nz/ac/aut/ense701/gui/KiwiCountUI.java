@@ -234,7 +234,7 @@ public class KiwiCountUI
        
     //    pnlCountdown.setOpaque(false);
 
-        pnlTimer = new TimePanel(0,game.getTimeData());
+        pnlTimer = new TimePanel(game.getModel(),game.getTimeData());
         
         pnlTimer.setOpaque(false);
 
