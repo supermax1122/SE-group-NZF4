@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import nz.ac.aut.ense701.gameModel.GameModel;
 import nz.ac.aut.ense701.gameModel.TimeData;
 
 /**
@@ -25,11 +26,11 @@ public class TimePanel extends JPanel {
     private JLabel sysTimeLable;
     private JLabel countTimeLable;
     private TimeData timeData;
-    private final int status;
+    private final GameModel model;
     private Timer timeAction;
 
-    public TimePanel(int status,TimeData timeData) {
-        this.status = status;
+    public TimePanel(GameModel model,TimeData timeData) {
+        this.model = model;
         this.timeData = timeData;
         this.setLayout(new BorderLayout());
         this.setVisible(true);
@@ -57,27 +58,27 @@ public class TimePanel extends JPanel {
 
         sysTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("System Time"));
         countTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("Count    Time"));
-        if (status == 1) {
+        if (model == GameModel.Challenge) {
            // timeData.SysTime();
           //  timeData.countDown();
             timeData.reCountDown();
             new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    sysTimeLable.setText("System Time: " + timeData.getSystemTime());
-                    countTimeLable.setText("Count  Time: " + timeData.getCountDownTime());
+                    sysTimeLable.setText("System        Time: " + timeData.getSystemTime());
+                    countTimeLable.setText("CountDown Time: " + timeData.getCountDownTime());
                 }
             }).start();
 
-        } else if (status == 0) {
+        } else if (model ==GameModel.Normal) {
            // timeData.SysTime();
           //  timeData.countUp();
             timeData.reCountUp();
            timeAction= new Timer(500, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    sysTimeLable.setText("System Time:" + timeData.getSystemTime());
-                    countTimeLable.setText("Play      Time:" + timeData.getCountUpTime());
+                    sysTimeLable.setText("System        Time: " + timeData.getSystemTime());
+                    countTimeLable.setText("Play            Time: " + timeData.getCountUpTime());
                 }
             });
            timeAction.start();
@@ -94,7 +95,7 @@ public class TimePanel extends JPanel {
      */
     public static void main(String[] args) {
         TimeData timeData=new TimeData();
-        JPanel countDownPanel = new TimePanel(0,timeData);
+        JPanel countDownPanel = new TimePanel(GameModel.Normal,timeData);
         JFrame frame = new JFrame();
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);

@@ -3,7 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GItHubNZF4/SE-group-NZF4/src/nz/ac/aut/ense701/main/Main.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/User.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/Player.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/main/Main.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gui/ScoreBoard.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/ScoreRecord.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/Food.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/Game.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/FileOut.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/Difficulty.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gui/TimePanel.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/GameEventListener.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gui/StartMenuGUI.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/Score.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gui/GridSquarePanel.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gui/KiwiCountUI.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/FileIn.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/GameModel.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gui/GameLevelSelect.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gui/GameSelectGUI.java</file>
+            <file>file:/D:/Github/Clone/SE-group-NZF4/src/nz/ac/aut/ense701/gameModel/TimeData.java</file>
         </group>
     </open-files>
 </project-private>
