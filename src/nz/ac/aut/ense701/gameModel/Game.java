@@ -52,6 +52,9 @@ public class Game {
         playerMessage = "";
         notifyGameEventListeners();
     
+        randomtime = enemyRandomize.getRandonTime();
+        countdownline = 60;
+
         if (enemy != null)
             enemy.EnemyRetreat();
         enemy = null;
@@ -564,7 +567,12 @@ public class Game {
     private void updateGameState() {
         String message = "";
 
-        if (timeData.getUserTime() > enemyRandomize.getRandonTime() && enemy == null){
+        if (model==GameModel.Challenge){
+            String strings[] = timeData.getCountDownTime().split(":");
+            countdownline = Integer.parseInt(strings[2]);
+        }
+            
+        if ((countdownline + randomtime < 60 || timeData.getUserTime() >  randomtime) && enemy == null){
             setPlayerMessage("Enemy has appeared somewhere in the map! Be Careful, the enemy will kill you once his reach you.");
             timeData.stopCount();
             notifyGameEventListeners();
@@ -888,6 +896,9 @@ public class Game {
     private Enemy enemy;
     private Difficulty dufficulty;
     private GameModel model;
+    private int randomtime;
+    private int countdownline;
+
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     private String winMessage = "";
