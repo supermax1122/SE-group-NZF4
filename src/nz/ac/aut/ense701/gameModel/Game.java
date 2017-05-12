@@ -62,8 +62,7 @@ public class Game {
         
         timeData.reCountDown();
         timeData.reCountUp();
-        timeData.startCount();
-        
+        timeData.startCount();        
     }
 
     public void setDiffiucly (Difficulty difficulty){
@@ -217,6 +216,7 @@ public class Game {
     public String getOccupantStringRepresentation(int row, int column) {
         return island.getOccupantStringRepresentation(new Position(island, row, column));
     }
+    
 
     /**
      * Get values from player for GUI display
@@ -615,6 +615,7 @@ public class Game {
 
     public void enemyKilled (String message){
         setLoseMessage(message);
+        updateGameState();
     }
     
     /**

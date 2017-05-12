@@ -44,10 +44,7 @@ public class GridSquarePanel extends javax.swing.JPanel
 
         if ((squareVisible && !squareExplored)||this.Isvisible||(iscurrentrow&&iscurrentcol)) {
             String imagePath = "image/"+imageName;
-            ImageIcon icon = new ImageIcon(imagePath);
-            Image img = icon.getImage();
-            Dimension size = this.getParent().getSize();
-            g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
+            this.paintItem(g, imagePath);
             this.Isvisible = true;
         }
         
@@ -55,21 +52,25 @@ public class GridSquarePanel extends javax.swing.JPanel
             char []arrays = this.lblText.getText().toCharArray();
             for (int i = 0; i < arrays.length; i++){
                 if (arrays[i] == 'H'){
-                    ImageIcon ico = new ImageIcon("image/hazard.png");
-                    Image imge = ico.getImage();
-                    g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
-                    System.out.println(arrays[i]);            
+                    this.paintItem(g, "image/hazard.png");
                 }
                 if (arrays[i] == 'T'){
-                    ImageIcon ico = new ImageIcon("image/toolbox.png");
-                    Image imge = ico.getImage();
-                    g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
-                    System.out.println(arrays[i]);            
+                    this.paintItem(g,"image/toolbox.png");
+                }
+                if (arrays[i] == 'K'){
+                    this.paintItem(g, "image/kiwi.png");
+                }
+                if (arrays[i] == 'E'){
+                    this.paintItem(g, "image/food.png");
+                }                
+                if (arrays[i] == 'F'){
+                    this.paintItem(g, "image/fauna.png");
+                }                
+                if (arrays[i] == 'P'){
+                    this.paintItem(g, "image/predator.png");
                 }
                 if (arrays[i] == 'X'){
-                    ImageIcon ico = new ImageIcon("image/Dragon.png");
-                    Image imge = ico.getImage();
-                    g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
+                    this.paintItem(g, "image/Dragon.png");
                 }
             }
         }
@@ -81,13 +82,17 @@ public class GridSquarePanel extends javax.swing.JPanel
         }
     }
     
+    //Load and print image
+    public void paintItem (Graphics g,String path){
+        ImageIcon ico = new ImageIcon(path);
+        Image imge = ico.getImage();
+        g.drawImage(imge, 0, 0, this.getWidth(), this.getHeight(), null);                
+    }
+    
     public void setImagename (String imageName){
         this.imageName = imageName;
     }
-    
-    public void setOccupantRepresentation (String OccupantRepresentation){
-    }
-    
+        
     /**
      * Updates the representation of the grid square panel.
      */
@@ -113,7 +118,7 @@ public class GridSquarePanel extends javax.swing.JPanel
        if ( squareExplored || squareVisible )
         {
             // Set the text of the JLabel according to the occupant
-            lblText.setText(game.getOccupantStringRepresentation(row,column));
+//            lblText.setText(game.getOccupantStringRepresentation(row,column));
             this.showOccupant = true;
             this.repaint();
             // Set the colour. 

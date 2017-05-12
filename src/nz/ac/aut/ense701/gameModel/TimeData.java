@@ -79,8 +79,7 @@ public class TimeData {
         }, 0, 1000);
     }
 
-    public void stopCount(){
-        
+    public void stopCount(){        
         this.stop=true;    
     }
     
@@ -112,7 +111,7 @@ public class TimeData {
     
     public void reCountUp(){
         end = System.currentTimeMillis();
-    
+        passTime = 0;
     }
 
     public String updateTimer(long sub) {
