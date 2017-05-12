@@ -31,7 +31,7 @@ public class EnemyTest extends junit.framework.TestCase{
     public void setUp() {
         game = new Game ();
         Position position = new Position (game.getIsland(), 0, 0);
-        enemy = new Enemy (position, "Enemy", "Enemy try to catch player", game.getPlayer(), 1000, game);
+        enemy = new Enemy (position, "Enemy", "Enemy try to catch player", game.getPlayer(), 10, game);
     }
     
     /**
@@ -57,7 +57,7 @@ public class EnemyTest extends junit.framework.TestCase{
             move = true;
         assertTrue(move);
     }
-
+    
     /**
      * test if the thread is running
      */
