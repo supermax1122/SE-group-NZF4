@@ -3,6 +3,7 @@ package nz.ac.aut.ense701.gameModel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
@@ -63,7 +64,7 @@ public class Game {
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
         
-        
+     
         
         
     }
@@ -456,7 +457,7 @@ public class Game {
      * @param item to use
      * @return true if the item has been used, false if not
      */
-    public boolean useItem(Object item) {
+    public boolean useItem(Object item) throws IOException {
         boolean success = false;
         if (item instanceof Food && player.hasItem((Food) item)) //Player east food to increase stamina
         {
@@ -491,7 +492,7 @@ public class Game {
     /**
      * Count any kiwis in this position
      */
-    public void countKiwi() {
+    public void countKiwi() throws IOException {
         //check if there are any kiwis here
         for (Occupant occupant : island.getOccupants(player.getPosition())) {
             if (occupant instanceof Kiwi) {
@@ -511,7 +512,7 @@ public class Game {
      * @param direction the direction to move
      * @return true if the move was successful, false if it was an invalid move
      */
-    public boolean playerMove(MoveDirection direction) {
+    public boolean playerMove(MoveDirection direction) throws IOException {
         // what terrain is the player moving on currently
         boolean successfulMove = false;
         if (isPlayerMovePossible(direction)) {
@@ -564,7 +565,7 @@ public class Game {
      * Used after player actions to update game state. Applies the Win/Lose
      * rules.
      */
-    private void updateGameState() {
+    private void updateGameState() throws IOException {
         String message = "";
 
         if (model==GameModel.Challenge){
@@ -611,7 +612,9 @@ public class Game {
             timeData.stopCount();
             message = "You win! You have done an excellent job and trapped all the predators.";
             score.endCount(timeData);
-            score.addExtra(1000);
+            score.addExtra(1000);     
+            aUser.setScore(""+score.getscore());
+            saveData();
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
             if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
@@ -620,6 +623,8 @@ public class Game {
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
                 score.endCount(timeData);
                 score.addExtra(1500);
+                aUser.setScore(""+score.getscore());
+                saveData();
                 this.setWinMessage(message);
             }
         }
@@ -627,7 +632,7 @@ public class Game {
         notifyGameEventListeners();
     }
 
-    public void enemyKilled (String message){
+    public void enemyKilled (String message) throws IOException{
         setLoseMessage(message);
         updateGameState();
     }
@@ -671,7 +676,7 @@ public class Game {
 
     }
     
-    public void EnemyMove (){
+    public void EnemyMove () throws IOException{
         if (!player.isAlive())
             updateGameState();
         else
@@ -878,8 +883,31 @@ public class Game {
         timeData.reCount();
     }
 
+    public ScoreRecord getaUser() {
+        return aUser;
+    }
+
+    public void setaUser(ScoreRecord aUser) {
+        this.aUser = aUser;
+    }
     
+    public void saveData() throws IOException{
+       FileIn scoreFileIn = new FileIn("scoreFile.txt");
+        ArrayList<ScoreRecord> scoreList = scoreFileIn.ScoreRecordList();
+
+        for (ScoreRecord a : scoreList) {
+            System.out.println(a);
+        }
+        scoreList.add(aUser);
+        
+        FileOut scoreListFileOut = new FileOut("scoreFile.txt", scoreList);
+
+        scoreListFileOut.scoreListFileOut();
     
+    }
+      
+    
+    private ScoreRecord aUser;
     private Island island;
     private Player player;
     private GameState state;
