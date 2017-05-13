@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameModel;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
 
 
@@ -29,6 +30,8 @@ public class GameLevelSelect extends JFrame{
 	private JButton normal;
 	private JButton hard;
 	private JButton back;
+        
+        private ScoreRecord aUser;
 
 	//This class for show main menu.
 	public GameLevelSelect(){	
@@ -81,6 +84,8 @@ public class GameLevelSelect extends JFrame{
                          final Game game = new Game();
                          game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.ESAY);
+                         aUser.setDiffculty(Difficulty.ESAY.toString());
+                         game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                          Dispose();
@@ -94,6 +99,8 @@ public class GameLevelSelect extends JFrame{
                          final Game game = new Game();
                          game.setDiffiucly(Difficulty.NORMAL);
                          game.setModel(GameModel.Normal);
+                         aUser.setDiffculty(Difficulty.NORMAL.toString());
+                         game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                           Dispose();
@@ -106,6 +113,8 @@ public class GameLevelSelect extends JFrame{
                          final Game game = new Game();
                          game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.HARD);
+                         aUser.setDiffculty(Difficulty.NORMAL.toString());
+                         game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true); 
                           Dispose();
@@ -118,6 +127,14 @@ public class GameLevelSelect extends JFrame{
 	private void Dispose(){
 		this.dispose();
 	}
+
+    public ScoreRecord getaUser() {
+        return aUser;
+    }
+
+    public void setaUser(ScoreRecord aUser) {
+        this.aUser = aUser;
+    }
 	
 	
 	public static void main(String[] args) throws SQLException {

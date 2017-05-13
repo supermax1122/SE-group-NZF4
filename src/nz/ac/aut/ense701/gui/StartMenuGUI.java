@@ -1,7 +1,7 @@
 package nz.ac.aut.ense701.gui;
 
 
-import nz.ac.aut.ense701.gameModel.User;
+
 import nz.ac.aut.ense701.GUITools.MyBackGround;
 import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;  
 import javax.swing.JTextField;
 import nz.ac.aut.ense701.gameModel.Player;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
   
 /** 
  *  
@@ -93,7 +94,9 @@ public class StartMenuGUI extends JFrame {
  	private MyButton YesButton = new MyButton("image/StartGame1.jpg", "image/StartGame2.jpg", "image/StartGame3.jpg");
  	private MyButton NoButton = new MyButton("image/Exit1.jpg", "image/Exit2.jpg", "image/Exit3.jpg");
  	
- 	private User user;
+ 	private ScoreRecord  user;
+
+        
          
          @SuppressWarnings("unchecked")
  	public UserLogIn(){
@@ -136,7 +139,7 @@ public class StartMenuGUI extends JFrame {
  	
  		
  		
- 		this.user = new User();
+ 		this.user = new ScoreRecord();
 
  	}
          	//initialize listenners
@@ -171,18 +174,13 @@ public class StartMenuGUI extends JFrame {
  			//this.setVisible(false);
  			Dispose();
                          
-//                          // create the game object
-//                         final Game game = new Game();
-//                         // create the GUI for the game
-//                         final KiwiCountUI  gui  = new KiwiCountUI(game);
-//                         // make the GUI visible
                          java.awt.EventQueue.invokeLater(new Runnable() 
                          {
                              @Override
                              public void run() 
                              {
                              	GameSelectGUI ui =new GameSelectGUI();
-                             	
+                             	ui.setaUser(user);
                              }
                          });
                          
@@ -191,8 +189,10 @@ public class StartMenuGUI extends JFrame {
          private void setUser() {
  		//Create User
  		String name = this.nameField.getText();     
- 		this.user.setUserName(name);
-                System.out.println("User Name is :"+this.user.getUserName());
+ 		
+                this.user.setName(name);
+                
+                System.out.println("User Name is :"+this.user.getName());
  	}
  	
 
