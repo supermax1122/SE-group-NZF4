@@ -47,6 +47,7 @@ public class GameSelectGUI extends JFrame{
 	private MyButton ChallengeMode;
 	private MyButton exit;
 	private MyBackGround ground;
+        private ScoreRecord aUser;
 	//This class for show main menu.
 	public GameSelectGUI(){	
 		
@@ -98,7 +99,8 @@ public class GameSelectGUI extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-                        new GameLevelSelect();
+                       GameLevelSelect levelSelect= new GameLevelSelect();
+                       levelSelect.setaUser(aUser);
                         Dispose();
     		}
     	});
@@ -128,7 +130,9 @@ public class GameSelectGUI extends JFrame{
     		public void actionPerformed(ActionEvent e) {
                     final Game game = new Game();
                     game.setModel(GameModel.Challenge);
-                    game.setDiffiucly(Difficulty.ESAY);
+                    game.setDiffiucly(Difficulty.HARD);
+                    aUser.setDiffculty(Difficulty.Challenge.toString());
+                    game.setaUser(aUser);
                      final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                           Dispose();
@@ -142,6 +146,14 @@ public class GameSelectGUI extends JFrame{
 	private void Dispose(){
 		this.dispose();
 	}
+
+    public ScoreRecord getaUser() {
+        return aUser;
+    }
+
+    public void setaUser(ScoreRecord aUser) {
+        this.aUser = aUser;
+    }
 	
 	
 	public static void main(String[] args) throws SQLException {
