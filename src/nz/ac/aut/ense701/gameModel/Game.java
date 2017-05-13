@@ -85,14 +85,18 @@ public class Game {
             nolist.add("" + (i + 1));
         }
         
-        int i = 0;
-        while (!nolist.isEmpty()){
-            int no = random.nextInt(nolist.size());
+        do {
+            int i = 0;
+            while (!nolist.isEmpty()){
+                int no = random.nextInt(nolist.size());
             
-            mapOrder[i] = nolist.get(no);            
-            nolist.remove(no);
-            i++;
-        }
+                mapOrder[i] = nolist.get(no);            
+                nolist.remove(no);
+                i++;
+            }
+            if (preMap == null || preMap.equals(""))
+                break;
+        }while (preMap.equalsIgnoreCase(mapOrder[0]));
     }
     
     public void setDiffiucly (Difficulty difficulty){
@@ -633,6 +637,7 @@ public class Game {
             this.setLoseMessage(message);
          }
         else if (predatorsTrapped == totalPredators) {
+            preMap = mapOrder[currentmapindex];
             currentmapindex++;
             state = GameState.WON;
             timeData.stopCount();
@@ -644,6 +649,7 @@ public class Game {
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
             if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
+                preMap = mapOrder[currentmapindex];
                 currentmapindex++;
                 state = GameState.WON;
                  timeData.stopCount();
@@ -960,6 +966,7 @@ public class Game {
     private String[] mapOrder;
     private int currentmapindex;
     private final int NO_MAP = 2;
+    private String preMap;
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     private String winMessage = "";
