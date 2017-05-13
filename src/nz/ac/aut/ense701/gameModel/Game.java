@@ -38,6 +38,15 @@ public class Game {
         RandonmizeMap();
         createNewGame();
     }
+    
+    /**
+     * A constructor use for test purpose
+     * @param test 
+     */
+    public Game (boolean test){
+        eventListeners = new HashSet<GameEventListener>();
+        this.createNewGameFortest();
+    }
 
     /**
      * Starts a new game. At this stage data is being read from a text file
@@ -73,6 +82,36 @@ public class Game {
      
         
         
+    }
+    
+    /**
+     * a method use for unite test
+     */
+    public void createNewGameFortest (){
+        totalPredators = 0;
+        totalKiwis = 0;
+        predatorsTrapped = 0;
+        kiwiCount = 0;
+
+        initialiseIslandFromFile("GameMap/IslandData1.txt");
+        drawIsland();
+        state = GameState.PLAYING;
+        winMessage = "";
+        loseMessage = "";
+        playerMessage = "";
+        notifyGameEventListeners();
+    
+        randomtime = enemyRandomize.getRandonTime();
+        countdownline = 60;
+        
+        if (enemy != null)
+            enemy.EnemyRetreat();
+        enemy = null;
+        
+        score = new Score ();
+        mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
+        mplayer.Start_Loop();
+
     }
     
     public void RandonmizeMap (){
@@ -637,15 +676,23 @@ public class Game {
             this.setLoseMessage(message);
          }
         else if (predatorsTrapped == totalPredators) {
-            preMap = mapOrder[currentmapindex];
+            try{
+                preMap = mapOrder[currentmapindex];
+            }catch (NullPointerException e){
+                System.err.println("Map can not read");
+            }
             currentmapindex++;
             state = GameState.WON;
             timeData.stopCount();
             message = "You win! You have done an excellent job and trapped all the predators.";
             score.endCount(timeData);
             score.addExtra(1000);     
-            aUser.setScore(""+score.getscore());
-            saveData();
+            try{
+                aUser.setScore(""+score.getscore());
+                saveData();
+            }catch (NullPointerException e){
+                System.err.println("no user");
+            }
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
             if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
@@ -965,7 +1012,7 @@ public class Game {
     private int countdownline;
     private String[] mapOrder;
     private int currentmapindex;
-    private final int NO_MAP = 2;
+    private final int NO_MAP = 4;
     private String preMap;
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();

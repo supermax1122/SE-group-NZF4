@@ -32,10 +32,11 @@ public class GameTest extends junit.framework.TestCase
     {
         // Create a new game from the data file.
         // Player is in position 2,0 & has 100 units of stamina
-        game           = new Game();
+        game           = new Game(true);
         playerPosition = game.getPlayer().getPosition();
         player         = game.getPlayer();
         island = game.getIsland();
+        game.setModel(GameModel.Normal);
     }
 
     /**
@@ -309,7 +310,6 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testUseItemTrapFinalPredator(){
-        
         assertTrue("Check player moves", trapAllPredators());
         assertTrue("Game should be won", game.getState()== GameState.WON);    
     }
@@ -420,8 +420,13 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testStopMusic (){
+        game           = new Game();
+        playerPosition = game.getPlayer().getPosition();
+        player         = game.getPlayer();
+        island = game.getIsland();
+        game.setModel(GameModel.Normal);
+
         //need to start music before stop
-        game.createNewGame();
         assertTrue ("music stoped", game.stopMusic());
     }
     
