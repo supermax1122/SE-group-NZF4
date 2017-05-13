@@ -3,8 +3,10 @@ package nz.ac.aut.ense701.gameModel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
@@ -33,6 +35,7 @@ public class Game {
     public Game() {
         eventListeners = new HashSet<GameEventListener>();
    //     timeData=new TimeData();
+        RandonmizeMap();
         createNewGame();
     }
 
@@ -44,7 +47,11 @@ public class Game {
         totalKiwis = 0;
         predatorsTrapped = 0;
         kiwiCount = 0;
-        initialiseIslandFromFile("IslandData.txt");
+
+        if (currentmapindex >= NO_MAP){
+            RandonmizeMap();
+        }
+        initialiseIslandFromFile("GameMap/IslandData" + mapOrder[currentmapindex] + ".txt");
         drawIsland();
         state = GameState.PLAYING;
         winMessage = "";
@@ -52,6 +59,9 @@ public class Game {
         playerMessage = "";
         notifyGameEventListeners();
     
+        randomtime = enemyRandomize.getRandonTime();
+        countdownline = 60;
+        
         if (enemy != null)
             enemy.EnemyRetreat();
         enemy = null;
@@ -60,11 +70,31 @@ public class Game {
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
         
-        
+     
         
         
     }
-
+    
+    public void RandonmizeMap (){
+        mapOrder = new String[NO_MAP];
+        Random random = new Random ();
+        ArrayList<String> nolist = new ArrayList<String>();
+        currentmapindex = 0;
+        
+        for (int i = 0; i < NO_MAP; i++){
+            nolist.add("" + (i + 1));
+        }
+        
+        int i = 0;
+        while (!nolist.isEmpty()){
+            int no = random.nextInt(nolist.size());
+            
+            mapOrder[i] = nolist.get(no);            
+            nolist.remove(no);
+            i++;
+        }
+    }
+    
     public void setDiffiucly (Difficulty difficulty){
         this.dufficulty = difficulty;
     }
@@ -564,7 +594,12 @@ public class Game {
     private void updateGameState() {
         String message = "";
 
-        if (timeData.getUserTime() > enemyRandomize.getRandonTime() && enemy == null){
+        if (model==GameModel.Challenge){
+            String strings[] = timeData.getCountDownTime().split(":");
+            countdownline = Integer.parseInt(strings[2]);
+        }
+            
+        if ((countdownline + randomtime < 60 || timeData.getUserTime() >  randomtime) && enemy == null){
             setPlayerMessage("Enemy has appeared somewhere in the map! Be Careful, the enemy will kill you once his reach you.");
             timeData.stopCount();
             notifyGameEventListeners();
@@ -579,7 +614,6 @@ public class Game {
         }
 
         if (!player.isAlive()) {
-            
             state = GameState.LOST;
             timeData.stopCount();
             message = "Sorry, you have lost the game. " + this.getLoseMessage();           
@@ -592,26 +626,32 @@ public class Game {
             score.endCount(timeData);
             this.setLoseMessage(message);
         }else if(model==GameModel.Challenge&&timeData.isCountFinished()){
-             state = GameState.LOST;
+            state = GameState.LOST;
             timeData.stopCount();
             message = "Sorry, game is over.Time is up.";            
             score.endCount(timeData);
             this.setLoseMessage(message);
          }
         else if (predatorsTrapped == totalPredators) {
+            currentmapindex++;
             state = GameState.WON;
             timeData.stopCount();
             message = "You win! You have done an excellent job and trapped all the predators.";
             score.endCount(timeData);
-            score.addExtra(1000);
+            score.addExtra(1000);     
+            aUser.setScore(""+score.getscore());
+            saveData();
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
             if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
+                currentmapindex++;
                 state = GameState.WON;
                  timeData.stopCount();
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
                 score.endCount(timeData);
                 score.addExtra(1500);
+                aUser.setScore(""+score.getscore());
+                saveData();
                 this.setWinMessage(message);
             }
         }
@@ -663,7 +703,7 @@ public class Game {
 
     }
     
-    public void EnemyMove (){
+    public void EnemyMove () {
         if (!player.isAlive())
             updateGameState();
         else
@@ -870,8 +910,35 @@ public class Game {
         timeData.reCount();
     }
 
+    public ScoreRecord getaUser() {
+        return aUser;
+    }
+
+    public void setaUser(ScoreRecord aUser) {
+        this.aUser = aUser;
+    }
     
+    public void saveData(){
+        try{
+            FileIn scoreFileIn = new FileIn("scoreFile.txt");
+        
+            ArrayList<ScoreRecord> scoreList = scoreFileIn.ScoreRecordList();
+
+            for (ScoreRecord a : scoreList) {
+                System.out.println(a);
+            }
+            scoreList.add(aUser);
+
+            FileOut scoreListFileOut = new FileOut("scoreFile.txt", scoreList);
+
+            scoreListFileOut.scoreListFileOut();
+        }catch (IOException e){
+            System.err.println ("Cannot read save file");
+        }
+    }
+      
     
+    private ScoreRecord aUser;
     private Island island;
     private Player player;
     private GameState state;
@@ -888,6 +955,11 @@ public class Game {
     private Enemy enemy;
     private Difficulty dufficulty;
     private GameModel model;
+    private int randomtime;
+    private int countdownline;
+    private String[] mapOrder;
+    private int currentmapindex;
+    private final int NO_MAP = 2;
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     private String winMessage = "";

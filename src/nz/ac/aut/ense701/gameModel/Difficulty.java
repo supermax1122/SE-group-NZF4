@@ -10,7 +10,7 @@ package nz.ac.aut.ense701.gameModel;
  * @author Rongsen Chen
  */
 public enum Difficulty {
-    ESAY(1500), NORMAL(1200), HARD(800);
+    ESAY(2500), NORMAL(2000), HARD(1500),Challenge(1500);
     
     private int value;
     
