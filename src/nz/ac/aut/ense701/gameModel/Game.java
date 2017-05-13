@@ -657,18 +657,24 @@ public class Game {
         }
 
         if (!player.isAlive()) {
+            if (enemy != null)
+                enemy.EnemyRetreat();
             state = GameState.LOST;
             timeData.stopCount();
             message = "Sorry, you have lost the game. " + this.getLoseMessage();           
             score.endCount(timeData);
             this.setLoseMessage(message);
         } else if (!playerCanMove()) {
+            if (enemy != null)
+                enemy.EnemyRetreat();
             state = GameState.LOST;
             timeData.stopCount();
             message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";            
             score.endCount(timeData);
             this.setLoseMessage(message);
         }else if(model==GameModel.Challenge&&timeData.isCountFinished()){
+            if (enemy != null)
+                enemy.EnemyRetreat();
             state = GameState.LOST;
             timeData.stopCount();
             message = "Sorry, game is over.Time is up.";            
@@ -681,6 +687,8 @@ public class Game {
             }catch (NullPointerException e){
                 System.err.println("Map can not read");
             }
+            if (enemy != null)
+                enemy.EnemyRetreat();
             currentmapindex++;
             state = GameState.WON;
             timeData.stopCount();
@@ -698,6 +706,8 @@ public class Game {
             if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
                 preMap = mapOrder[currentmapindex];
                 currentmapindex++;
+                if (enemy != null)
+                    enemy.EnemyRetreat();
                 state = GameState.WON;
                  timeData.stopCount();
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
