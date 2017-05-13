@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
@@ -34,6 +35,7 @@ public class Game {
     public Game() {
         eventListeners = new HashSet<GameEventListener>();
    //     timeData=new TimeData();
+        RandonmizeMap();
         createNewGame();
     }
 
@@ -45,7 +47,11 @@ public class Game {
         totalKiwis = 0;
         predatorsTrapped = 0;
         kiwiCount = 0;
-        initialiseIslandFromFile("IslandData.txt");
+
+        if (currentmapindex >= NO_MAP){
+            RandonmizeMap();
+        }
+        initialiseIslandFromFile("GameMap/IslandData" + mapOrder[currentmapindex] + ".txt");
         drawIsland();
         state = GameState.PLAYING;
         winMessage = "";
@@ -55,7 +61,7 @@ public class Game {
     
         randomtime = enemyRandomize.getRandonTime();
         countdownline = 60;
-
+        
         if (enemy != null)
             enemy.EnemyRetreat();
         enemy = null;
@@ -68,7 +74,31 @@ public class Game {
         
         
     }
-
+    
+    public void RandonmizeMap (){
+        mapOrder = new String[NO_MAP];
+        Random random = new Random ();
+        ArrayList<String> nolist = new ArrayList<String>();
+        currentmapindex = 0;
+        
+        for (int i = 0; i < NO_MAP; i++){
+            nolist.add("" + (i + 1));
+        }
+        
+        do {
+            int i = 0;
+            while (!nolist.isEmpty()){
+                int no = random.nextInt(nolist.size());
+            
+                mapOrder[i] = nolist.get(no);            
+                nolist.remove(no);
+                i++;
+            }
+            if (preMap == null || preMap.equals(""))
+                break;
+        }while (preMap.equalsIgnoreCase(mapOrder[0]));
+    }
+    
     public void setDiffiucly (Difficulty difficulty){
         this.dufficulty = difficulty;
     }
@@ -457,7 +487,7 @@ public class Game {
      * @param item to use
      * @return true if the item has been used, false if not
      */
-    public boolean useItem(Object item) throws IOException {
+    public boolean useItem(Object item) {
         boolean success = false;
         if (item instanceof Food && player.hasItem((Food) item)) //Player east food to increase stamina
         {
@@ -492,7 +522,7 @@ public class Game {
     /**
      * Count any kiwis in this position
      */
-    public void countKiwi() throws IOException {
+    public void countKiwi() {
         //check if there are any kiwis here
         for (Occupant occupant : island.getOccupants(player.getPosition())) {
             if (occupant instanceof Kiwi) {
@@ -512,7 +542,7 @@ public class Game {
      * @param direction the direction to move
      * @return true if the move was successful, false if it was an invalid move
      */
-    public boolean playerMove(MoveDirection direction) throws IOException {
+    public boolean playerMove(MoveDirection direction) {
         // what terrain is the player moving on currently
         boolean successfulMove = false;
         if (isPlayerMovePossible(direction)) {
@@ -565,7 +595,7 @@ public class Game {
      * Used after player actions to update game state. Applies the Win/Lose
      * rules.
      */
-    private void updateGameState() throws IOException {
+    private void updateGameState() {
         String message = "";
 
         if (model==GameModel.Challenge){
@@ -588,7 +618,6 @@ public class Game {
         }
 
         if (!player.isAlive()) {
-            
             state = GameState.LOST;
             timeData.stopCount();
             message = "Sorry, you have lost the game. " + this.getLoseMessage();           
@@ -601,13 +630,15 @@ public class Game {
             score.endCount(timeData);
             this.setLoseMessage(message);
         }else if(model==GameModel.Challenge&&timeData.isCountFinished()){
-             state = GameState.LOST;
+            state = GameState.LOST;
             timeData.stopCount();
             message = "Sorry, game is over.Time is up.";            
             score.endCount(timeData);
             this.setLoseMessage(message);
          }
         else if (predatorsTrapped == totalPredators) {
+            preMap = mapOrder[currentmapindex];
+            currentmapindex++;
             state = GameState.WON;
             timeData.stopCount();
             message = "You win! You have done an excellent job and trapped all the predators.";
@@ -618,6 +649,8 @@ public class Game {
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
             if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
+                preMap = mapOrder[currentmapindex];
+                currentmapindex++;
                 state = GameState.WON;
                  timeData.stopCount();
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
@@ -632,7 +665,7 @@ public class Game {
         notifyGameEventListeners();
     }
 
-    public void enemyKilled (String message) throws IOException{
+    public void enemyKilled (String message){
         setLoseMessage(message);
         updateGameState();
     }
@@ -676,7 +709,7 @@ public class Game {
 
     }
     
-    public void EnemyMove () throws IOException{
+    public void EnemyMove () {
         if (!player.isAlive())
             updateGameState();
         else
@@ -891,19 +924,23 @@ public class Game {
         this.aUser = aUser;
     }
     
-    public void saveData() throws IOException{
-       FileIn scoreFileIn = new FileIn("scoreFile.txt");
-        ArrayList<ScoreRecord> scoreList = scoreFileIn.ScoreRecordList();
-
-        for (ScoreRecord a : scoreList) {
-            System.out.println(a);
-        }
-        scoreList.add(aUser);
+    public void saveData(){
+        try{
+            FileIn scoreFileIn = new FileIn("scoreFile.txt");
         
-        FileOut scoreListFileOut = new FileOut("scoreFile.txt", scoreList);
+            ArrayList<ScoreRecord> scoreList = scoreFileIn.ScoreRecordList();
 
-        scoreListFileOut.scoreListFileOut();
-    
+            for (ScoreRecord a : scoreList) {
+                System.out.println(a);
+            }
+            scoreList.add(aUser);
+
+            FileOut scoreListFileOut = new FileOut("scoreFile.txt", scoreList);
+
+            scoreListFileOut.scoreListFileOut();
+        }catch (IOException e){
+            System.err.println ("Cannot read save file");
+        }
     }
       
     
@@ -926,7 +963,10 @@ public class Game {
     private GameModel model;
     private int randomtime;
     private int countdownline;
-
+    private String[] mapOrder;
+    private int currentmapindex;
+    private final int NO_MAP = 2;
+    private String preMap;
     
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     private String winMessage = "";
