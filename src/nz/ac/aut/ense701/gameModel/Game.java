@@ -56,6 +56,7 @@ public class Game {
         totalKiwis = 0;
         predatorsTrapped = 0;
         kiwiCount = 0;
+        isPaused = false;
 
         if (currentmapindex >= NO_MAP){
             RandonmizeMap();
@@ -976,7 +977,19 @@ public class Game {
     public ScoreRecord getaUser() {
         return aUser;
     }
+    
+    public Enemy getEnemy() {
+        return enemy;
+    }
+    
+    public boolean getIsPaused(){
+        return isPaused;
+    }
 
+    public void setIsPaused(boolean b){
+        isPaused = b;
+    }
+    
     public void setaUser(ScoreRecord aUser) {
         this.aUser = aUser;
     }
@@ -1024,7 +1037,7 @@ public class Game {
     private int currentmapindex;
     private final int NO_MAP = 4;
     private String preMap;
-    
+    private boolean isPaused;
     private static EnemyRandomize enemyRandomize = new EnemyRandomize();
     private String winMessage = "";
     private String loseMessage = "";
