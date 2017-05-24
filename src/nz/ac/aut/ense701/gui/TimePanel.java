@@ -75,7 +75,7 @@ public class TimePanel extends JPanel {
         } else if (timeData.getModel() ==GameModel.Normal) {
            // timeData.SysTime();
           //  timeData.countUp();
-            timeData.reCountUp();
+          //timeData.startCount();
            timeAction= new Timer(500, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -99,7 +99,7 @@ public class TimePanel extends JPanel {
       //  TimeData timeData=new TimeData(GameModel.Challenge);
         TimeData timeData=new TimeData(GameModel.Normal);
         JPanel countDownPanel = new TimePanel(timeData);
-        timeData.startCount();
+        timeData.startNewTime();
         JFrame frame = new JFrame();
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
