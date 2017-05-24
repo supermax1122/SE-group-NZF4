@@ -19,6 +19,7 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import nz.ac.aut.ense701.gameModel.Pause_Resume;
 import nz.ac.aut.ense701.gameModel.SoundEffect;
 import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
 
@@ -226,6 +227,7 @@ public class KiwiCountUI
         btnCollect.setBackground(Color.pink);
         btnCount = new javax.swing.JButton();
         btnCount.setBackground(Color.pink);
+        btnPause = new javax.swing.JButton();
         pnlVolume = new javax.swing.JPanel(){};
         pnlVolume.setOpaque(false);
         
@@ -649,6 +651,17 @@ public class KiwiCountUI
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlTimer, gridBagConstraints);
         
+        btnPause.setText("Pause");
+        btnPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPauseActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        pnlControls.add(btnPause, gridBagConstraints);
+        
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);        
         pnlContent.setBackground(Color.pink);
@@ -657,6 +670,7 @@ public class KiwiCountUI
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveEastActionPerformed
+        resumeTheGame();
         game.playerMove(MoveDirection.EAST);
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -664,6 +678,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnMoveEastActionPerformed
 
     private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNorthActionPerformed
+        resumeTheGame();
         game.playerMove(MoveDirection.NORTH);
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -671,6 +686,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnMoveNorthActionPerformed
 
     private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveSouthActionPerformed
+        resumeTheGame();
         game.playerMove(MoveDirection.SOUTH);
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -678,6 +694,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnMoveSouthActionPerformed
 
     private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveWestActionPerformed
+        resumeTheGame();
         game.playerMove(MoveDirection.WEST);
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -685,6 +702,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnMoveWestActionPerformed
 
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectActionPerformed
+        resumeTheGame();
         soundEffect.playClickSound();
         Object obj = listObjects.getSelectedValue();
         game.collectItem(obj);
@@ -693,6 +711,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnCollectActionPerformed
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
+        resumeTheGame();
         soundEffect.playClickSound();
         game.dropItem(listInventory.getSelectedValue());
         this.setFocusable(true);
@@ -712,6 +731,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_listObjectsValueChanged
 
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUseActionPerformed
+        resumeTheGame();
         soundEffect.playClickSound();
         game.useItem( listInventory.getSelectedValue());
         this.setFocusable(true);
@@ -731,6 +751,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_listInventoryValueChanged
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
+        resumeTheGame();
         soundEffect.playClickSound();
         game.countKiwi();
         this.setFocusable(true);
@@ -754,6 +775,35 @@ public class KiwiCountUI
         this.requestFocusInWindow();
     }//GEN-LAST:event_btnHelpActionPerformed
     
+    private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
+        // TODO add your handling code here:
+        soundEffect.playClickSound();
+        if(this.game.getEnemy()==null)
+        {
+            this.game.getTimeData().stopCount();
+        }
+        else
+        {
+            this.game.getEnemy().pauseEnemy();
+        }
+        pnlTimer.getTimeData().stopCount();
+        game.setIsPaused(true);
+    }//GEN-LAST:event_btnHelpActionPerformed
+    
+    public void resumeTheGame(){
+        if(game.getIsPaused()){
+            if(game.getEnemy()!=null)
+            {
+                game.getEnemy().resumeEnemy();
+            }
+            else
+            {
+                game.getTimeData().startCount();
+            }   
+            pnlTimer.getTimeData().startCount();
+            game.setIsPaused(false);
+        }
+    }
     /**
      * Creates and initialises the island grid.
      */
@@ -794,6 +844,7 @@ public class KiwiCountUI
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
+    private javax.swing.JButton btnPause;
  //   private javax.swing.JButton btnHelp;
 //    private javax.swing.JButton btnMoveEast;
 //    private javax.swing.JButton btnMoveNorth;
@@ -807,7 +858,7 @@ public class KiwiCountUI
     private javax.swing.JPanel pnlIsland;
     private javax.swing.JPanel pnlVolume;
   //  private javax.swing.JPanel pnlCountdown;
-    private javax.swing.JPanel pnlTimer;
+    private TimePanel pnlTimer;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerStamina;

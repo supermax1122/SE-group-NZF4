@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class Enemy extends Occupant implements Runnable{
     private long moveFrequency;
-    private boolean run = false;
+    private boolean run = false, pause=false;
     private Player player;
     private Position position;
     Game game;
@@ -31,14 +31,17 @@ public class Enemy extends Occupant implements Runnable{
     public void run (){
         run = true;
         while (run){
-            killPlayer();
-            try {
-                Thread.sleep(moveFrequency);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Enemy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            tracePlayer ();
-            game.EnemyMove();
+                killPlayer();
+                try {
+                    Thread.sleep(moveFrequency);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Enemy.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(pause==false)
+                {
+                    tracePlayer ();
+                    game.EnemyMove();
+                }
         }
     }
     
@@ -87,5 +90,13 @@ public class Enemy extends Occupant implements Runnable{
     @Override
     public String getStringRepresentation() {
         return "X";
+    }
+    
+    public void pauseEnemy(){
+        this.pause=true;
+    }
+    
+    public void resumeEnemy(){
+        this.pause=false;
     }
 }
