@@ -49,18 +49,18 @@ public class TimeData {
         end = System.currentTimeMillis() + (GAME_TIME)* 1000;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
-
+        long sub;
             public void run() {
 
                 if (!stop) {
-                    long sub = end - System.currentTimeMillis();
+                    sub = end - System.currentTimeMillis();
                     countDownTime = updateTimer(sub);
                     System.out.println("Count Down : " + countDownTime);
                     if (sub < 0) {
                         countFinished = true;
                     }
                 }else{
-                
+                    passTime=sub;
                 }
             }
 
@@ -115,7 +115,8 @@ public class TimeData {
     public void resume(){
        if (model == GameModel.Challenge) {
             stop=false;
-            end = System.currentTimeMillis() + GAME_TIME * 1000;
+            //end = System.currentTimeMillis() + GAME_TIME * 1000;
+            end=System.currentTimeMillis()+passTime;
         } else if (model == GameModel.Normal) {
            stop=false;
            end = System.currentTimeMillis();
