@@ -228,6 +228,7 @@ public class KiwiCountUI
         btnCount = new javax.swing.JButton();
         btnCount.setBackground(Color.pink);
         btnPause = new javax.swing.JButton();
+        btnReStart = new javax.swing.JButton();;
         pnlVolume = new javax.swing.JPanel(){};
         pnlVolume.setOpaque(false);
         
@@ -647,6 +648,7 @@ public class KiwiCountUI
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlTimer, gridBagConstraints);
@@ -661,11 +663,22 @@ public class KiwiCountUI
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         pnlControls.add(btnPause, gridBagConstraints);
+          
+        btnReStart.setText("Restart");
+        btnReStart.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReStartActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        pnlControls.add(btnReStart, gridBagConstraints);
         
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);        
         pnlContent.setBackground(Color.pink);
-  
+        
         this.setSize(1200, 750);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -791,6 +804,14 @@ public class KiwiCountUI
         this.requestFocusInWindow();
         game.setIsPaused(true);
     }//GEN-LAST:event_btnHelpActionPerformed
+
+    private void btnReStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
+        // TODO add your handling code here:
+            game.stopMusic();
+            game.stopTime();
+            game.createNewGame();
+            game.restartTime();
+    }//GEN-LAST:event_btnHelpActionPerformed
     
     public void resumeTheGame(){
         if(game.getIsPaused()){
@@ -847,6 +868,7 @@ public class KiwiCountUI
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
     private javax.swing.JButton btnPause;
+    private javax.swing.JButton btnReStart;
  //   private javax.swing.JButton btnHelp;
 //    private javax.swing.JButton btnMoveEast;
 //    private javax.swing.JButton btnMoveNorth;

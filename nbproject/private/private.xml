@@ -6,6 +6,7 @@
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Tool.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/main/Main.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/FileIn.java</file>
+            <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/FileOut.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Score.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/GameEventListener.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Occupant.java</file>
@@ -24,6 +25,7 @@
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/test/JTest/FileOutTest.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/SoundEffect.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gui/KiwiCountUI.java</file>
+            <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/test/nz/ac/aut/ense701/gameModel/GameTest.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Food.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gui/GameLevelSelect.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/MoveDirection.java</file>
@@ -35,7 +37,6 @@
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/test/JTest/DurabilityTest.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/MusicPlayer.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Enemy.java</file>
-            <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/test/JTest/UserTest.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Position.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Island.java</file>
             <file>file:/C:/personalFolder/JAVA/workshop/group-NZF4/src/nz/ac/aut/ense701/gameModel/Item.java</file>
