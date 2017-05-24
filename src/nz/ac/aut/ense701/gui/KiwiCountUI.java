@@ -19,7 +19,6 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
-import nz.ac.aut.ense701.gameModel.Pause_Resume;
 import nz.ac.aut.ense701.gameModel.SoundEffect;
 import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
 
@@ -791,6 +790,9 @@ public class KiwiCountUI
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
         // TODO add your handling code here:
         soundEffect.playClickSound();
+        game.pauseGame();
+        /*
+        soundEffect.playClickSound();
         if(this.game.getEnemy()==null)
         {
             this.game.getTimeData().stopCount();
@@ -803,6 +805,7 @@ public class KiwiCountUI
         this.setFocusable(true);
         this.requestFocusInWindow();
         game.setIsPaused(true);
+        */
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnReStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
@@ -814,6 +817,9 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnHelpActionPerformed
     
     public void resumeTheGame(){
+                if(game.getState()==GameState.PAUSE)
+            game.resumeGame();
+                /*
         if(game.getIsPaused()){
             if(game.getEnemy()!=null)
             {
@@ -826,6 +832,7 @@ public class KiwiCountUI
             pnlTimer.getTimeData().startCount();
             game.setIsPaused(false);
         }
+                */
     }
     /**
      * Creates and initialises the island grid.

@@ -49,16 +49,18 @@ public class TimeData {
         end = System.currentTimeMillis() + (GAME_TIME)* 1000;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
-
+        long sub;
             public void run() {
 
                 if (!stop) {
-                    long sub = end - System.currentTimeMillis();
+                    sub = end - System.currentTimeMillis();
                     countDownTime = updateTimer(sub);
                     System.out.println("Count Down : " + countDownTime);
                     if (sub < 0) {
                         countFinished = true;
                     }
+                }else{
+                    passTime=sub;
                 }
             }
 
@@ -75,16 +77,20 @@ public class TimeData {
             public void run() {
                 if (!stop) {
                     sub = System.currentTimeMillis() - end + passTime;
-
-                    usedTime = sub / 1000;
-                    countUpTime = updateTimer(sub);
+                    
+                    usedTime = sub / 1000;                 
+                    countUpTime = updateTimer(sub);              
+                    System.out.println("Count up : " + countUpTime);
+                    
                 } else {
                     passTime = sub;
+                     System.out.println("passTime : " + passTime);
                 }
             }
         }, 0, 1000);
     }
 
+    
     public void SysTime() {
 
         Timer timer = new Timer();
@@ -93,7 +99,7 @@ public class TimeData {
             public void run() {
                 long sub = System.currentTimeMillis();
                 systemTime = updateTimer(sub);
-                //      System.out.println("System Time : " + systemTime);
+              //   System.out.println("System Time : " + systemTime);
 
             }
 
@@ -101,36 +107,31 @@ public class TimeData {
 
     }
 
-    public void reCountDown() {
-        countFinished = false;
-        end = System.currentTimeMillis() + GAME_TIME * 1000;
-
-    }
-
-    public void reCountUp() {
-        end = System.currentTimeMillis();
-        passTime=0;
-    }
-
-    public void reCount() {
-        if (model == GameModel.Challenge) {
-             reCountDown();
-        } else if (model == GameModel.Normal) {
-           reCountUp();
-        }
-    }
-
-    public void stopCount() {
-
+    
+    public void pause(){
         this.stop = true;
     }
 
-    public void startCount() {
+    public void resume(){
+       if (model == GameModel.Challenge) {
+            stop=false;
+            //end = System.currentTimeMillis() + GAME_TIME * 1000;
+            end=System.currentTimeMillis()+passTime;
+        } else if (model == GameModel.Normal) {
+           stop=false;
+           end = System.currentTimeMillis();
+        }
+          
+    }
+ 
+    public void startNewTime() {
         this.stop = false;
         if (model == GameModel.Challenge) {
-            reCountDown();
+             end = System.currentTimeMillis() + GAME_TIME * 1000;
+             countFinished=false;
         } else if (model == GameModel.Normal) {
-            reCountUp();
+            end = System.currentTimeMillis();
+            passTime=0;
         }
 
     }
@@ -186,7 +187,7 @@ public class TimeData {
 
     public static void main(String args[]) {
         TimeData time = new TimeData(GameModel.Challenge);
-
+        time.startNewTime();
         //      time.SysTime();
         //       time.countUp();
     }
