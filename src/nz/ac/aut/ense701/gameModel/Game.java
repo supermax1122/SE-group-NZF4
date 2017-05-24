@@ -34,16 +34,17 @@ public class Game {
      */
     public Game() {
         eventListeners = new HashSet<GameEventListener>();
-   //     timeData=new TimeData();
+        //     timeData=new TimeData();
         RandonmizeMap();
         createNewGame();
     }
-    
+
     /**
      * A constructor use for test purpose
-     * @param test 
+     *
+     * @param test
      */
-    public Game (boolean test){
+    public Game(boolean test) {
         eventListeners = new HashSet<GameEventListener>();
         this.createNewGameFortest();
     }
@@ -58,7 +59,7 @@ public class Game {
         kiwiCount = 0;
         isPaused = false;
 
-        if (currentmapindex >= NO_MAP){
+        if (currentmapindex >= NO_MAP) {
             RandonmizeMap();
         }
         initialiseIslandFromFile("GameMap/IslandData" + mapOrder[currentmapindex] + ".txt");
@@ -68,27 +69,25 @@ public class Game {
         loseMessage = "";
         playerMessage = "";
         notifyGameEventListeners();
-    
+
         randomtime = enemyRandomize.getRandonTime();
         countdownline = 60;
-        
-        if (enemy != null)
+
+        if (enemy != null) {
             enemy.EnemyRetreat();
+        }
         enemy = null;
-        
-        score = new Score ();
+
+        score = new Score();
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
-        
-     
-        
-        
+
     }
-    
+
     /**
      * a method use for unite test
      */
-    public void createNewGameFortest (){
+    public void createNewGameFortest() {
         totalPredators = 0;
         totalKiwis = 0;
         predatorsTrapped = 0;
@@ -101,52 +100,54 @@ public class Game {
         loseMessage = "";
         playerMessage = "";
         notifyGameEventListeners();
-    
+
         randomtime = enemyRandomize.getRandonTime();
         countdownline = 60;
-        
-        if (enemy != null)
+
+        if (enemy != null) {
             enemy.EnemyRetreat();
+        }
         enemy = null;
-        
-        score = new Score ();
+
+        score = new Score();
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
 
     }
-    
-    public void RandonmizeMap (){
+
+    public void RandonmizeMap() {
         mapOrder = new String[NO_MAP];
-        Random random = new Random ();
+        Random random = new Random();
         ArrayList<String> nolist = new ArrayList<String>();
         currentmapindex = 0;
-        
-        for (int i = 0; i < NO_MAP; i++){
+
+        for (int i = 0; i < NO_MAP; i++) {
             nolist.add("" + (i + 1));
         }
-        
+
         do {
             int i = 0;
-            while (!nolist.isEmpty()){
+            while (!nolist.isEmpty()) {
                 int no = random.nextInt(nolist.size());
-            
-                mapOrder[i] = nolist.get(no);            
+
+                mapOrder[i] = nolist.get(no);
                 nolist.remove(no);
                 i++;
             }
-            if (preMap == null || preMap.equals(""))
+            if (preMap == null || preMap.equals("")) {
                 break;
-        }while (preMap.equalsIgnoreCase(mapOrder[0]));
+            }
+        } while (preMap.equalsIgnoreCase(mapOrder[0]));
     }
-    
-    public void setDiffiucly (Difficulty difficulty){
+
+    public void setDiffiucly(Difficulty difficulty) {
         this.dufficulty = difficulty;
     }
-    
+
     /**
      * *********************************************************************************************************************
      * Accessor methods for game data
-    ***********************************************************************************************************************
+     * **********************************************************************************************************************
      */
     /**
      * Get number of rows on island
@@ -156,18 +157,35 @@ public class Game {
     public int getNumRows() {
         return island.getNumRows();
     }
-    
-    public void stopTime(){
-        timeData.stopCount();
-    
+
+    public void stopTime() {
+        timeData.pause();
+
     }
 
-    public void restartTime(){
-        timeData.reCount();
-        timeData.startCount();
-    
+    public void pauseGame() {
+        timeData.pause();
+        if (null != getEnemy()) {
+            enemy.pauseEnemy();
+        }
+        state = GameState.PAUSE;
+        updateGameState();
+
     }
-    
+
+    public void resumeGame() {
+        timeData.resume();
+        if (null != getEnemy()) {
+            enemy.resumeEnemy();
+        }
+        state = GameState.PLAYING;
+        updateGameState();
+    }
+
+    public void restartTime() {
+        timeData.startNewTime();
+    }
+
     /**
      * Stop background music
      */
@@ -218,10 +236,10 @@ public class Game {
         return player;
     }
 
-    public TimeData getTimeData(){
+    public TimeData getTimeData() {
         return timeData;
     }
-    
+
     /**
      * Checks if possible to move the player in the specified direction.
      *
@@ -477,7 +495,7 @@ public class Game {
     /**
      * *************************************************************************************************************
      * Mutator Methods
-    ***************************************************************************************************************
+     * **************************************************************************************************************
      */
     /**
      * Picks up an item at the current position of the player Ignores any
@@ -611,12 +629,12 @@ public class Game {
         eventListeners.add(listener);
     }
 
-    public void updateMap (){
+    public void updateMap() {
         for (GameEventListener listener : eventListeners) {
             listener.updateIslandMap();
         }
     }
-    
+
     /**
      * Removes a game event listener.
      *
@@ -629,7 +647,7 @@ public class Game {
     /**
      * *******************************************************************************************************************************
      * Private methods
-     ********************************************************************************************************************************
+     * *******************************************************************************************************************************
      */
     /**
      * Used after player actions to update game state. Applies the Win/Lose
@@ -637,84 +655,92 @@ public class Game {
      */
     private void updateGameState() {
         String message = "";
+        if (state == GameState.PAUSE) {
 
-        if (model==GameModel.Challenge){
+        }
+
+        //                
+        if (model == GameModel.Challenge) {
             String strings[] = timeData.getCountDownTime().split(":");
             countdownline = Integer.parseInt(strings[2]);
         }
-            
-        if ((countdownline + randomtime < 60 || timeData.getUserTime() >  randomtime) && enemy == null){
+
+        if ((countdownline + randomtime < 60 || timeData.getUserTime() > randomtime) && enemy == null) {
             setPlayerMessage("Enemy has appeared somewhere in the map! Be Careful, the enemy will kill you once his reach you.");
-            timeData.stopCount();
+            timeData.pause();
             notifyGameEventListeners();
-            timeData.startCount();
+            timeData.resume();
             int row = enemyRandomize.randomRow(player.getPosition().getRow());
             int col = enemyRandomize.randomCol(player.getPosition().getColumn());
-            Position position = new Position (island, row, col);
-            enemy = new Enemy (position, "Enemy", "Enemy try to catch player", player, dufficulty.getValue(), this);
-            enemyThread = new Thread (enemy);
+            Position position = new Position(island, row, col);
+            enemy = new Enemy(position, "Enemy", "Enemy try to catch player", player, dufficulty.getValue(), this);
+            enemyThread = new Thread(enemy);
             enemyThread.start();
             island.addOccupant(position, enemy);
         }
 
         if (!player.isAlive()) {
-            if (enemy != null)
+            if (enemy != null) {
                 enemy.EnemyRetreat();
+            }
             state = GameState.LOST;
-            timeData.stopCount();
-            message = "Sorry, you have lost the game. " + this.getLoseMessage();           
+            timeData.pause();
+            message = "Sorry, you have lost the game. " + this.getLoseMessage();
             score.endCount(timeData);
             this.setLoseMessage(message);
         } else if (!playerCanMove()) {
-            if (enemy != null)
+            if (enemy != null) {
                 enemy.EnemyRetreat();
+            }
             state = GameState.LOST;
-            timeData.stopCount();
-            message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";            
+            timeData.pause();
+            message = "Sorry, you have lost the game. You do not have sufficient stamina to move.";
             score.endCount(timeData);
             this.setLoseMessage(message);
-        }else if(model==GameModel.Challenge&&timeData.isCountFinished()){
-            if (enemy != null)
+        } else if (model == GameModel.Challenge && timeData.isCountFinished()) {
+            if (enemy != null) {
                 enemy.EnemyRetreat();
+            }
             state = GameState.LOST;
-            timeData.stopCount();
-            message = "Sorry, game is over.Time is up.";            
+            timeData.pause();
+            message = "Sorry, game is over.Time is up.";
             score.endCount(timeData);
             this.setLoseMessage(message);
-         }
-        else if (predatorsTrapped == totalPredators) {
-            try{
+        } else if (predatorsTrapped == totalPredators) {
+            try {
                 preMap = mapOrder[currentmapindex];
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.err.println("Map can not read");
             }
-            if (enemy != null)
+            if (enemy != null) {
                 enemy.EnemyRetreat();
+            }
             currentmapindex++;
             state = GameState.WON;
-            timeData.stopCount();
+            timeData.pause();
             message = "You win! You have done an excellent job and trapped all the predators.";
             score.endCount(timeData);
-            score.addExtra(1000);     
-            try{
-                aUser.setScore(""+score.getscore());
+            score.addExtra(1000);
+            try {
+                aUser.setScore("" + score.getscore());
                 saveData();
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.err.println("no user");
             }
             this.setWinMessage(message);
         } else if (kiwiCount == totalKiwis) {
-            if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {           
+            if (predatorsTrapped >= totalPredators * MIN_REQUIRED_CATCH) {
                 preMap = mapOrder[currentmapindex];
                 currentmapindex++;
-                if (enemy != null)
+                if (enemy != null) {
                     enemy.EnemyRetreat();
+                }
                 state = GameState.WON;
-                 timeData.stopCount();
+                timeData.pause();
                 message = "You win! You have counted all the kiwi and trapped at least 80% of the predators.";
                 score.endCount(timeData);
                 score.addExtra(1500);
-                aUser.setScore(""+score.getscore());
+                aUser.setScore("" + score.getscore());
                 saveData();
                 this.setWinMessage(message);
             }
@@ -723,11 +749,11 @@ public class Game {
         notifyGameEventListeners();
     }
 
-    public void enemyKilled (String message){
+    public void enemyKilled(String message) {
         setLoseMessage(message);
         updateGameState();
     }
-    
+
     /**
      * Sets details about players win
      *
@@ -766,12 +792,13 @@ public class Game {
                 || isPlayerMovePossible(MoveDirection.EAST) || isPlayerMovePossible(MoveDirection.WEST));
 
     }
-    
-    public void EnemyMove () {
-        if (!player.isAlive())
+
+    public void EnemyMove() {
+        if (!player.isAlive()) {
             updateGameState();
-        else
+        } else {
             updateMap();
+        }
     }
 
     /**
@@ -969,35 +996,35 @@ public class Game {
 
     public void setModel(GameModel model) {
         this.model = model;
-        timeData=new TimeData(model);     
-        timeData.startCount();
-        timeData.reCount();
+        timeData = new TimeData(model);
+        timeData.startNewTime();
+
     }
 
     public ScoreRecord getaUser() {
         return aUser;
     }
-    
+
     public Enemy getEnemy() {
         return enemy;
     }
-    
-    public boolean getIsPaused(){
+
+    public boolean getIsPaused() {
         return isPaused;
     }
 
-    public void setIsPaused(boolean b){
+    public void setIsPaused(boolean b) {
         isPaused = b;
     }
-    
+
     public void setaUser(ScoreRecord aUser) {
         this.aUser = aUser;
     }
-    
-    public void saveData(){
-        try{
+
+    public void saveData() {
+        try {
             FileIn scoreFileIn = new FileIn("scoreFile.txt");
-        
+
             ArrayList<ScoreRecord> scoreList = scoreFileIn.ScoreRecordList();
 
             for (ScoreRecord a : scoreList) {
@@ -1008,12 +1035,11 @@ public class Game {
             FileOut scoreListFileOut = new FileOut("scoreFile.txt", scoreList);
 
             scoreListFileOut.scoreListFileOut();
-        }catch (IOException e){
-            System.err.println ("Cannot read save file");
+        } catch (IOException e) {
+            System.err.println("Cannot read save file");
         }
     }
-      
-    
+
     private ScoreRecord aUser;
     private Island island;
     private Player player;
