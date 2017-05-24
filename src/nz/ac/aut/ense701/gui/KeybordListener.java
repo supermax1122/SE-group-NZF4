@@ -21,11 +21,12 @@ import nz.ac.aut.ense701.gameModel.SoundEffect;
  */
 public class KeybordListener implements KeyListener, MouseListener{
     private Game game;
-    private JFrame frame;
+    private KiwiCountUI frame;
     private SoundEffect soundEffect;
     
-    public KeybordListener (Game game, JFrame frame){
+    public KeybordListener (Game game, KiwiCountUI frame){
         this.game = game;
+        this.frame = frame;
         soundEffect = new SoundEffect();
     }
 
@@ -44,6 +45,7 @@ public class KeybordListener implements KeyListener, MouseListener{
             if(game.isPlayerMovePossible(MoveDirection.NORTH)){
                 game.playerMove(MoveDirection.NORTH);
                 soundEffect.playStepSound();
+                    frame.resumeTheGame();
             }
             else
             {
@@ -54,6 +56,7 @@ public class KeybordListener implements KeyListener, MouseListener{
             if(game.isPlayerMovePossible(MoveDirection.SOUTH)){
                 game.playerMove(MoveDirection.SOUTH);
                 soundEffect.playStepSound();
+                    frame.resumeTheGame();
             }
             else
             {
@@ -64,6 +67,7 @@ public class KeybordListener implements KeyListener, MouseListener{
             if (game.isPlayerMovePossible(MoveDirection.WEST)){
                 game.playerMove(MoveDirection.WEST);
                 soundEffect.playStepSound();
+                    frame.resumeTheGame();
             }
             else
             {
@@ -74,6 +78,7 @@ public class KeybordListener implements KeyListener, MouseListener{
             if(game.isPlayerMovePossible(MoveDirection.EAST)){
                 game.playerMove(MoveDirection.EAST);
                 soundEffect.playStepSound();
+                    frame.resumeTheGame();
             }
             else
             {
