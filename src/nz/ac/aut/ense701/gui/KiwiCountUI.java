@@ -787,6 +787,8 @@ public class KiwiCountUI
             this.game.getEnemy().pauseEnemy();
         }
         pnlTimer.getTimeData().stopCount();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
         game.setIsPaused(true);
     }//GEN-LAST:event_btnHelpActionPerformed
     
