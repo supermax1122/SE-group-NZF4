@@ -43,7 +43,7 @@ public class GridSquarePanel extends javax.swing.JPanel
         boolean iscurrentcol = (game.getPlayer().getPosition().getColumn() == column);
 
         if (!squareVisible){
-            String imagePath = "image/nami.jpg";
+            String imagePath = "image/mist.jpg";
             this.paintItem(g, imagePath);
         }
         
