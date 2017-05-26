@@ -865,7 +865,7 @@ public class KiwiCountUI
     private MyButton btnMoveEast =new MyButton ("image/E1.jpg", "image/E2.jpg", "image/E3.jpg");
     private MyButton btnMoveNorth =new MyButton ("image/N1.jpg", "image/N2.jpg", "image/N3.jpg");
     private MyButton  btnMoveSouth =new MyButton ("image/S1.jpg", "image/S2.jpg", "image/S3.jpg");
-    private MyButton btnMoveWest =new MyButton ("image/W1.jpg", "image/W2.jpg", "image/W3.jpg");
+    private MyButton btnMoveWest =new MyButton ("image/w1.png", "image/W2.jpg", "image/W3.jpg");
     
 
     
