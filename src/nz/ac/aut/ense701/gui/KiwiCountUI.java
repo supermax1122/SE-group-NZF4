@@ -829,7 +829,13 @@ public class KiwiCountUI
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
         // TODO add your handling code here:
         soundEffect.playClickSound();
-        game.pauseGame();
+        if (game.getState() != GameState.PAUSE){
+            game.pauseGame();
+            btnPause.setText("resume");
+        }else{
+            resumeTheGame();
+            btnPause.setText("pause");            
+        }
         /*
         soundEffect.playClickSound();
         if(this.game.getEnemy()==null)
@@ -854,7 +860,7 @@ public class KiwiCountUI
     }//GEN-LAST:event_btnHelpActionPerformed
     
     public void resumeTheGame(){
-                if(game.getState()==GameState.PAUSE)
+            if(game.getState()==GameState.PAUSE)
             game.resumeGame();
                 /*
         if(game.getIsPaused()){

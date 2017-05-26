@@ -117,7 +117,7 @@ public class GridSquarePanel extends javax.swing.JPanel
             case WETLAND : setImagename("wetland.jpg")/*color = Color.BLUE*/; break;
             case SCRUB : setImagename("scrub.jpg")/*color = Color.DARK_GRAY*/;   break;
             case WATER    : setImagename("water.jpg")/*color = Color.CYAN*/;   break;
-            default  : setImagename("water.jpg")/*color = Color.LIGHT_GRAY*/; break;
+            default  :/*color = Color.LIGHT_GRAY*/; break;
         }
         
        if ( squareExplored || squareVisible )
