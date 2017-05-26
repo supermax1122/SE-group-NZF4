@@ -95,24 +95,23 @@ public class StartMenuGUI extends JFrame {
  	private MyButton NoButton = new MyButton("image/Exit1.jpg", "image/Exit2.jpg", "image/Exit3.jpg");
  	
  	private ScoreRecord  user;
-
-        
-         
+ 
          @SuppressWarnings("unchecked")
  	public UserLogIn(){
          	
-        		GridBagLayout layout = new GridBagLayout();
+             GridBagLayout layout = new GridBagLayout();
              this.setLayout(layout);
-         	nameTextLabel.setForeground(Color.RED);
+            
+             nameTextLabel.setForeground(Color.RED);
 
             	
          
              GridBagConstraints gbc = new GridBagConstraints();
              gbc.gridx = 0;
-             gbc.gridy = 0;
-             gbc.gridwidth = 1;
-             gbc.weightx = 60;
-             gbc.fill = GridBagConstraints.NONE;
+             gbc.gridy = 5;
+            gbc.gridwidth = 1;
+            gbc.weightx = 60;
+             gbc.fill = GridBagConstraints.BOTH;
              this.add(nameTextLabel, gbc);
              GridBagConstraints gbc_1 = new GridBagConstraints();
              gbc_1.gridx = 0;
@@ -123,23 +122,17 @@ public class StartMenuGUI extends JFrame {
              this.add(nameField, gbc_1);
              GridBagConstraints gbc_2 = new GridBagConstraints();
              gbc_2.gridx = 0;
-             gbc_2.gridy = 6;
-           
+             gbc_2.gridy = 20;;
              gbc_2.fill = GridBagConstraints.NONE;
             this.add(YesButton, gbc_2);
              GridBagConstraints gbc_3 = new GridBagConstraints();
-             gbc_3.gridx = 2;
-             gbc_3.gridy = 7;
-     
+             gbc_3.gridx = 10;
+             gbc_3.gridy = 20;
+         
              gbc_3.fill = GridBagConstraints.NONE;
-            this.add(NoButton, gbc_3);
-
-
- 		initializeListeners();
- 	
- 		
- 		
- 		this.user = new ScoreRecord();
+             this.add(NoButton, gbc_3);
+ 	     initializeListeners();
+ 	     this.user = new ScoreRecord();
 
  	}
          	//initialize listenners
