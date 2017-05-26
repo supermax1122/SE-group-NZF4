@@ -180,7 +180,7 @@ public class KiwiCountUI
         javax.swing.JPanel pnlControls = new javax.swing.JPanel(){
                 protected void paintComponent(Graphics g) {    
                     super.paintComponent(g);
-                    ImageIcon icon = new ImageIcon("image/sakura.jpg");    
+                    ImageIcon icon = new ImageIcon("image/TreeBackGround.jpg");    
                     Image img = icon.getImage();    
                     Dimension size = this.getParent().getSize();
                     g.drawImage(img, 0, 0,size.width, size.height, null);
@@ -215,24 +215,24 @@ public class KiwiCountUI
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
         listInventory = new javax.swing.JList();
         btnDrop = new javax.swing.JButton();
-        btnDrop.setBackground(Color.pink);
+        btnDrop.setBackground(Color.gray);
         btnUse = new javax.swing.JButton();
-        btnUse.setBackground(Color.pink);
+        btnUse.setBackground(Color.gray);
         javax.swing.JPanel pnlObjects = new javax.swing.JPanel(){};
         pnlObjects.setOpaque(false);
         javax.swing.JScrollPane scrlObjects = new javax.swing.JScrollPane();
         listObjects = new javax.swing.JList();
         btnCollect = new javax.swing.JButton();
-        btnCollect.setBackground(Color.pink);
+        btnCollect.setBackground(Color.gray);
         btnCount = new javax.swing.JButton();
-        btnCount.setBackground(Color.pink);
+        btnCount.setBackground(Color.gray);
         btnPause = new javax.swing.JButton();
         btnReStart = new javax.swing.JButton();;
         pnlVolume = new javax.swing.JPanel(){};
         pnlVolume.setOpaque(false);
         
         sldVolume = new javax.swing.JSlider();
-        sldVolume.setBackground(Color.pink);
+        sldVolume.setBackground(Color.gray);
       //  btnHelp = new javax.swing.JButton();
        
     //    pnlCountdown.setOpaque(false);
@@ -676,7 +676,7 @@ public class KiwiCountUI
         
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);        
-        pnlContent.setBackground(Color.pink);
+        pnlContent.setBackground(Color.gray);
         
         this.setSize(1200, 750);
     }// </editor-fold>//GEN-END:initComponents
@@ -867,7 +867,7 @@ public class KiwiCountUI
     private MyButton btnMoveEast =new MyButton ("image/E1.jpg", "image/E2.jpg", "image/E3.jpg");
     private MyButton btnMoveNorth =new MyButton ("image/N1.jpg", "image/N2.jpg", "image/N3.jpg");
     private MyButton  btnMoveSouth =new MyButton ("image/S1.jpg", "image/S2.jpg", "image/S3.jpg");
-    private MyButton btnMoveWest =new MyButton ("image/W1.jpg", "image/W2.jpg", "image/W3.jpg");
+    private MyButton btnMoveWest =new MyButton ("image/w1.png", "image/W2.jpg", "image/W3.jpg");
     
 
     

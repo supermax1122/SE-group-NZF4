@@ -55,16 +55,16 @@ public class GameSelectGUI extends JFrame{
 	
 	
     
-                NormalMode = new MyButton("image/na1.jpg", "image/na2.jpg", "image/na3.jpg");
+                NormalMode = new MyButton("image/NormalMode1.png", "image/NormalMode2.png", "image/NormalMode3.png");
 		NormalMode.setBounds(20, 100, NormalMode.getButtonWidth(), NormalMode.getButtonHeight());
 		
-		ScoreBoard = new MyButton("image/sa1.jpg", "image/sa2.jpg", "image/sa3.jpg");
+		ScoreBoard = new MyButton("image/ScoreBoard1.png", "image/ScoreBoard2.png", "image/ScoreBoard3.png");
 		ScoreBoard.setBounds(20, 200, ScoreBoard.getButtonWidth(), ScoreBoard.getButtonHeight());
 		
-		ChallengeMode = new MyButton("image/ca1.jpg", "image/ca2.jpg", "image/ca3.jpg");
+		ChallengeMode = new MyButton("image/Challenge1.png", "image/Challenge2.png", "image/Challenge3.png");
 		ChallengeMode.setBounds(20, 300,ChallengeMode.getButtonWidth(), ChallengeMode.getButtonHeight());
 		
-		exit = new MyButton("image/Exit1.jpg", "image/Exit2.jpg", "image/Exit3.jpg");
+		exit = new MyButton("image/exit1.png", "image/exit2.png", "image/exit3.png");
 		exit.setBounds(20, 400, exit.getButtonWidth(), exit.getButtonHeight());
 
 		ground = new MyBackGround("image/startMenu.jpg");
