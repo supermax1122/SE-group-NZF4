@@ -34,7 +34,7 @@ public class GameLevelSelect extends JFrame{
 	private MyButton back;
         private MyBackGround ground;
         private ScoreRecord aUser;
-
+        private GameSelectGUI GameSelectGUI;
 	//This class for show main menu.
 	public GameLevelSelect(){	
 		super("Kiwi Island Start Menu");
@@ -80,7 +80,7 @@ public class GameLevelSelect extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-    			new GameSelectGUI();
+    			GameSelectGUI=new GameSelectGUI();
     			Dispose();
     			
     		}
