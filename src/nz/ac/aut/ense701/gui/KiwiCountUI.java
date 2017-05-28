@@ -234,8 +234,8 @@ public class KiwiCountUI
         btnCollect.setBackground(Color.gray);
         btnCount = new javax.swing.JButton();
         btnCount.setBackground(Color.gray);
-        btnPause = new javax.swing.JButton();
-        btnReStart = new javax.swing.JButton();;
+//        btnPause = new javax.swing.JButton();
+//        btnReStart = new javax.swing.JButton();;
         pnlVolume = new javax.swing.JPanel(){};
         pnlVolume.setOpaque(false);
         
@@ -908,19 +908,21 @@ public class KiwiCountUI
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private MyButton btnHelp =new MyButton ("image/help1.jpg", "image/help2.jpg", "image/help3.jpg");
+    private MyButton btnHelp =new MyButton ("image/Help1.png", "image/Help2.png", "image/Help3.png");
     private MyButton btnMoveEast =new MyButton ("image/e1.png", "image/e2.png", "image/e3.png");
     private MyButton btnMoveNorth =new MyButton ("image/n1.png", "image/n2.png", "image/n3.png");
     private MyButton  btnMoveSouth =new MyButton ("image/s1.png", "image/s2.png", "image/s3.png");
-    private MyButton btnMoveWest =new MyButton ("image/w1.png", "image/w2.png", "image/w3.png");
+    private MyButton btnMoveWest =new MyButton ("image/w1.png", "image/w2.png", "image/w3.png");  
+    private MyButton btnReStart =new MyButton ("image/Restart1.png", "image/Restart2.png", "image/Restart3.png");
+    private MyButton btnPause =new MyButton ("image/Pause1.png", "image/Pause2.png", "image/Pause3.png");       
    
 
     
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
-    private javax.swing.JButton btnPause;
-    private javax.swing.JButton btnReStart;
+  //  private javax.swing.JButton btnPause;
+ //   private javax.swing.JButton btnReStart;
  //   private javax.swing.JButton btnHelp;
 //    private javax.swing.JButton btnMoveEast;
 //    private javax.swing.JButton btnMoveNorth;
