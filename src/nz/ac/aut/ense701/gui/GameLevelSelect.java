@@ -81,7 +81,7 @@ public class GameLevelSelect extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-    			new GameSelectGUI();                    
+    			new GameSelectGUI();
     			Dispose();  
                                              
     		}
