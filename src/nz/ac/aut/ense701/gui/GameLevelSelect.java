@@ -34,11 +34,12 @@ public class GameLevelSelect extends JFrame{
 	private MyButton back;
         private MyBackGround ground;
         private ScoreRecord aUser;
-
+        private GameSelectGUI GameSelectGUI;
+        private String userName;
 	//This class for show main menu.
 	public GameLevelSelect(){	
 		super("Kiwi Island Start Menu");
-		 
+		
 		text = new JLabel("");
             
 		easy= new MyButton("image/EasyGame1.png", "image/EasyGame2.png", "image/EasyGame3.png");
@@ -80,9 +81,10 @@ public class GameLevelSelect extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-    			new GameSelectGUI();
-    			Dispose();
-    			
+    			new GameSelectGUI().setaUser(aUser);
+                      
+    			Dispose();  
+                                             
     		}
     	});
 		easy.addActionListener(new ActionListener() {     		
@@ -97,6 +99,7 @@ public class GameLevelSelect extends JFrame{
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                          Dispose();
+                         
     		}
     	});
 		
@@ -111,7 +114,7 @@ public class GameLevelSelect extends JFrame{
                          game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
-                          Dispose();
+                         Dispose();
     		}
     	});
 		hard.addActionListener(new ActionListener() {     		
