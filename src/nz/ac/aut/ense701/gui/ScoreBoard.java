@@ -8,6 +8,7 @@ package nz.ac.aut.ense701.gui;
 import nz.ac.aut.ense701.gameModel.FileIn;
 import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import nz.ac.aut.ense701.GUITools.MyBackGround;
 
 /**
  *
@@ -27,15 +29,19 @@ public class ScoreBoard extends JPanel {
 
     private ArrayList<ScoreRecord> scoreList;
     private JTable table;
+  
     DefaultTableModel tableModel ;
+    
     public ScoreBoard(ArrayList<ScoreRecord> scoreList) {
-        this.scoreList = scoreList;
        
+        this.scoreList = scoreList;    
         String[] columnNames = {"Name", "MapNo","Diffculty","Score"};
         this.table = new JTable();
+        table.setBackground(Color.CYAN);
         fillTable();
         JScrollPane scrollPane=new JScrollPane(table);
 	this.add(scrollPane,BorderLayout.CENTER);
+        this.setBackground(Color.lightGray);
     }
 
     public void fillTable() {
@@ -63,7 +69,8 @@ public class ScoreBoard extends JPanel {
     }
 
     public static void main(String[] args) throws IOException {
-
+     
+        
         FileIn ScoreListFileIn = new FileIn("scoreFile.txt");
         ArrayList<ScoreRecord> scoreRecordList = ScoreListFileIn.ScoreRecordList();
         for (ScoreRecord a : scoreRecordList) {
@@ -71,10 +78,13 @@ public class ScoreBoard extends JPanel {
         }
         
         JFrame jf = new JFrame();
+       
+        
         ScoreBoard aScoreBoard = new ScoreBoard(scoreRecordList);
+       
         jf.add(aScoreBoard);
         jf.setVisible(true);
-        jf.setSize(515, 600);
+        jf.setSize(490, 480);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }

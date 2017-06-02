@@ -121,7 +121,7 @@ public class GameSelectGUI extends JFrame{
                         ScoreBoard aScoreBoard = new ScoreBoard(scoreRecordList);
                         jf.add(aScoreBoard);
                         jf.setVisible(true);
-                        jf.setSize(515, 600);
+                        jf.setSize(490, 480);
                         
     		}
     	});
