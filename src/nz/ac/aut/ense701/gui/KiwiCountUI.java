@@ -236,13 +236,14 @@ public class KiwiCountUI
         btnCount.setBackground(Color.gray);
 //        btnPause = new javax.swing.JButton();
 //        btnReStart = new javax.swing.JButton();;
+        btnReturn = new javax.swing.JButton();
         pnlVolume = new javax.swing.JPanel(){};
         pnlVolume.setOpaque(false);
         
         sldVolume = new javax.swing.JSlider();
         sldVolume.setBackground(Color.gray);
       //  btnHelp = new javax.swing.JButton();
-       
+      
     //    pnlCountdown.setOpaque(false);
 
         pnlTimer = new TimePanel(game.getTimeData());
@@ -399,6 +400,13 @@ public class KiwiCountUI
 
 
         pnlButton.add(btnReStart,gridBagConstraints);
+        
+        btnReturn.setText("Return");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+
+        pnlButton.add(btnReturn,gridBagConstraints);       
         
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -708,6 +716,12 @@ public class KiwiCountUI
                 btnReStartActionPerformed(evt);
             }
         });
+        
+        btnReturn.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
 //        gridBagConstraints = new java.awt.GridBagConstraints();
 //        gridBagConstraints.gridx = 2;
 //        gridBagConstraints.gridy = 1;
@@ -859,6 +873,15 @@ public class KiwiCountUI
             game.restartTime();
     }//GEN-LAST:event_btnHelpActionPerformed
     
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
+        // TODO add your handling code here:
+        game.stopMusic();
+        game.getTimeData().shutdown();
+        new GameSelectGUI().setaUser(game.getaUser());
+        game = null;
+        this.dispose();
+    }//GEN-LAST:event_btnHelpActionPerformed
+    
     public void resumeTheGame(){
             if(game.getState()==GameState.PAUSE)
             game.resumeGame();
@@ -919,6 +942,7 @@ public class KiwiCountUI
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
+    private javax.swing.JButton btnReturn;
   //  private javax.swing.JButton btnPause;
  //   private javax.swing.JButton btnReStart;
  //   private javax.swing.JButton btnHelp;
