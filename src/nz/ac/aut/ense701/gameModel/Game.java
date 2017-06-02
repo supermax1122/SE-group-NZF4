@@ -81,7 +81,6 @@ public class Game {
         score = new Score();
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
-
     }
 
     /**
