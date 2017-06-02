@@ -236,7 +236,7 @@ public class KiwiCountUI
         btnCount.setBackground(Color.gray);
 //        btnPause = new javax.swing.JButton();
 //        btnReStart = new javax.swing.JButton();;
-        btnReturn = new javax.swing.JButton();
+   //     btnReturn = new javax.swing.JButton();
         pnlVolume = new javax.swing.JPanel(){};
         pnlVolume.setOpaque(false);
         
@@ -401,15 +401,15 @@ public class KiwiCountUI
 
         pnlButton.add(btnReStart,gridBagConstraints);
         
-        btnReturn.setText("Return");
+    
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
 
         pnlButton.add(btnReturn,gridBagConstraints);       
         
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
  
 
@@ -935,14 +935,15 @@ public class KiwiCountUI
     private MyButton  btnMoveSouth =new MyButton ("image/s1.png", "image/s2.png", "image/s3.png");
     private MyButton btnMoveWest =new MyButton ("image/w1.png", "image/w2.png", "image/w3.png");  
     private MyButton btnReStart =new MyButton ("image/Restart1.png", "image/Restart2.png", "image/Restart3.png");
-    private MyButton btnPause =new MyButton ("image/Pause1.png", "image/Pause2.png", "image/Pause3.png");       
+    private MyButton btnPause =new MyButton ("image/Pause1.png", "image/Pause2.png", "image/Pause3.png");  
+    private MyButton btnReturn =new MyButton ("image/Return1.png", "image/Return2.png", "image/Return3.png");
    
 
     
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
-    private javax.swing.JButton btnReturn;
+   // private javax.swing.JButton btnReturn;
   //  private javax.swing.JButton btnPause;
  //   private javax.swing.JButton btnReStart;
  //   private javax.swing.JButton btnHelp;
