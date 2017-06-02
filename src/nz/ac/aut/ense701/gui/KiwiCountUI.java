@@ -403,14 +403,14 @@ public class KiwiCountUI
         
     
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
 
         pnlButton.add(btnReturn,gridBagConstraints);       
         
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
  
 
         pnlButton.add(btnHelp,gridBagConstraints);
