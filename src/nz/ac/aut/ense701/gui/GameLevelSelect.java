@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import nz.ac.aut.ense701.GUITools.MyBackGround;
-import nz.ac.aut.ense701.GUITools.MyButton;
 import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameModel;
@@ -28,11 +26,11 @@ public class GameLevelSelect extends JFrame{
 
 	private JLabel text;
 	
-	private MyButton easy;
-	private MyButton normal;
-	private MyButton hard;
-	private MyButton back;
-        private MyBackGround ground;
+	private CustomizeButton easy;
+	private CustomizeButton normal;
+	private CustomizeButton hard;
+	private CustomizeButton back;
+        private CustomizeBackground ground;
         private ScoreRecord aUser;
         private GameSelectGUI GameSelectGUI;
         private String userName;
@@ -42,16 +40,16 @@ public class GameLevelSelect extends JFrame{
 		
 		text = new JLabel("");
             
-		easy= new MyButton("image/EasyGame1.png", "image/EasyGame2.png", "image/EasyGame3.png");
+		easy= new CustomizeButton("image/EasyGame1.png", "image/EasyGame2.png", "image/EasyGame3.png");
 		easy.setBounds(20, 50,easy.getButtonWidth(), easy.getButtonHeight());
 		
-		normal= new MyButton("image/NormalGame1.png", "image/NormalGame2.png", "image/NormalGame3.png");
+		normal= new CustomizeButton("image/NormalGame1.png", "image/NormalGame2.png", "image/NormalGame3.png");
 		normal.setBounds(20, 120, normal.getButtonWidth(), normal.getButtonHeight());
 		
-		hard= new MyButton("image/HardGame1.png", "image/HardGame2.png", "image/HardGame3.png");
+		hard= new CustomizeButton("image/HardGame1.png", "image/HardGame2.png", "image/HardGame3.png");
 		hard.setBounds(20, 190, hard.getButtonWidth(), hard.getButtonHeight());
 		
-		back= new MyButton("image/Back1.png", "image/Back2.png", "image/Back3.png");
+		back= new CustomizeButton("image/Back1.png", "image/Back2.png", "image/Back3.png");
 		back.setBounds(20, 260,back.getButtonWidth(), back.getButtonHeight());
 		
 
@@ -59,7 +57,7 @@ public class GameLevelSelect extends JFrame{
 		text.setText("");
 		text.setFont(new Font( "Dialog", Font.TRUETYPE_FONT, 40));
 		text.setForeground(Color.BLACK);
-		ground = new MyBackGround("image/GameLevelBackGound.jpg");
+		ground = new CustomizeBackground("image/GameLevelBackGound.jpg");
 	
 		ground.setBounds(0,0,700,560); 
              
