@@ -7,27 +7,15 @@ package nz.ac.aut.ense701.gui;
 
 
 import nz.ac.aut.ense701.gameModel.ScoreRecord;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
-import java.awt.Insets;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
 import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameModel;
@@ -37,9 +25,6 @@ import nz.ac.aut.ense701.gui.ScoreBoard;
 
 public class GameSelectGUI extends JFrame{
 
-
-
-	
 	private CustomizeButton NormalMode;
 	private CustomizeButton ScoreBoard;
 	private CustomizeButton ChallengeMode;
@@ -147,12 +132,6 @@ public class GameSelectGUI extends JFrame{
         this.aUser = aUser;
     }
 	
-	
-	public static void main(String[] args) throws SQLException {
-		// TODO Auto-generated method stub
-		GameSelectGUI ui =new GameSelectGUI();
-		
-	}
 	
 	 
 }

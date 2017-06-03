@@ -1,18 +1,13 @@
 package nz.ac.aut.ense701.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
@@ -211,10 +206,6 @@ public class KiwiCountUI
         pnlMovement.setOpaque(false);
         javax.swing.JPanel pnlButton = new javax.swing.JPanel(){};
         pnlButton.setOpaque(false);
-//        btnMoveNorth = new javax.swing.JButton();
-//        btnMoveSouth = new javax.swing.JButton();
-//        btnMoveEast = new javax.swing.JButton();
-//        btnMoveWest = new javax.swing.JButton();
         javax.swing.JPanel pnlInventory = new javax.swing.JPanel(){};
         pnlInventory.setOpaque(false);
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
@@ -231,20 +222,11 @@ public class KiwiCountUI
         btnCollect.setBackground(Color.gray);
         btnCount = new javax.swing.JButton();
         btnCount.setBackground(Color.gray);
-//        btnPause = new javax.swing.JButton();
-//        btnReStart = new javax.swing.JButton();;
-   //     btnReturn = new javax.swing.JButton();
         pnlVolume = new javax.swing.JPanel(){};
-        pnlVolume.setOpaque(false);
-        
+        pnlVolume.setOpaque(false);      
         sldVolume = new javax.swing.JSlider();
         sldVolume.setBackground(Color.gray);
-      //  btnHelp = new javax.swing.JButton();
-      
-    //    pnlCountdown.setOpaque(false);
-
-        pnlTimer = new TimePanel(game.getTimeData());
-        
+        pnlTimer = new TimePanel(game.getTimeData());       
         pnlTimer.setOpaque(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -426,10 +408,7 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-//        gridBagConstraints.weightx = 1.0;
-//        gridBagConstraints.weighty = 1.0;
+
         pnlMovement.add(btnMoveNorth, gridBagConstraints);
 
         btnMoveSouth.setText("S");
@@ -442,10 +421,6 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-//        gridBagConstraints.weightx = 1.0;
-//        gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveSouth, gridBagConstraints);
 
         btnMoveEast.setText("E");
@@ -458,10 +433,6 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-//        gridBagConstraints.weightx = 1.0;
-//        gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveEast, gridBagConstraints);
 
         btnMoveWest.setText("W");
@@ -474,10 +445,6 @@ public class KiwiCountUI
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-//        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-//        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-//        gridBagConstraints.weightx = 1.0;
-//        gridBagConstraints.weighty = 1.0;
         pnlMovement.add(btnMoveWest, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -669,23 +636,7 @@ public class KiwiCountUI
                 btnHelpActionPerformed(evt);
             }
         });
-//        gridBagConstraints = new java.awt.GridBagConstraints();
-//        gridBagConstraints.gridx = 0;
-//        gridBagConstraints.gridy = 5;
-//        pnlControls.add(btnHelp, gridBagConstraints);
-        
-        /*
-        pnlCountdown.setBorder(javax.swing.BorderFactory.createTitledBorder("Count Down"));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.5;
-        pnlControls.add(pnlCountdown, gridBagConstraints);
-        */
-        
-        
+    
         pnlTimer.setBorder(javax.swing.BorderFactory.createTitledBorder("Time"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -702,11 +653,7 @@ public class KiwiCountUI
                 btnPauseActionPerformed(evt);
             }
         });
-//        gridBagConstraints = new java.awt.GridBagConstraints();
-//        gridBagConstraints.gridx = 1;
-//        gridBagConstraints.gridy = 1;
-//        pnlControls.add(btnPause, gridBagConstraints);
-          
+
         btnReStart.setText("Restart");
         btnReStart.addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -719,11 +666,7 @@ public class KiwiCountUI
                 btnReturnActionPerformed(evt);
             }
         });
-//        gridBagConstraints = new java.awt.GridBagConstraints();
-//        gridBagConstraints.gridx = 2;
-//        gridBagConstraints.gridy = 1;
-//        pnlControls.add(btnReStart, gridBagConstraints);
-        
+   
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);        
         pnlContent.setBackground(Color.gray);
@@ -847,21 +790,7 @@ public class KiwiCountUI
             resumeTheGame();
             btnPause.setText("pause");            
         }
-        /*
-        soundEffect.playClickSound();
-        if(this.game.getEnemy()==null)
-        {
-            this.game.getTimeData().stopCount();
-        }
-        else
-        {
-            this.game.getEnemy().pauseEnemy();
-        }
-        pnlTimer.getTimeData().stopCount();
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        game.setIsPaused(true);
-        */
+       
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnReStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
@@ -884,20 +813,7 @@ public class KiwiCountUI
     public void resumeTheGame(){
             if(game.getState()==GameState.PAUSE)
             game.resumeGame();
-                /*
-        if(game.getIsPaused()){
-            if(game.getEnemy()!=null)
-            {
-                game.getEnemy().resumeEnemy();
-            }
-            else
-            {
-                game.getTimeData().startCount();
-            }   
-            pnlTimer.getTimeData().startCount();
-            game.setIsPaused(false);
-        }
-                */
+  
     }
     /**
      * Creates and initialises the island grid.
@@ -942,14 +858,6 @@ public class KiwiCountUI
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
-   // private javax.swing.JButton btnReturn;
-  //  private javax.swing.JButton btnPause;
- //   private javax.swing.JButton btnReStart;
- //   private javax.swing.JButton btnHelp;
-//    private javax.swing.JButton btnMoveEast;
-//    private javax.swing.JButton btnMoveNorth;
-//    private javax.swing.JButton btnMoveSouth;
-//    private javax.swing.JButton btnMoveWest;
     private javax.swing.JButton btnUse;
     private javax.swing.JLabel lblKiwisCounted;
     private javax.swing.JLabel lblPredators;
@@ -966,7 +874,5 @@ public class KiwiCountUI
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
-    // End of variables declaration//GEN-END:variables
-   // private User user = new User();
     private Game game;
 }

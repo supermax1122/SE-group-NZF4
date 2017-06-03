@@ -17,7 +17,7 @@ public class Enemy extends Occupant implements Runnable{
     private boolean run = false, pause=false;
     private Player player;
     private Position position;
-    Game game;
+    private Game game;
     
     public Enemy (Position position, String name, String description, Player player,long moveFrequency, Game game){
         super(position, name, description);

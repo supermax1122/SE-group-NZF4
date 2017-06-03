@@ -1,7 +1,6 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -112,12 +111,13 @@ public class GridSquarePanel extends javax.swing.JPanel
         
         switch ( terrain )
         {
-            case SAND     : setImagename("sand.jpg");/*color = Color.YELLOW*/; break;
-            case FOREST   : setImagename("forest.jpg")/*color = Color.GREEN*/;  break;
-            case WETLAND : setImagename("wetland.jpg")/*color = Color.BLUE*/; break;
-            case SCRUB : setImagename("scrub.jpg")/*color = Color.DARK_GRAY*/;   break;
-            case WATER    : setImagename("water.jpg")/*color = Color.CYAN*/;   break;
-            default  :/*color = Color.LIGHT_GRAY*/; break;
+            case SAND     : setImagename("sand.jpg"); break;
+            case FOREST   : setImagename("forest.jpg");  break;
+            case WETLAND : setImagename("wetland.jpg"); break;
+            case SCRUB : setImagename("scrub.jpg");   break;
+            case WATER    : setImagename("water.jpg");   break;
+            default  : ;
+            break;
         }
         
        if ( squareExplored || squareVisible )
@@ -127,17 +127,7 @@ public class GridSquarePanel extends javax.swing.JPanel
             lblText.setVisible(false);
             this.showOccupant = true;
             this.repaint();
-            // Set the colour. 
-/*            if ( squareVisible && !squareExplored ) 
-            {
-                // When explored the colour is brighter
-                color = new Color(Math.min(255, color.getRed()   + 128), 
-                                  Math.min(255, color.getGreen() + 128), 
-                                  Math.min(255, color.getBlue()  + 128));
-            }
-            lblText.setBackground(color);*/
-            // set border colour according to 
-            // whether the player is in the grid square or not
+            
             setBorder(game.hasPlayer(row,column) ? activeBorder : normalBorder);
         }
         else
