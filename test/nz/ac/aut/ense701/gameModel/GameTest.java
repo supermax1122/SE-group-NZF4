@@ -420,7 +420,8 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testStopMusic (){
-        game           = new Game();
+        ScoreRecord user = new ScoreRecord();
+        game           = new Game(user);
         playerPosition = game.getPlayer().getPosition();
         player         = game.getPlayer();
         island = game.getIsland();
