@@ -1,16 +1,15 @@
-<<<<<<< HEAD
 Weiwei Ma
 01
-Hard
+HARD
 300
 Hongzhou
 eee
-22
-hhh
+NORMAL
+1113
 ttt
 77
-Unknown
-Unknown
+ESAY
+100
 nnnnn
 Unknown
 ESAY

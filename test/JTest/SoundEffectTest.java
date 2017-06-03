@@ -5,7 +5,7 @@
  */
 package JTest;
 
-import nz.ac.aut.ense701.gameModel.SoundEffect;
+import nz.ac.aut.ense701.gui.SoundEffect;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
