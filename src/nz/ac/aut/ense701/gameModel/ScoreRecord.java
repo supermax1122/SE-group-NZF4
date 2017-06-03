@@ -87,49 +87,49 @@ public class ScoreRecord implements Comparable<ScoreRecord>
         if ("Challenge".equals(this.Diffculty)) {
             if ("Challenge".equals(aScoreRecord.Diffculty)) {
                 if (Integer.parseInt(this.score) > Integer.parseInt(aScoreRecord.score)) {
-                    return 1;
+                    return -1;
                 } else {
-                    return 0;
+                    return 1;
                 }
             } else {
-                return 1;
+                return -1;
             }
         } else if ("HARD".equals(this.Diffculty)) {
             if ("Challenge".equals(aScoreRecord.Diffculty)) {
-                return 0;
+                return 1;
             } else if ("HARD".equals(aScoreRecord.Diffculty)) {
                 if (Integer.parseInt(this.score) > Integer.parseInt(aScoreRecord.score)) {
-                    return 1;
+                    return -1;
                 } else {
-                    return 0;
+                    return 1;
                 }
             } else {
-                return 1;
+                return -1;
             }
         } else if ("NORMAL".equals(this.Diffculty)) {
             if ("Challenge".equals(aScoreRecord.Diffculty)) {
-                return 0;
+                return 1;
             } else if ("HARD".equals(aScoreRecord.Diffculty)) {
-                return 0;
+                return 1;
 
             } else if ("NORMAL".equals(aScoreRecord.Diffculty)) {
                 if (Integer.parseInt(this.score) > Integer.parseInt(aScoreRecord.score)) {
-                    return 1;
+                    return -1;
                 } else {
-                    return 0;
+                    return 1;
                 }
             } else {
-                return 1;
+                return -1;
             }
         } else if ("ESAY".equals(this.Diffculty)) {
             if ("ESAY".equals(aScoreRecord.Diffculty)) {
                 if (Integer.parseInt(this.score) > Integer.parseInt(aScoreRecord.score)) {
-                    return 1;
+                    return -1;
                 } else {
-                    return 0;
+                    return 1;
                 }
             } else {
-                return 0;
+                return 1;
             }
         }
         return 0;
