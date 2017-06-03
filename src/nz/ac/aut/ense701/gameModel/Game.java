@@ -561,7 +561,7 @@ public class Game {
                 success = trapPredator();
                 tool.dropDurability();
                 score.plusScore(timeData);
-                if (tool.getDurability().getDurability() <= 0) {
+                if (tool.getDurability() <= 0) {
                     tool.setBroken();
                 }
             } else if (tool.isScrewdriver())// Use screwdriver (to fix trap)
