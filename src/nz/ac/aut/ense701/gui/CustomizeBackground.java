@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nz.ac.aut.ense701.GUITools;
+package nz.ac.aut.ense701.gui;
 
 import java.awt.Graphics;  
 import java.awt.Graphics2D;  
@@ -15,16 +15,16 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;  
 import javax.swing.JPanel;  
   
-public class MyBackGround extends JPanel {  
+public class CustomizeBackground extends JPanel {  
     /**
      * This class for setup the background for Panel.
      */
     String url="sk.png";  
-    public MyBackGround(String url){  
+    public CustomizeBackground(String url){  
         super();  
         this.url = url;  
     }  
-    public MyBackGround(){  
+    public CustomizeBackground(){  
         super();  
     }  
     @Override  
