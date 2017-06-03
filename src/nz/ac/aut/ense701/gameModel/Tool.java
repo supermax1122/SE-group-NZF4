@@ -11,7 +11,9 @@ package nz.ac.aut.ense701.gameModel;
 public class Tool extends Item 
 {
     private boolean broken;
-    private Durability durability;
+    private int fulldurability;
+    private int durability;
+    private int droperate;    
     
     /**
      * Construct a tool with known attributes.
@@ -26,9 +28,11 @@ public class Tool extends Item
         super(pos, name, description, weight, size);
         this.broken = false;
         if (this.getName().equalsIgnoreCase("Trap")){
-            durability = new Durability (3, 1);
+            setDurability(3);
+            setDroperate(1);
         }else{
-            durability = new Durability (4, 0);            
+            setDurability(1);
+            setDroperate(0);
         }
     }
     
@@ -36,13 +40,9 @@ public class Tool extends Item
      * Durability drop
      */
     public void dropDurability (){
-        durability.use();
+        use();
     }
-    
-    public Durability getDurability () {
-        return durability;
-    }
-    
+        
     /**
      * Break the tool
      */
@@ -56,7 +56,7 @@ public class Tool extends Item
      */
     public void fix()
     {
-        durability.durabilityReastore();
+        durabilityReastore();
         broken = false;
     }
     
@@ -94,6 +94,35 @@ public class Tool extends Item
     {
         return "T";
     }
+        
+    public int getDurability() {
+        return durability;
+    }
+    
+    public void durabilityReastore(){
+        durability = fulldurability;
+    }
+
+    public int getFulldurability() {
+        return fulldurability;
+    }
+
+    private void setDurability(int durability) {
+        this.durability = durability;
+        this.fulldurability = durability;
+    }
+
+    public int getDroperate() {
+        return droperate;
+    }
+
+    public void setDroperate(int dropreate) {
+        this.droperate = dropreate;
+    }    
+    
+    public void use (){
+        durability = durability - droperate;
+    }
     
     @Override
     public String toString (){
@@ -101,7 +130,7 @@ public class Tool extends Item
             if (isBroken()){
                 return this.getName() + "- Broken";
             }else{
-                return this.getName() + "- Durability(" + durability.getDurability() + ")";
+                return this.getName() + "- Durability(" + getDurability() + ")";
             }
         }else{
             return this.getName();
