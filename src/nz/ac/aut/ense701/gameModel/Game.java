@@ -39,6 +39,14 @@ public class Game {
         createNewGame();
     }
 
+    public Game(ScoreRecord user) {
+        eventListeners = new HashSet<GameEventListener>();
+        //     timeData=new TimeData();
+        setaUser(user);
+        RandonmizeMap();
+        createNewGame();
+    }
+    
     /**
      * A constructor use for test purpose
      *

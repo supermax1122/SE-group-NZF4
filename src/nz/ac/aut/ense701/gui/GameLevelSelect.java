@@ -80,19 +80,17 @@ public class GameLevelSelect extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
     			new GameSelectGUI().setaUser(aUser);
-    			Dispose();  
-                                             
+    			Dispose();                                               
     		}
     	});
 		easy.addActionListener(new ActionListener() {     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-                         final Game game = new Game();
+                         final Game game = new Game(aUser);
                          game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.ESAY);
                          aUser.setDiffculty(Difficulty.ESAY.toString());
-                         game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                          Dispose();
@@ -104,11 +102,10 @@ public class GameLevelSelect extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-                         final Game game = new Game();
+                         final Game game = new Game(aUser);
                          game.setDiffiucly(Difficulty.NORMAL);
                          game.setModel(GameModel.Normal);
                          aUser.setDiffculty(Difficulty.NORMAL.toString());
-                         game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                          Dispose();
@@ -118,11 +115,10 @@ public class GameLevelSelect extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-                         final Game game = new Game();
+                         final Game game = new Game(aUser);
                          game.setModel(GameModel.Normal);
                          game.setDiffiucly(Difficulty.HARD);
                          aUser.setDiffculty(Difficulty.NORMAL.toString());
-                         game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true); 
                           Dispose();

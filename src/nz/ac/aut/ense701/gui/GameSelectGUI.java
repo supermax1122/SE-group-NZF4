@@ -120,7 +120,7 @@ public class GameSelectGUI extends JFrame{
 		ChallengeMode.addActionListener(new ActionListener() {     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
-                    final Game game = new Game();
+                    final Game game = new Game(aUser);
                     game.setModel(GameModel.Challenge);
                     game.setDiffiucly(Difficulty.HARD);
                     aUser.setDiffculty(Difficulty.Challenge.toString());
