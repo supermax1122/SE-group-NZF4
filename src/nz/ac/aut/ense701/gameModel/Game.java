@@ -39,6 +39,14 @@ public class Game {
         createNewGame();
     }
 
+    public Game(ScoreRecord user) {
+        eventListeners = new HashSet<GameEventListener>();
+        //     timeData=new TimeData();
+        setaUser(user);
+        RandonmizeMap();
+        createNewGame();
+    }
+    
     /**
      * A constructor use for test purpose
      *
@@ -64,6 +72,7 @@ public class Game {
         }
         initialiseIslandFromFile("GameMap/IslandData" + mapOrder[currentmapindex] + ".txt");
         drawIsland();
+        aUser.setMapNo(currentmapindex+"");
         state = GameState.PLAYING;
         winMessage = "";
         loseMessage = "";
@@ -1021,22 +1030,7 @@ public class Game {
     }
 
     public void saveData() {
-        try {
-            FileIn scoreFileIn = new FileIn("scoreFile.txt");
-
-            ArrayList<ScoreRecord> scoreList = scoreFileIn.ScoreRecordList();
-
-            for (ScoreRecord a : scoreList) {
-                System.out.println(a);
-            }
-            scoreList.add(aUser);
-
-            FileOut scoreListFileOut = new FileOut("scoreFile.txt", scoreList);
-
-            scoreListFileOut.scoreListFileOut();
-        } catch (IOException e) {
-            System.err.println("Cannot read save file");
-        }
+        new ScoreList().addNewScoreRecord(aUser);
     }
 
     private ScoreRecord aUser;

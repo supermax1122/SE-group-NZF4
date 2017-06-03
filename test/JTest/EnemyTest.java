@@ -9,6 +9,7 @@ import static junit.framework.TestCase.assertEquals;
 import nz.ac.aut.ense701.gameModel.Enemy;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Position;
+import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,8 @@ public class EnemyTest extends junit.framework.TestCase{
      */
     @Before
     public void setUp() {
-        game = new Game ();
+        ScoreRecord user = new ScoreRecord();
+        game = new Game (user);
         Position position = new Position (game.getIsland(), 0, 0);
         enemy = new Enemy (position, "Enemy", "Enemy try to catch player", game.getPlayer(), 10, game);
     }

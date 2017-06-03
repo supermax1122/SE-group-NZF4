@@ -6,7 +6,6 @@
 package nz.ac.aut.ense701.gui;
 
 
-import nz.ac.aut.ense701.gameModel.FileIn;
 import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,6 +31,7 @@ import javax.swing.JTextPane;
 import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameModel;
+import nz.ac.aut.ense701.gameModel.ScoreList;
 import nz.ac.aut.ense701.gui.ScoreBoard;
 
 
@@ -68,9 +68,6 @@ public class GameSelectGUI extends JFrame{
 		ground = new CustomizeBackground("image/startMenu.jpg");
 		this.setLayout(null);
 		ground.setBounds(0,0,700,560);
-	
-	
-		
 		
 		this.add(NormalMode);
 		this.add(ScoreBoard);
@@ -106,27 +103,24 @@ public class GameSelectGUI extends JFrame{
 		ScoreBoard.addActionListener(new ActionListener() {     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
-    			// TODO Auto-generated method stub
-                         JFrame jf = new JFrame();
-                         FileIn ScoreListFileIn = new FileIn("scoreFile.txt");
-                         ArrayList<ScoreRecord> scoreRecordList = null;
                         try {
-                            scoreRecordList = ScoreListFileIn.ScoreRecordList();
+                            // TODO Auto-generated method stub
+                            JFrame jf = new JFrame();                            
+                            ArrayList<ScoreRecord> scoreRecordList = new ScoreList().ScoreRecordList();                           
+                            ScoreBoard aScoreBoard = new ScoreBoard(scoreRecordList);
+                            jf.add(aScoreBoard);
+                            jf.setVisible(true);
+                            jf.setSize(490, 480);
                         } catch (IOException ex) {
                             Logger.getLogger(GameSelectGUI.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                  
-                        ScoreBoard aScoreBoard = new ScoreBoard(scoreRecordList);
-                        jf.add(aScoreBoard);
-                        jf.setVisible(true);
-                        jf.setSize(490, 480);
                         
     		}
     	});
 		ChallengeMode.addActionListener(new ActionListener() {     		
     		@Override
     		public void actionPerformed(ActionEvent e) {
-                    final Game game = new Game();
+                    final Game game = new Game(aUser);
                     game.setModel(GameModel.Challenge);
                     game.setDiffiucly(Difficulty.HARD);
                     aUser.setDiffculty(Difficulty.Challenge.toString());
