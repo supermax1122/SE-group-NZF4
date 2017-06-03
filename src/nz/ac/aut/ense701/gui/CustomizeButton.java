@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nz.ac.aut.ense701.GUITools;
+package nz.ac.aut.ense701.gui;
 
 import java.awt.Dimension;  
 import java.awt.Graphics;  
@@ -19,7 +19,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;  
 import javax.swing.JButton;  
   
-public class MyButton extends JButton {  
+public class CustomizeButton extends JButton {  
     private BufferedImage image_over; //mouse on the button
     private BufferedImage image_off; //mouse not on the button
     private BufferedImage image_pressed; //mouse push the button
@@ -43,7 +43,7 @@ public class MyButton extends JButton {
      * @param img_pressed 
      *           
      */  
-    public MyButton(String img_off, String img_over, String img_pressed) {  
+    public CustomizeButton(String img_off, String img_over, String img_pressed) {  
         mouseOn = false;  
         mousePressed = false;  
         // load picture

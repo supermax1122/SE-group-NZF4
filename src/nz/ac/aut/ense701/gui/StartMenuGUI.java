@@ -2,8 +2,6 @@ package nz.ac.aut.ense701.gui;
 
 
 
-import nz.ac.aut.ense701.GUITools.MyBackGround;
-import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -40,7 +38,7 @@ public class StartMenuGUI extends JFrame {
     private static final int WIDTH = 800;//width of window
     private static final int HEIGHT = 600;//height of window
     private UserLogIn login;
-    private MyBackGround my;
+    private CustomizeBackground my;
     
     public static void main(String[] args) throws InterruptedException {  
     
@@ -92,8 +90,8 @@ public class StartMenuGUI extends JFrame {
  	private JTextField nameField = new JTextField(25);
        
  	//Create buttons.
- 	private MyButton YesButton = new MyButton("image/start1.png", "image/start2.png", "image/start3.png");
- 	private MyButton NoButton = new MyButton("image/exit1.png", "image/exit2.png", "image/exit3.png");
+ 	private CustomizeButton YesButton = new CustomizeButton("image/start1.png", "image/start2.png", "image/start3.png");
+ 	private CustomizeButton NoButton = new CustomizeButton("image/exit1.png", "image/exit2.png", "image/exit3.png");
  	
  	private ScoreRecord  user;
  

@@ -1,7 +1,5 @@
 package nz.ac.aut.ense701.gui;
 
-import nz.ac.aut.ense701.GUITools.MyBackGround;
-import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -236,13 +234,14 @@ public class KiwiCountUI
         btnCount.setBackground(Color.gray);
 //        btnPause = new javax.swing.JButton();
 //        btnReStart = new javax.swing.JButton();;
+   //     btnReturn = new javax.swing.JButton();
         pnlVolume = new javax.swing.JPanel(){};
         pnlVolume.setOpaque(false);
         
         sldVolume = new javax.swing.JSlider();
         sldVolume.setBackground(Color.gray);
       //  btnHelp = new javax.swing.JButton();
-       
+      
     //    pnlCountdown.setOpaque(false);
 
         pnlTimer = new TimePanel(game.getTimeData());
@@ -400,9 +399,16 @@ public class KiwiCountUI
 
         pnlButton.add(btnReStart,gridBagConstraints);
         
+    
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+
+        pnlButton.add(btnReturn,gridBagConstraints);       
+        
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
  
 
         pnlButton.add(btnHelp,gridBagConstraints);
@@ -708,6 +714,12 @@ public class KiwiCountUI
                 btnReStartActionPerformed(evt);
             }
         });
+        
+        btnReturn.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
 //        gridBagConstraints = new java.awt.GridBagConstraints();
 //        gridBagConstraints.gridx = 2;
 //        gridBagConstraints.gridy = 1;
@@ -861,6 +873,15 @@ public class KiwiCountUI
             game.restartTime();
     }//GEN-LAST:event_btnHelpActionPerformed
     
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
+        // TODO add your handling code here:
+        game.stopMusic();
+        game.getTimeData().shutdown();
+        new GameSelectGUI().setaUser(game.getaUser());
+        game = null;
+        this.dispose();
+    }//GEN-LAST:event_btnHelpActionPerformed
+    
     public void resumeTheGame(){
             if(game.getState()==GameState.PAUSE)
             game.resumeGame();
@@ -908,19 +929,21 @@ public class KiwiCountUI
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private MyButton btnHelp =new MyButton ("image/Help1.png", "image/Help2.png", "image/Help3.png");
-    private MyButton btnMoveEast =new MyButton ("image/e1.png", "image/e2.png", "image/e3.png");
-    private MyButton btnMoveNorth =new MyButton ("image/n1.png", "image/n2.png", "image/n3.png");
-    private MyButton  btnMoveSouth =new MyButton ("image/s1.png", "image/s2.png", "image/s3.png");
-    private MyButton btnMoveWest =new MyButton ("image/w1.png", "image/w2.png", "image/w3.png");  
-    private MyButton btnReStart =new MyButton ("image/Restart1.png", "image/Restart2.png", "image/Restart3.png");
-    private MyButton btnPause =new MyButton ("image/Pause1.png", "image/Pause2.png", "image/Pause3.png");       
+    private CustomizeButton btnHelp =new CustomizeButton ("image/Help1.png", "image/Help2.png", "image/Help3.png");
+    private CustomizeButton btnMoveEast =new CustomizeButton ("image/e1.png", "image/e2.png", "image/e3.png");
+    private CustomizeButton btnMoveNorth =new CustomizeButton ("image/n1.png", "image/n2.png", "image/n3.png");
+    private CustomizeButton  btnMoveSouth =new CustomizeButton ("image/s1.png", "image/s2.png", "image/s3.png");
+    private CustomizeButton btnMoveWest =new CustomizeButton ("image/w1.png", "image/w2.png", "image/w3.png");  
+    private CustomizeButton btnReStart =new CustomizeButton ("image/Restart1.png", "image/Restart2.png", "image/Restart3.png");
+    private CustomizeButton btnPause =new CustomizeButton ("image/Pause1.png", "image/Pause2.png", "image/Pause3.png");  
+    private CustomizeButton btnReturn =new CustomizeButton ("image/Return1.png", "image/Return2.png", "image/Return3.png");
    
 
     
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
+   // private javax.swing.JButton btnReturn;
   //  private javax.swing.JButton btnPause;
  //   private javax.swing.JButton btnReStart;
  //   private javax.swing.JButton btnHelp;

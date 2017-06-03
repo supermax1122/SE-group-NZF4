@@ -29,6 +29,7 @@ public class TimeData {
     private boolean stop;
     private long passTime;
     private GameModel model;
+    Timer timer;
 
     public TimeData(GameModel model) {
         this.model = model;
@@ -47,7 +48,7 @@ public class TimeData {
 
     public void countDown() {
         end = System.currentTimeMillis() + (GAME_TIME)* 1000;
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
         long sub;
             public void run() {
@@ -70,7 +71,7 @@ public class TimeData {
     public void countUp() {
         end = System.currentTimeMillis();
         usedTime = 0;
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             long sub;
 
@@ -185,6 +186,11 @@ public class TimeData {
         this.model = model;
     }
 
+    public void shutdown (){
+        timer.cancel();
+        timer.purge();
+    }
+    
     public static void main(String args[]) {
         TimeData time = new TimeData(GameModel.Challenge);
         time.startNewTime();
