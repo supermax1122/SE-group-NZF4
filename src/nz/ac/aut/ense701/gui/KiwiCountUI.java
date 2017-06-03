@@ -17,7 +17,6 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
-import nz.ac.aut.ense701.gameModel.SoundEffect;
 import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
 
 /*

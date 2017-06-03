@@ -13,7 +13,6 @@ import javafx.scene.input.KeyCode;
 import javax.swing.JFrame;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
-import nz.ac.aut.ense701.gameModel.SoundEffect;
 
 /**
  *
