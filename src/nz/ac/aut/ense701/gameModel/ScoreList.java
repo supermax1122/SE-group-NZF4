@@ -31,8 +31,6 @@ public class ScoreList {
     private InputStream is;
     private InputStreamReader isReader;
     public final static String FILE_PATH = "scoreFile.txt";
-    //  private File file;
-    //  private ArrayList<ScoreRecord> scoreList;
     private OutputStream os;
     private OutputStreamWriter osWriter;
     private BufferedWriter writer;
@@ -120,8 +118,6 @@ public class ScoreList {
     }
 
     private void Fileout() {
-        // this.scoreList = scoreList;
-
         file = new File(FILE_PATH);
         if (file != null && file.isFile() && file.canRead()) {
             try {
