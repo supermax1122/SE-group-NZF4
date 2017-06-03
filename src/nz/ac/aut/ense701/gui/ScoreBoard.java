@@ -5,7 +5,7 @@
  */
 package nz.ac.aut.ense701.gui;
 
-import nz.ac.aut.ense701.gameModel.FileIn;
+
 import nz.ac.aut.ense701.gameModel.ScoreRecord;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import nz.ac.aut.ense701.gameModel.ScoreList;
 
 /**
  *
@@ -69,9 +70,9 @@ public class ScoreBoard extends JPanel {
 
     public static void main(String[] args) throws IOException {
      
+
+        ArrayList<ScoreRecord> scoreRecordList = new ScoreList().ScoreRecordList();
         
-        FileIn ScoreListFileIn = new FileIn("scoreFile.txt");
-        ArrayList<ScoreRecord> scoreRecordList = ScoreListFileIn.ScoreRecordList();
         for (ScoreRecord a : scoreRecordList) {
             System.out.println(a);
         }
