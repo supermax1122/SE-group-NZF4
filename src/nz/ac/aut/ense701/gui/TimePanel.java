@@ -26,16 +26,15 @@ public class TimePanel extends JPanel {
     private JLabel sysTimeLable;
     private JLabel countTimeLable;
     private TimeData timeData;
-  //  private final GameModel model;
     private Timer timeAction;
 
     public TimePanel(TimeData timeData) {
-       // this.model = model;
+
         this.timeData = timeData;
         this.setLayout(new BorderLayout());
         this.setVisible(true);
         initializLable();
-      //  this.setOpaque(false);
+
     }
 
     private void initializLable() {
@@ -44,12 +43,11 @@ public class TimePanel extends JPanel {
         Font font = new Font("Default", Font.PLAIN, 10);
         sysTimeLable.setFont(font);
         countTimeLable.setFont(font);
-   //     sysTimeLable.setSize(100,100);
+
 
         
         JPanel timePanel = new JPanel();
         timePanel.setOpaque(false);
-        //timePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Time"));
         timePanel.setLayout(new BoxLayout(timePanel, BoxLayout.Y_AXIS));
   
         timePanel.add(sysTimeLable);
@@ -58,12 +56,9 @@ public class TimePanel extends JPanel {
 
         sysTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("System Time"));
         countTimeLable.setBorder(javax.swing.BorderFactory.createTitledBorder("Count    Time"));
-     //   System.out.println("111111:"+timeData.getModel());
+
         if (timeData.getModel() == GameModel.Challenge) {
-           // timeData.SysTime();
-          //  timeData.countDown();
-     //     System.out.println("2");
-           // timeData.reCountDown();
+
             new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -73,9 +68,7 @@ public class TimePanel extends JPanel {
             }).start();
 
         } else if (timeData.getModel() ==GameModel.Normal) {
-           // timeData.SysTime();
-          //  timeData.countUp();
-          //timeData.startCount();
+
            timeAction= new Timer(500, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -92,23 +85,6 @@ public class TimePanel extends JPanel {
         return timeData;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-      //  TimeData timeData=new TimeData(GameModel.Challenge);
-        TimeData timeData=new TimeData(GameModel.Normal);
-        JPanel countDownPanel = new TimePanel(timeData);
-        timeData.startNewTime();
-        JFrame frame = new JFrame();
-        frame.setSize(600, 600);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        frame.add(countDownPanel, BorderLayout.CENTER);
-        frame.setVisible(true);
-    //    System.out.println("213123:"+GameModel.Challenge);
-    }
+
 
 }

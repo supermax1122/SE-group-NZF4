@@ -5,13 +5,12 @@
  */
 package nz.ac.aut.ense701.gameModel;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JLabel;
+
 
 /**
  *
@@ -81,11 +80,10 @@ public class TimeData {
                     
                     usedTime = sub / 1000;                 
                     countUpTime = updateTimer(sub);              
-                    System.out.println("Count up : " + countUpTime);
-                    
+                
                 } else {
                     passTime = sub;
-                     System.out.println("passTime : " + passTime);
+
                 }
             }
         }, 0, 1000);
@@ -100,7 +98,7 @@ public class TimeData {
             public void run() {
                 long sub = System.currentTimeMillis();
                 systemTime = updateTimer(sub);
-              //   System.out.println("System Time : " + systemTime);
+
 
             }
 
@@ -116,7 +114,6 @@ public class TimeData {
     public void resume(){
        if (model == GameModel.Challenge) {
             stop=false;
-            //end = System.currentTimeMillis() + GAME_TIME * 1000;
             end=System.currentTimeMillis()+passTime;
         } else if (model == GameModel.Normal) {
            stop=false;
@@ -154,8 +151,7 @@ public class TimeData {
         }
 
         return sdf.format(date);
-        //   System.out.println();
-        //       label.setText(sdf.format(date));
+
     }
 
     public boolean isCountFinished() {
@@ -191,11 +187,5 @@ public class TimeData {
         timer.purge();
     }
     
-    public static void main(String args[]) {
-        TimeData time = new TimeData(GameModel.Challenge);
-        time.startNewTime();
-        //      time.SysTime();
-        //       time.countUp();
-    }
 
 }

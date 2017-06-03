@@ -1,5 +1,6 @@
 package nz.ac.aut.ense701.gameModel;
 
+import nz.ac.aut.ense701.gui.MusicPlayer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
-import nz.ac.aut.ense701.gui.KiwiCountUI;
+
 
 /**
  * This is the class that knows the Kiwi Island game rules and state and
@@ -33,15 +34,13 @@ public class Game {
      * A new instance of Kiwi island that reads data from "IslandData.txt".
      */
     public Game() {
-        eventListeners = new HashSet<GameEventListener>();
-        //     timeData=new TimeData();
+        eventListeners = new HashSet<GameEventListener>();       
         RandonmizeMap();
         createNewGame();
     }
 
     public Game(ScoreRecord user) {
         eventListeners = new HashSet<GameEventListener>();
-        //     timeData=new TimeData();
         setaUser(user);
         RandonmizeMap();
         createNewGame();
@@ -666,8 +665,7 @@ public class Game {
         if (state == GameState.PAUSE) {
 
         }
-
-        //                
+              
         if (model == GameModel.Challenge) {
             String strings[] = timeData.getCountDownTime().split(":");
             countdownline = Integer.parseInt(strings[2]);

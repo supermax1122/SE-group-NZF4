@@ -11,7 +11,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -68,24 +67,4 @@ public class ScoreBoard extends JPanel {
         
     }
 
-    public static void main(String[] args) throws IOException {
-     
-
-        ArrayList<ScoreRecord> scoreRecordList = new ScoreList().ScoreRecordList();
-        
-        for (ScoreRecord a : scoreRecordList) {
-            System.out.println(a);
-        }
-        
-        JFrame jf = new JFrame();
-       
-        
-        ScoreBoard aScoreBoard = new ScoreBoard(scoreRecordList);
-       
-        jf.add(aScoreBoard);
-        jf.setVisible(true);
-        jf.setSize(490, 480);
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    }
 }
