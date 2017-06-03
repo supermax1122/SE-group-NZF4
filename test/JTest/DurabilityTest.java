@@ -5,7 +5,8 @@
  */
 package JTest;
 
-import nz.ac.aut.ense701.gameModel.Durability;
+import nz.ac.aut.ense701.gameModel.Island;
+import nz.ac.aut.ense701.gameModel.Position;
 import nz.ac.aut.ense701.gameModel.Tool;
 import org.junit.After;
 import org.junit.Before;
@@ -16,8 +17,9 @@ import org.junit.Test;
  * @author Rongsen Chen
  */
 public class DurabilityTest extends junit.framework.TestCase{
-    Durability durability;
-    Tool tool;
+    Tool durability;
+    Position position;
+    Island island;
     
     /**
      * Sets up the test fixture.
@@ -26,7 +28,9 @@ public class DurabilityTest extends junit.framework.TestCase{
      */
     @Before
     public void setUp() {
-        durability = new Durability ();
+        island = new Island(5,5);
+        position = new Position(island, 2,3);
+        durability = new Tool (position, "Trap", "A predator trap", 2.0, 3.0);
     }
     
     /**
@@ -41,7 +45,7 @@ public class DurabilityTest extends junit.framework.TestCase{
 
     @Test
     public void testGetDurability (){
-        assertEquals(0, durability.getDurability());
+        assertEquals(3, durability.getDurability());
     }
     
     @Test
@@ -52,7 +56,7 @@ public class DurabilityTest extends junit.framework.TestCase{
     
     @Test
     public void testGetDroprate (){
-        assertEquals(0, durability.getDroperate());        
+        assertEquals(1, durability.getDroperate());        
     }
     
     @Test
