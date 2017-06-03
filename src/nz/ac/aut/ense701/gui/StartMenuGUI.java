@@ -25,7 +25,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;  
 import javax.swing.JTextField;
-import nz.ac.aut.ense701.gameModel.Player;
 import nz.ac.aut.ense701.gameModel.ScoreRecord;
   
 /** 
@@ -40,12 +39,6 @@ public class StartMenuGUI extends JFrame {
     private UserLogIn login;
     private CustomizeBackground my;
     
-    public static void main(String[] args) throws InterruptedException {  
-    
-    	StartMenuGUI ge = new StartMenuGUI();  
-        ge.ShowMoon(); 
-
-    }  
   
     public void ShowMoon(){  
     	
@@ -163,7 +156,6 @@ public class StartMenuGUI extends JFrame {
  			}
  			//Set User's detail
  			setUser();
- 			//this.setVisible(false);
  			Dispose();
                          
                          java.awt.EventQueue.invokeLater(new Runnable() 
@@ -183,8 +175,7 @@ public class StartMenuGUI extends JFrame {
  		String name = this.nameField.getText();     
  		
                 this.user.setName(name);
-                
-                System.out.println("User Name is :"+this.user.getName());
+
  	}
  	
 

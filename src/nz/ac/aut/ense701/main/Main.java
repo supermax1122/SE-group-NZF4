@@ -1,8 +1,7 @@
 package nz.ac.aut.ense701.main;
 
 import nz.ac.aut.ense701.gui.StartMenuGUI;
-import nz.ac.aut.ense701.gameModel.Game;
-import nz.ac.aut.ense701.gui.KiwiCountUI;
+
 
 /**
  * Kiwi Count Project
