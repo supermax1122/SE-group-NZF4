@@ -107,7 +107,7 @@ public class Tool extends Item
         return fulldurability;
     }
 
-    private void setDurability(int durability) {
+    public void setDurability(int durability) {
         this.durability = durability;
         this.fulldurability = durability;
     }
