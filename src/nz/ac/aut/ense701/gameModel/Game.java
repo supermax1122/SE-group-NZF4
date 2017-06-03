@@ -1021,22 +1021,7 @@ public class Game {
     }
 
     public void saveData() {
-        try {
-            FileIn scoreFileIn = new FileIn("scoreFile.txt");
-
-            ArrayList<ScoreRecord> scoreList = scoreFileIn.ScoreRecordList();
-
-            for (ScoreRecord a : scoreList) {
-                System.out.println(a);
-            }
-            scoreList.add(aUser);
-
-            FileOut scoreListFileOut = new FileOut("scoreFile.txt", scoreList);
-
-            scoreListFileOut.scoreListFileOut();
-        } catch (IOException e) {
-            System.err.println("Cannot read save file");
-        }
+        new ScoreList().addNewScoreRecord(aUser);
     }
 
     private ScoreRecord aUser;

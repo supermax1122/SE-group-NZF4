@@ -5,6 +5,12 @@
  */
 package nz.ac.aut.ense701.gameModel;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 /**
  *
  * @author Marvin'PC
@@ -56,16 +62,18 @@ public class ScoreRecord {
         this.Diffculty = Diffculty;
     }
 
-    	@Override
-	public String toString() {
-		String str = "**\n";
-		str+="Name. : " + getName() + "\n";
-		str+="MapNo :"+getMapNo()+"\n";
-		str+="Diffculty :"+getDiffculty()+"\n";
-		str += "score  : " + getScore() + "\n";
-		str+="**\n";
-		str+="\n";
-		return str;
-	}
-    
+    @Override
+    public String toString() {
+        String str = "**\n";
+        str += "Name. : " + getName() + "\n";
+        str += "MapNo :" + getMapNo() + "\n";
+        str += "Diffculty :" + getDiffculty() + "\n";
+        str += "score  : " + getScore() + "\n";
+        str += "**\n";
+        str += "\n";
+        return str;
+    }
+
+
+
 }
