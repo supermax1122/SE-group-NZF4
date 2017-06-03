@@ -8,8 +8,6 @@ package nz.ac.aut.ense701.gui;
 
 import nz.ac.aut.ense701.gameModel.FileIn;
 import nz.ac.aut.ense701.gameModel.ScoreRecord;
-import nz.ac.aut.ense701.GUITools.MyBackGround;
-import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -42,11 +40,11 @@ public class GameSelectGUI extends JFrame{
 
 
 	
-	private MyButton NormalMode;
-	private MyButton ScoreBoard;
-	private MyButton ChallengeMode;
-	private MyButton exit;
-	private MyBackGround ground;
+	private CustomizeButton NormalMode;
+	private CustomizeButton ScoreBoard;
+	private CustomizeButton ChallengeMode;
+	private CustomizeButton exit;
+	private CustomizeBackground ground;
         private ScoreRecord aUser;
 	//This class for show main menu.
 	public GameSelectGUI(){	
@@ -55,19 +53,19 @@ public class GameSelectGUI extends JFrame{
 	
 	
     
-                NormalMode = new MyButton("image/na1.jpg", "image/na2.jpg", "image/na3.jpg");
+                NormalMode = new CustomizeButton("image/NormalMode1.png", "image/NormalMode2.png", "image/NormalMode3.png");
 		NormalMode.setBounds(20, 100, NormalMode.getButtonWidth(), NormalMode.getButtonHeight());
 		
-		ScoreBoard = new MyButton("image/sa1.jpg", "image/sa2.jpg", "image/sa3.jpg");
+		ScoreBoard = new CustomizeButton("image/ScoreBoard1.png", "image/ScoreBoard2.png", "image/ScoreBoard3.png");
 		ScoreBoard.setBounds(20, 200, ScoreBoard.getButtonWidth(), ScoreBoard.getButtonHeight());
 		
-		ChallengeMode = new MyButton("image/ca1.jpg", "image/ca2.jpg", "image/ca3.jpg");
+		ChallengeMode = new CustomizeButton("image/Challenge1.png", "image/Challenge2.png", "image/Challenge3.png");
 		ChallengeMode.setBounds(20, 300,ChallengeMode.getButtonWidth(), ChallengeMode.getButtonHeight());
 		
-		exit = new MyButton("image/Exit1.jpg", "image/Exit2.jpg", "image/Exit3.jpg");
+		exit = new CustomizeButton("image/exit1.png", "image/exit2.png", "image/exit3.png");
 		exit.setBounds(20, 400, exit.getButtonWidth(), exit.getButtonHeight());
 
-		ground = new MyBackGround("image/startMenu.jpg");
+		ground = new CustomizeBackground("image/startMenu.jpg");
 		this.setLayout(null);
 		ground.setBounds(0,0,700,560);
 	
@@ -121,7 +119,7 @@ public class GameSelectGUI extends JFrame{
                         ScoreBoard aScoreBoard = new ScoreBoard(scoreRecordList);
                         jf.add(aScoreBoard);
                         jf.setVisible(true);
-                        jf.setSize(515, 600);
+                        jf.setSize(490, 480);
                         
     		}
     	});

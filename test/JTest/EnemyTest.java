@@ -6,7 +6,6 @@
 package JTest;
 
 import static junit.framework.TestCase.assertEquals;
-import nz.ac.aut.ense701.gameModel.Durability;
 import nz.ac.aut.ense701.gameModel.Enemy;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Position;

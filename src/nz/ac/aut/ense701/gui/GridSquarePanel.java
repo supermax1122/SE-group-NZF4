@@ -42,6 +42,11 @@ public class GridSquarePanel extends javax.swing.JPanel
         boolean iscurrentrow = (game.getPlayer().getPosition().getRow() == row);
         boolean iscurrentcol = (game.getPlayer().getPosition().getColumn() == column);
 
+        if (!squareVisible){
+            String imagePath = "image/mist.jpg";
+            this.paintItem(g, imagePath);
+        }
+        
         if ((squareVisible && !squareExplored)||this.Isvisible||(iscurrentrow&&iscurrentcol)) {
             String imagePath = "image/"+imageName;
             this.paintItem(g, imagePath);
@@ -112,7 +117,7 @@ public class GridSquarePanel extends javax.swing.JPanel
             case WETLAND : setImagename("wetland.jpg")/*color = Color.BLUE*/; break;
             case SCRUB : setImagename("scrub.jpg")/*color = Color.DARK_GRAY*/;   break;
             case WATER    : setImagename("water.jpg")/*color = Color.CYAN*/;   break;
-            default  : color = Color.LIGHT_GRAY; break;
+            default  :/*color = Color.LIGHT_GRAY*/; break;
         }
         
        if ( squareExplored || squareVisible )

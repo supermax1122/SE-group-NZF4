@@ -26,45 +26,52 @@ public class GameLevelSelect extends JFrame{
 
 	private JLabel text;
 	
-	private JButton easy;
-	private JButton normal;
-	private JButton hard;
-	private JButton back;
-        
+	private CustomizeButton easy;
+	private CustomizeButton normal;
+	private CustomizeButton hard;
+	private CustomizeButton back;
+        private CustomizeBackground ground;
         private ScoreRecord aUser;
-
+        private GameSelectGUI GameSelectGUI;
+        private String userName;
 	//This class for show main menu.
 	public GameLevelSelect(){	
 		super("Kiwi Island Start Menu");
 		
 		text = new JLabel("");
-		easy= new JButton("Easy Game");
-		easy.setBounds(20, 50, 150, 30);
+            
+		easy= new CustomizeButton("image/EasyGame1.png", "image/EasyGame2.png", "image/EasyGame3.png");
+		easy.setBounds(20, 50,easy.getButtonWidth(), easy.getButtonHeight());
 		
-		normal= new JButton("Normal Game");
-		normal.setBounds(20, 100, 150, 30);
+		normal= new CustomizeButton("image/NormalGame1.png", "image/NormalGame2.png", "image/NormalGame3.png");
+		normal.setBounds(20, 120, normal.getButtonWidth(), normal.getButtonHeight());
 		
-		hard= new JButton("Hard Game");
-		hard.setBounds(20, 150, 150, 30);
+		hard= new CustomizeButton("image/HardGame1.png", "image/HardGame2.png", "image/HardGame3.png");
+		hard.setBounds(20, 190, hard.getButtonWidth(), hard.getButtonHeight());
 		
-		back= new JButton("Back");
-		back.setBounds(20, 200, 150, 30);
+		back= new CustomizeButton("image/Back1.png", "image/Back2.png", "image/Back3.png");
+		back.setBounds(20, 260,back.getButtonWidth(), back.getButtonHeight());
 		
 
 	
 		text.setText("");
 		text.setFont(new Font( "Dialog", Font.TRUETYPE_FONT, 40));
 		text.setForeground(Color.BLACK);
-		
+		ground = new CustomizeBackground("image/GameLevelBackGound.jpg");
+	
+		ground.setBounds(0,0,700,560); 
+             
 		this.add(text);
 		this.add(easy);
 		this.add(normal);
 		this.add(hard);
 		this.add(back);
 		this.add(text);
-		this.setSize(200, 300);
+                this.add(ground);
+		this.setSize(180, 350);
 		this.setLocation(400, 200);
-		 this.setResizable(false);//size of window cannot be change 
+               
+		this.setResizable(false);//size of window cannot be change 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -72,9 +79,9 @@ public class GameLevelSelect extends JFrame{
     		@Override
     		public void actionPerformed(ActionEvent e) {
     			// TODO Auto-generated method stub
-    			new GameSelectGUI();
-    			Dispose();
-    			
+    			new GameSelectGUI().setaUser(aUser);
+    			Dispose();  
+                                             
     		}
     	});
 		easy.addActionListener(new ActionListener() {     		
@@ -89,6 +96,7 @@ public class GameLevelSelect extends JFrame{
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                          Dispose();
+                         
     		}
     	});
 		
@@ -103,7 +111,7 @@ public class GameLevelSelect extends JFrame{
                          game.setaUser(aUser);
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
-                          Dispose();
+                         Dispose();
     		}
     	});
 		hard.addActionListener(new ActionListener() {     		

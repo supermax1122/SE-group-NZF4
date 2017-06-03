@@ -69,7 +69,7 @@ public class ToolTest extends junit.framework.TestCase
     @Test
     public void testGetDurability (){
         boolean result = false;
-        if (trap.getDurability() != null){
+        if (trap.getDurability() != 0){
             result = true;
         }
         assertTrue (result);
@@ -78,7 +78,7 @@ public class ToolTest extends junit.framework.TestCase
     @Test
     public void testDropDurability (){
         trap.dropDurability();
-        assertEquals (2, trap.getDurability().getDurability());
+        assertEquals (2, trap.getDurability());
     }
     
     @Test

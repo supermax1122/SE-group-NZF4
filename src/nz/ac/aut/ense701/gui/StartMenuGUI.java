@@ -2,11 +2,10 @@ package nz.ac.aut.ense701.gui;
 
 
 
-import nz.ac.aut.ense701.GUITools.MyBackGround;
-import nz.ac.aut.ense701.GUITools.MyButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -39,7 +38,7 @@ public class StartMenuGUI extends JFrame {
     private static final int WIDTH = 800;//width of window
     private static final int HEIGHT = 600;//height of window
     private UserLogIn login;
-    private MyBackGround my;
+    private CustomizeBackground my;
     
     public static void main(String[] args) throws InterruptedException {  
     
@@ -87,33 +86,32 @@ public class StartMenuGUI extends JFrame {
      */
     public class UserLogIn extends JPanel{
         //Create the User Name.
- 	private JLabel nameTextLabel = new JLabel("User Name：");
+ 	private JLabel nameTextLabel = new JLabel("Please enter your name->");
  	private JTextField nameField = new JTextField(25);
-
+       
  	//Create buttons.
- 	private MyButton YesButton = new MyButton("image/StartGame1.jpg", "image/StartGame2.jpg", "image/StartGame3.jpg");
- 	private MyButton NoButton = new MyButton("image/Exit1.jpg", "image/Exit2.jpg", "image/Exit3.jpg");
+ 	private CustomizeButton YesButton = new CustomizeButton("image/start1.png", "image/start2.png", "image/start3.png");
+ 	private CustomizeButton NoButton = new CustomizeButton("image/exit1.png", "image/exit2.png", "image/exit3.png");
  	
  	private ScoreRecord  user;
-
-        
-         
+ 
          @SuppressWarnings("unchecked")
  	public UserLogIn(){
          	
-        		GridBagLayout layout = new GridBagLayout();
+             GridBagLayout layout = new GridBagLayout();
              this.setLayout(layout);
-         	nameTextLabel.setForeground(Color.RED);
-
+            
+             nameTextLabel.setForeground(Color.DARK_GRAY);
+             nameTextLabel.setFont(new Font("Axure Handwriting",Font.BOLD, 20));
             	
          
              GridBagConstraints gbc = new GridBagConstraints();
              gbc.gridx = 0;
-             gbc.gridy = 0;
-             gbc.gridwidth = 1;
-             gbc.weightx = 60;
-             gbc.fill = GridBagConstraints.NONE;
-             this.add(nameTextLabel, gbc);
+             gbc.gridy = 5;
+            gbc.gridwidth = 1;
+            gbc.weightx = 60;
+             gbc.fill = GridBagConstraints.BOTH;
+            this.add(nameTextLabel, gbc);
              GridBagConstraints gbc_1 = new GridBagConstraints();
              gbc_1.gridx = 0;
              gbc_1.gridy = 5;
@@ -123,23 +121,17 @@ public class StartMenuGUI extends JFrame {
              this.add(nameField, gbc_1);
              GridBagConstraints gbc_2 = new GridBagConstraints();
              gbc_2.gridx = 0;
-             gbc_2.gridy = 6;
-           
-             gbc_2.fill = GridBagConstraints.NONE;
+             gbc_2.gridy = 20;;
+             gbc_2.fill = GridBagConstraints.CENTER;
             this.add(YesButton, gbc_2);
              GridBagConstraints gbc_3 = new GridBagConstraints();
-             gbc_3.gridx = 2;
-             gbc_3.gridy = 7;
-     
+             gbc_3.gridx = 0;
+             gbc_3.gridy = 30;
+         
              gbc_3.fill = GridBagConstraints.NONE;
-            this.add(NoButton, gbc_3);
-
-
- 		initializeListeners();
- 	
- 		
- 		
- 		this.user = new ScoreRecord();
+             this.add(NoButton, gbc_3);
+ 	     initializeListeners();
+ 	     this.user = new ScoreRecord();
 
  	}
          	//initialize listenners
