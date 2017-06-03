@@ -13,7 +13,6 @@ import javafx.scene.input.KeyCode;
 import javax.swing.JFrame;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
-import nz.ac.aut.ense701.gameModel.SoundEffect;
 
 /**
  *
@@ -41,11 +40,11 @@ public class KeybordListener implements KeyListener, MouseListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
+        frame.resumeTheGame();
         if (e.getKeyCode() == KeyEvent.VK_W){
             if(game.isPlayerMovePossible(MoveDirection.NORTH)){
                 game.playerMove(MoveDirection.NORTH);
                 soundEffect.playStepSound();
-                    frame.resumeTheGame();
             }
             else
             {
@@ -56,7 +55,6 @@ public class KeybordListener implements KeyListener, MouseListener{
             if(game.isPlayerMovePossible(MoveDirection.SOUTH)){
                 game.playerMove(MoveDirection.SOUTH);
                 soundEffect.playStepSound();
-                    frame.resumeTheGame();
             }
             else
             {
@@ -67,7 +65,6 @@ public class KeybordListener implements KeyListener, MouseListener{
             if (game.isPlayerMovePossible(MoveDirection.WEST)){
                 game.playerMove(MoveDirection.WEST);
                 soundEffect.playStepSound();
-                    frame.resumeTheGame();
             }
             else
             {
@@ -78,7 +75,6 @@ public class KeybordListener implements KeyListener, MouseListener{
             if(game.isPlayerMovePossible(MoveDirection.EAST)){
                 game.playerMove(MoveDirection.EAST);
                 soundEffect.playStepSound();
-                    frame.resumeTheGame();
             }
             else
             {
