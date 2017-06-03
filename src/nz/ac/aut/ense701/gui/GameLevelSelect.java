@@ -4,21 +4,18 @@
  * and open the template in the editor.
  */
 package nz.ac.aut.ense701.gui;
-import nz.ac.aut.ense701.gui.GameSelectGUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import nz.ac.aut.ense701.gameModel.Difficulty;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameModel;
 import nz.ac.aut.ense701.gameModel.ScoreRecord;
-import nz.ac.aut.ense701.gui.KiwiCountUI;
+
 
 
 public class GameLevelSelect extends JFrame{
@@ -140,10 +137,5 @@ public class GameLevelSelect extends JFrame{
         this.aUser = aUser;
     }
 	
-	
-	public static void main(String[] args) throws SQLException {
-		// TODO Auto-generated method stub
-		new GameLevelSelect();
-	}
 
 }

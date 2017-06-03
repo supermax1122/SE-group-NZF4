@@ -12,7 +12,7 @@ import java.util.Random;
  * @author Rongsen Chen
  */
 public class EnemyRandomize {
-    Random random;
+    private Random random;
     
     public EnemyRandomize (){
         random = new Random ();

@@ -26,8 +26,7 @@ public class VolumeController {
 			for (Mixer.Info mixerInfo : mixers) {
 				Mixer mixer = AudioSystem.getMixer(mixerInfo);
 				Line.Info[] lineInfos = mixer.getTargetLineInfo();
-																	// not
-																	// source
+
 				// changes all the volumes
 				for (Line.Info lineInfo : lineInfos) {
 					Line line = null;

@@ -62,8 +62,6 @@ public class ScoreList {
 
             }
         }
-        
-        System.out.println("Score List is established\n");
         reader.close();
         is.close();
         isReader.close();
@@ -104,7 +102,6 @@ public class ScoreList {
             os.close();
             osWriter.close();
             writer.close();
-            System.out.println("Score File Saved\n");
         }
 
     }
@@ -150,18 +147,6 @@ public class ScoreList {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-
-    }
-
-    public static void main(String[] args) throws IOException {
-
-        //    FileIn ScoreListFileIn = new FileIn("scoreFile.txt");
-        //  ArrayList<ScoreRecord> scoreRecordList = ScoreListFileIn.ScoreRecordList();
-        ArrayList<ScoreRecord> scoreRecordList = new ScoreList().ScoreRecordList();
-
-        for (ScoreRecord a : scoreRecordList) {
-            System.out.println(a);
         }
 
     }

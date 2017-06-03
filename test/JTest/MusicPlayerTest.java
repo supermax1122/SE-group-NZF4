@@ -5,7 +5,7 @@
  */
 package JTest;
 
-import nz.ac.aut.ense701.gameModel.MusicPlayer;
+import nz.ac.aut.ense701.gui.MusicPlayer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
