@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,12 +62,13 @@ public class ScoreList {
 
             }
         }
-
+        
         System.out.println("Score List is established\n");
         reader.close();
         is.close();
         isReader.close();
         file.exists();
+        Collections.sort(readRecordtList);
         return readRecordtList;
 
     }
@@ -112,6 +114,7 @@ public class ScoreList {
         try {
             ArrayList<ScoreRecord> scoreList=ScoreRecordList();
             scoreList.add(aScoreRecord);
+            Collections.sort(scoreList);
             scoreListFileOut( scoreList);
         } catch (IOException ex) {
             Logger.getLogger(ScoreList.class.getName()).log(Level.SEVERE, null, ex);

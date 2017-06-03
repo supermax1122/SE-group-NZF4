@@ -64,6 +64,7 @@ public class Game {
         }
         initialiseIslandFromFile("GameMap/IslandData" + mapOrder[currentmapindex] + ".txt");
         drawIsland();
+        aUser.setMapNo(currentmapindex+"");
         state = GameState.PLAYING;
         winMessage = "";
         loseMessage = "";

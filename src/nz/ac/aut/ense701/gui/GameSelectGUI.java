@@ -68,9 +68,6 @@ public class GameSelectGUI extends JFrame{
 		ground = new CustomizeBackground("image/startMenu.jpg");
 		this.setLayout(null);
 		ground.setBounds(0,0,700,560);
-	
-	
-		
 		
 		this.add(NormalMode);
 		this.add(ScoreBoard);
