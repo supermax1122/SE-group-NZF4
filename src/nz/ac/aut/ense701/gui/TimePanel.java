@@ -8,7 +8,6 @@ package nz.ac.aut.ense701.gui;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
