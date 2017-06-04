@@ -86,8 +86,8 @@ public class GameLevelSelect extends JFrame{
     			// TODO Auto-generated method stub
                          final Game game = new Game(aUser);
                          game.setModel(GameModel.Normal);
-                         game.setDiffiucly(Difficulty.ESAY);
-                         aUser.setDiffculty(Difficulty.ESAY.toString());
+                         game.setDiffiucly(Difficulty.EASY);
+                         aUser.setDiffculty(Difficulty.EASY.toString());
                          final KiwiCountUI  gui  = new KiwiCountUI(game);
                          gui.setVisible(true);
                          Dispose();

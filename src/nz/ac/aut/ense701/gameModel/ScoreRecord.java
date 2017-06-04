@@ -112,8 +112,8 @@ public class ScoreRecord implements Comparable<ScoreRecord>
             } else {
                 return -1;
             }
-        } else if ("ESAY".equals(this.Diffculty)) {
-            if ("ESAY".equals(aScoreRecord.Diffculty)) {
+        } else if ("EASY".equals(this.Diffculty)) {
+            if ("EASY".equals(aScoreRecord.Diffculty)) {
                 if (Integer.parseInt(this.score) > Integer.parseInt(aScoreRecord.score)) {
                     return -1;
                 } else {
