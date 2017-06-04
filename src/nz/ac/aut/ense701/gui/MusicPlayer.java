@@ -1,9 +1,7 @@
 package nz.ac.aut.ense701.gui;
 
 import java.io.*;
-import java.net.URL;
 import javax.sound.sampled.*;
-import javax.swing.*;
 
 public class MusicPlayer {
 
@@ -37,12 +35,10 @@ public class MusicPlayer {
             audioIn = AudioSystem.getAudioInputStream(file);
             return true;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            System.err.println("Cannot read this path");
+
             return false;
         } catch (UnsupportedAudioFileException e) {
-            // TODO Auto-generated catch block
-            System.err.println("File type note support");
+
             return false;
         }
     }

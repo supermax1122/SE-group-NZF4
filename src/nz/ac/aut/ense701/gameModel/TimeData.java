@@ -5,12 +5,12 @@
  */
 package nz.ac.aut.ense701.gameModel;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +28,7 @@ public class TimeData {
     private boolean stop;
     private long passTime;
     private GameModel model;
-    Timer timer;
+    private Timer timer;
 
     public TimeData(GameModel model) {
         this.model = model;
@@ -46,10 +46,11 @@ public class TimeData {
     }
 
     public void countDown() {
-        end = System.currentTimeMillis() + (GAME_TIME)* 1000;
+        end = System.currentTimeMillis() + (GAME_TIME) * 1000;
         timer = new Timer();
         timer.schedule(new TimerTask() {
-        long sub;
+            long sub;
+
             public void run() {
 
                 if (!stop) {
@@ -59,8 +60,8 @@ public class TimeData {
                     if (sub < 0) {
                         countFinished = true;
                     }
-                }else{
-                    passTime=sub;
+                } else {
+                    passTime = sub;
                 }
             }
 
@@ -77,10 +78,10 @@ public class TimeData {
             public void run() {
                 if (!stop) {
                     sub = System.currentTimeMillis() - end + passTime;
-                    
-                    usedTime = sub / 1000;                 
-                    countUpTime = updateTimer(sub);              
-                
+
+                    usedTime = sub / 1000;
+                    countUpTime = updateTimer(sub);
+
                 } else {
                     passTime = sub;
 
@@ -89,7 +90,6 @@ public class TimeData {
         }, 0, 1000);
     }
 
-    
     public void SysTime() {
 
         Timer timer = new Timer();
@@ -99,37 +99,35 @@ public class TimeData {
                 long sub = System.currentTimeMillis();
                 systemTime = updateTimer(sub);
 
-
             }
 
         }, 0, 1000);
 
     }
 
-    
-    public void pause(){
+    public void pause() {
         this.stop = true;
     }
 
-    public void resume(){
-       if (model == GameModel.Challenge) {
-            stop=false;
-            end=System.currentTimeMillis()+passTime;
+    public void resume() {
+        if (model == GameModel.Challenge) {
+            stop = false;
+            end = System.currentTimeMillis() + passTime;
         } else if (model == GameModel.Normal) {
-           stop=false;
-           end = System.currentTimeMillis();
+            stop = false;
+            end = System.currentTimeMillis();
         }
-          
+
     }
- 
+
     public void startNewTime() {
         this.stop = false;
         if (model == GameModel.Challenge) {
-             end = System.currentTimeMillis() + GAME_TIME * 1000;
-             countFinished=false;
+            end = System.currentTimeMillis() + GAME_TIME * 1000;
+            countFinished = false;
         } else if (model == GameModel.Normal) {
             end = System.currentTimeMillis();
-            passTime=0;
+            passTime = 0;
         }
 
     }
@@ -182,10 +180,10 @@ public class TimeData {
         this.model = model;
     }
 
-    public void shutdown (){
+    public void shutdown() {
         timer.cancel();
         timer.purge();
     }
-    
+
 
 }
