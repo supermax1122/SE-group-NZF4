@@ -31,16 +31,16 @@ public class Enemy extends Occupant implements Runnable{
     public void run (){
         run = true;
         while (run){
+                if(pause==false)
+                {
+                    tracePlayer ();
+                    game.EnemyMove();
+                }
                 killPlayer();
                 try {
                     Thread.sleep(moveFrequency);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Enemy.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if(pause==false)
-                {
-                    tracePlayer ();
-                    game.EnemyMove();
                 }
         }
     }
