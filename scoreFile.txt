@@ -22,6 +22,7 @@ Hongzhou2
 01
 NORMAL
 300
+<<<<<<< HEAD
 Weiwei Ma
 01
 HARD
@@ -38,3 +39,13 @@ Unknown
 Unknown
 Unknown
 Unknown
+=======
+Hongzhou333
+02
+NORMAL
+500
+Hongzhou2
+01
+EASY
+1000
+>>>>>>> refs/remotes/origin/master
