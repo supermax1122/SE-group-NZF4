@@ -12,7 +12,7 @@ import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
-import static nz.ac.aut.ense701.gameModel.VolumeController.setOutputVolume;
+import static nz.ac.aut.ense701.gui.VolumeController.setOutputVolume;
 
 /*
  * User interface form for Kiwi Island.
