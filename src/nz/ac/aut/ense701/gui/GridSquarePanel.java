@@ -75,7 +75,7 @@ public class GridSquarePanel extends javax.swing.JPanel
                     this.paintItem(g, "image/predator.png");
                 }
                 if (arrays[i] == 'X'){
-                    this.paintItem(g, "image/Dragon.png");
+                    this.paintItem(g, "image/Tiger.png");
                 }
             }
         }
