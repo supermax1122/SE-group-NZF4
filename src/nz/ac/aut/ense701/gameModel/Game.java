@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
+import nz.ac.aut.ense701.gui.MusicPlayer;
 
 /**
  * This is the class that knows the Kiwi Island game rules and state and

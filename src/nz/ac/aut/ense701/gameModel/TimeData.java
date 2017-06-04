@@ -29,7 +29,7 @@ public class TimeData {
     private boolean stop;
     private long passTime;
     private GameModel model;
-    Timer timer;
+    private Timer timer;
 
     public TimeData(GameModel model) {
         this.model = model;

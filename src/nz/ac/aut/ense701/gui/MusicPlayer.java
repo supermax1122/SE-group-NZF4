@@ -1,4 +1,4 @@
-package nz.ac.aut.ense701.gameModel;
+package nz.ac.aut.ense701.gui;
 
 import java.io.*;
 import java.net.URL;
