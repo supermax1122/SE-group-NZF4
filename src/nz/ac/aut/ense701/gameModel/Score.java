@@ -23,6 +23,14 @@ public class Score {
         preTime = 0;
         curTime = 0;
     }
+    
+    public Score(int score ,int preTime,int curTime){
+        this.score=score;
+        this.preTime=preTime;
+        this.curTime=curTime;
+        
+    
+    }
 
     public void plusScore(TimeData timeData) {
 
