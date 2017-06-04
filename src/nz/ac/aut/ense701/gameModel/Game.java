@@ -68,6 +68,11 @@ public class Game {
         kiwiCount = 0;
         isPaused = false;
 
+        if (enemy != null) {
+            enemy.EnemyRetreat();
+        }
+        enemy = null;
+        
         if (currentmapindex >= NO_MAP) {
             RandonmizeMap();
         }
@@ -83,16 +88,11 @@ public class Game {
         randomtime = enemyRandomize.getRandonTime();
         countdownline = 60;
 
-        if (enemy != null) {
-            enemy.EnemyRetreat();
-        }
-        enemy = null;
-
         score = new Score();
         mplayer = new MusicPlayer("res/music/Scenery_of_the_Town_Morning.wav");
         mplayer.Start_Loop();
     }
-
+    
     /**
      * a method use for unite test
      */
