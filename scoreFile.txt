@@ -8,25 +8,21 @@ NORMAL
 1113
 s66666
 Unknown
-ESAY
+EASY
 1712
 nnnnn
 Unknown
-ESAY
+EASY
 1189
 s66666
 Unknown
-ESAY
+EASY
 1167
 ttt
 77
-ESAY
+EASY
 100
-=======
->>>>>>> master
-Unknown
-Unknown
-Unknown
-Unknown
-Unknown
-Unknown
+Weiwei Ma
+01
+EASY
+1300
